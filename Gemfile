@@ -10,7 +10,7 @@ gem 'twitter-bootstrap-rails'
 gem 'slim-rails'
 
 gem 'jquery-rails'
-gem 'turbolinks'
+gem 'turbolinks', '~> 5.0.0.beta'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 

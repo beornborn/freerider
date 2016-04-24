@@ -1,0 +1,25 @@
+- model_class = User
+.page-header
+  h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+table.table.table-striped
+  thead
+    tr
+      th= model_class.human_attribute_name(:id)
+      th= model_class.human_attribute_name(:name)
+      th= model_class.human_attribute_name(:user_session)
+      th= model_class.human_attribute_name(:game_id)
+      th= model_class.human_attribute_name(:point)
+      th= model_class.human_attribute_name(:online)
+      th= model_class.human_attribute_name(:created_at)
+  tbody
+    - @users = []
+    - @users.each do |user|
+      tr
+        td= link_to user.id, user_path(user)
+        td= user.name
+        td= user.user_session
+        td= user.game_id
+        td= user.point
+        td= user.online
+        td=l user.created_at
+

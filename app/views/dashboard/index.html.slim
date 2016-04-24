@@ -1,25 +1,36 @@
-- model_class = User
-.page-header
-  h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
-table.table.table-striped
+= form_for Game.new, html: { class: "form-horizontal create-game-form" } do |f|
+  .form-group
+    label.control-label.col-sm-2 Name
+    .col-sm-3
+      = f.text_field :name, value: 'my game', class: 'form-control'
+    label.control-label.col-sm-2 Players Amount
+    .col-sm-3
+      = f.text_field :players_amount, value: '5', class: 'form-control'
+  .form-group
+    label.control-label.col-sm-2 Rounds
+    .col-sm-3
+      = f.text_field :rounds, value: '10', class: 'form-control'
+    label.control-label.col-sm-2 Time to Think
+    .col-sm-3
+      = f.text_field :time_to_think, value: '20', class: 'form-control'
+  .form-group.pull-right.create-game-button
+    = f.submit 'Create Game', class: 'btn btn-primary'
+
+table.table.table-hover.table-condensed.games-table
   thead
     tr
-      th= model_class.human_attribute_name(:id)
-      th= model_class.human_attribute_name(:name)
-      th= model_class.human_attribute_name(:user_session)
-      th= model_class.human_attribute_name(:game_id)
-      th= model_class.human_attribute_name(:point)
-      th= model_class.human_attribute_name(:online)
-      th= model_class.human_attribute_name(:created_at)
+      th Name
+      th Players
+      th Rounds
+      th Time to Think (sec)
 
   tbody
-    - @users.each do |user|
+    - @games.each do |game|
       tr
-        td= link_to user.id, user_path(user)
-        td= user.name
-        td= user.user_session
-        td= user.game_id
-        td= user.point
-        td= user.online
-        td=l user.created_at
+        td= game.name
+        td= game.players_amount
+        td= game.rounds
+        td= game.time_to_think
 
+- if @games.blank?
+  p no games

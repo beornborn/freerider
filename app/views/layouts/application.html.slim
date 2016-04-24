@@ -26,8 +26,16 @@ html lang="en"
           span.icon-bar
           span.icon-bar
         = link_to 'Hitrojop', root_path, class: 'navbar-brand'
-        .navbar-text.navbar-right= current_user.try(:name)
-        = debug session[:user_session]
+        .user-section.navbar-right
+          .navbar-text.user-name= current_user.name
+          .navbar-btn.btn.btn-primary.edit-user-name-button Edit
+        = form_for current_user, format: :json, remote: true,
+          html: { class: "navbar-form navbar-right edit-user-form" } do |f|
+          .form-group
+            = f.text_field :name, :class => 'form-control'
+          .form-group
+            = f.submit 'Save', :class => 'btn btn-primary'
+
     .container
       .row
         .col-lg-9

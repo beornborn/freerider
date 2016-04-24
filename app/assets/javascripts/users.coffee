@@ -1,3 +1,9 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(document).ready ->
+  $('.edit-user-name-button').click ->
+    $('.edit-user-form').show()
+    $('.user-section').hide()
+  $('.edit-user-form').on 'ajax:success', (ev,data) ->
+    $('.edit-user-form user[name]').val data.name
+    $('.edit-user-form').hide()
+    $('.user-name').text data.name
+    $('.user-section').show()

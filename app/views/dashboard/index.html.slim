@@ -1,36 +1,45 @@
-= form_for Game.new, html: { class: "form-horizontal create-game-form" } do |f|
-  .form-group
-    label.control-label.col-sm-2 Name
-    .col-sm-3
-      = f.text_field :name, value: 'my game', class: 'form-control'
-    label.control-label.col-sm-2 Players Amount
-    .col-sm-3
-      = f.text_field :players_amount, value: '5', class: 'form-control'
-  .form-group
-    label.control-label.col-sm-2 Rounds
-    .col-sm-3
-      = f.text_field :rounds, value: '10', class: 'form-control'
-    label.control-label.col-sm-2 Time to Think
-    .col-sm-3
-      = f.text_field :time_to_think, value: '20', class: 'form-control'
-  .form-group.pull-right.create-game-button
-    = f.submit 'Create Game', class: 'btn btn-primary'
+.col-lg-9
+  = form_for Game.new, html: { class: "form-horizontal create-game-form" } do |f|
+    .form-group
+      label.control-label.col-sm-2 Name
+      .col-sm-3
+        = f.text_field :name, value: 'my game', class: 'form-control'
+      label.control-label.col-sm-2 Players Amount
+      .col-sm-3
+        = f.text_field :players_amount, value: '5', class: 'form-control'
+    .form-group
+      label.control-label.col-sm-2 Rounds
+      .col-sm-3
+        = f.text_field :rounds, value: '10', class: 'form-control'
+      label.control-label.col-sm-2 Time to Think
+      .col-sm-3
+        = f.text_field :time_to_think, value: '20', class: 'form-control'
+    .form-group.pull-right.create-game-button
+      = f.submit 'Create Game', class: 'btn btn-primary'
 
-table.table.table-hover.table-condensed.games-table
-  thead
-    tr
-      th Name
-      th Players
-      th Rounds
-      th Time to Think (sec)
-
-  tbody
-    - @games.each do |game|
+  table.table.table-hover.table-condensed.games-table
+    thead
       tr
-        td= game.name
-        td= game.players_amount
-        td= game.rounds
-        td= game.time_to_think
+        th Name
+        th Players
+        th Rounds
+        th Time to Think (sec)
 
-- if @games.blank?
-  p no games
+    tbody
+      - @games.each do |game|
+        tr
+          td= link_to game.name, connect_game_path(game), method: :post
+          td= "#{game.users.size} / #{game.players_amount}"
+          td= game.rounds
+          td= game.time_to_think
+
+  - if @games.blank?
+    p no games
+
+.col-lg-3
+  .users-container
+    h4
+      | Players
+      '
+      span.text-success Online
+    .users-online

@@ -1,10 +1,10 @@
 App.users_online = App.cable.subscriptions.create "UsersOnlineChannel",
   connected: ->
-    console.log('connected')
+    console.log('connected users_online')
     @i_am_online()
 
   disconnected: ->
-    console.log('disconnected')
+    console.log('disconnected users_online')
 
   received: (users) ->
     $('.users-online').html('')

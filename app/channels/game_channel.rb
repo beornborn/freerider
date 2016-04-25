@@ -1,4 +1,4 @@
-class UsersOnlineChannel < ApplicationCable::Channel
+class GameChannel < ApplicationCable::Channel
   def subscribed
     current_user.update(online: true)
     stream_from "users_online"

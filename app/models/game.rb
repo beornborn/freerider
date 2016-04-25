@@ -1,3 +1,4 @@
-class Game < ActiveRecord::Base
+class Game < ApplicationRecord
   validates :name, presence: true
+  has_many :users
 end

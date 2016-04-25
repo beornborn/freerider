@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||=  begin
-      user = User.find_by(user_session: session[:user_session])
-      session[:user_session].blank? || user.blank? ? create_guest : user
+      user = User.find_by(id: cookies.signed[:user_id])
+      cookies.signed[:user_id].blank? || user.blank? ? create_guest : user
     end
   end
   helper_method :current_user
@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
   private
 
   def create_guest
-    token = SecureRandom.urlsafe_base64(nil, false)
-    session[:user_session] = token
-    User.create name: "guest#{rand(10000)}", user_session: token
+    user = User.create name: "guest#{rand(10000)}"
+    cookies.signed[:user_id] = { value: user.id, expires: 1.year.from_now }
+    user
   end
 end

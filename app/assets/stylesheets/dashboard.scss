@@ -5,3 +5,14 @@
 .create-game-form .create-game-button{
   margin-right: 146px;
 }
+
+.users-container {
+  h4 { margin-bottom: 20px; }
+  .users-online {
+    .player-name {
+      margin: 10px;
+      font-style: italic;
+      font-size: 13px;
+    }
+  }
+}

@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20160424082919) do
     t.integer  "wins_count",   default: 0
     t.integer  "games_count",  default: 0
     t.integer  "game_id"
-    t.integer  "point",        default: 0
+    t.integer  "points",       default: 0
     t.boolean  "online",       default: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false

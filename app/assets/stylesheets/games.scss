@@ -4,10 +4,13 @@
     padding: 13px;
   }
   &.you {
-    height: 200px;
+    height: 275px;
     padding-top: 30px;
-    .hitrojop-button { margin-top: 20px; }
-    .status { margin-top: 10px; }
+    .hitrojop-button {
+      margin-top: 30px;
+      width: 190px;
+    }
+    .status { margin-top: 15px; }
   }
 
   margin: 13px 20px 12px 20px;

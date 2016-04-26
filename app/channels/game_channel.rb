@@ -1,15 +1,39 @@
 class GameChannel < ApplicationCable::Channel
   def subscribed
-    current_user.update(online: true)
-    stream_from "users_online"
+    stream_from channel_name
+    stream_from personal_game_channel
   end
 
   def unsubscribed
-    current_user.update(online: false)
-    ActionCable.server.broadcast "users_online", User.online.as_json(only: [:id, :name, :online])
+    refresh_users
   end
 
-  def i_am_online
-    ActionCable.server.broadcast "users_online", User.online.as_json(only: [:id, :name, :online])
+  def connected_to_game
+    refresh_users
+    send_game
+  end
+
+  private
+
+  def refresh_users
+    ActionCable.server.broadcast channel_name, {
+      msg: 'users',
+      users: current_user.game.users.as_json(only: [:id, :name, :points])
+    }
+  end
+
+  def send_game
+    ActionCable.server.broadcast personal_game_channel, {
+      msg: 'game',
+      game: current_user.game.as_json(only: [:id, :name, :players_amount, :rounds, :time_to_think, :current_round])
+    }
+  end
+
+  def channel_name
+    "game_#{current_user.game_id}"
+  end
+
+  def personal_game_channel
+    "game_#{current_user.game_id}_#{current_user.id}"
   end
 end

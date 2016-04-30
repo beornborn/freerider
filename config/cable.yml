@@ -2,11 +2,6 @@
 production:
   adapter: redis
   url: redis://redistogo:123a5d8c83c97ec131676b4188a2288e@porgy.redistogo.com:9364
-  host: porgy.redistogo.com
-  port: 9364
-  requirepass: 123a5d8c83c97ec131676b4188a2288e
-  password: 10e348ac30ca0002879ce9d85daf0bb0
-  timeout: 150
 
 development:
   adapter: async

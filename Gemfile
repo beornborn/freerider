@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '>= 5.0.0.beta3', '< 5.1'
-gem 'sqlite3'
+gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -16,7 +16,6 @@ gem 'react-rails', '~> 1.6.0'
 gem "transitions", :require => ["transitions", "active_model/transitions"]
 gem 'sidekiq'
 gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
-gem 'pg'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

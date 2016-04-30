@@ -1,21 +1,39 @@
 let Game = React.createClass({
-  componentDidMount() {
-    this.game_channel = App.cable.subscriptions.create("GameChannel", App.createGameCommunicationLogic(this))
+  componentWillMount() {
+    this.gameChannel = App.cable.subscriptions.create("GameChannel", App.createGameCommunicationLogic(this))
   },
 
   getInitialState: function() {
-    return {users: [], game: {}};
+    return {players: [], game: {}, me: {}, winners: []};
   },
 
   render() {
-    // let arr = [['Dan', 5], ['Aol', 25], ['Jogar', 15], ['Zakil', 6], ['Lenacha', 9], ['Dan', 5], ['Dan', 5], ['Dan', 5], ['Dan', 5], ['Dan', 5], ['Dan', 5], ['Dan', 5], ['Dan', 5], ['Dan', 5], ['Dan', 5], ['Dan', 5]]
+    let withoutMeUsers = this.state.players.filter(p => p.id !== this.state.me.id)
+    let me = this.state.players.filter(p => p.id === this.state.me.id)[0] || {}
+    let winner_ids = this.state.winners.map(w => w.id)
+    let winner_players = this.state.players.filter(p => winner_ids.includes(p.id))
     return (
       <div className="game-container">
-        <YourPlayerSpot name="Oleg" points={1} />
-        {this.state.users.map(user => {
-          return <OtherPlayerSpot name={user.name} points={user.points} key={user.id} />
+        <GameInfo ref="gameInfo"
+          players={this.state.players}
+          game={this.state.game}
+          stopwatch={this.stopwatch}
+          winners={winner_players}
+          cbStopwatchTimeout={this.cbStopwatchTimeout} />
+        <YourPlayerSpot
+          player={me}
+          gameState={this.state.game.state}
+          cbHitrojopButton={this.cbHitrojopButton} />
+        {withoutMeUsers.map(player => {
+          return <OtherPlayerSpot player={player} key={player.id} />
         })}
       </div>
     );
-  }
+  },
+
+  newRound() { this.refs.gameInfo.refs.stopwatch.reset() },
+  gameFinished() { },
+
+  cbStopwatchTimeout() { this.gameChannel.maybeNextRound(this.state.game.current_round) },
+  cbHitrojopButton(hitrojop) { this.gameChannel.decide({hitrojop: hitrojop, round: this.state.game.current_round}) }
 });

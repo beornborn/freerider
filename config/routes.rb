@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root to: 'dashboard#index'
   resources :users, only: [:update]
@@ -6,4 +8,5 @@ Rails.application.routes.draw do
   end
 
   mount ActionCable.server => '/cable'
+  mount Sidekiq::Web, at: "/sidekiq"
 end

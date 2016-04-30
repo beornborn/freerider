@@ -6,7 +6,8 @@ class CreateGames < ActiveRecord::Migration
       t.integer :rounds
       t.integer :time_to_think
       t.integer :current_round
-      t.integer :winner_id
+      t.string :state
+      t.datetime :last_round_on
 
       t.timestamps null: false
     end

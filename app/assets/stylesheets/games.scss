@@ -1,4 +1,9 @@
-.user-game-spot {
+.game-info {
+  font-size: 20px;
+}
+
+
+.player-game-spot {
   &.other {
     height: 50px;
     padding: 13px;
@@ -12,6 +17,12 @@
     }
     .status { margin-top: 15px; }
   }
+  &.winner {
+    background-color: rgba(37, 175, 48, 0.15);
+  }
+  &.looser {
+    background-color: rgba(146, 7, 0, 0.29);
+  }
 
   margin: 13px 20px 12px 20px;
   background-color: rgba(192, 194, 206, 0.1);
@@ -21,8 +32,5 @@
   .name {
     font-size: 20px;
     margin-right: 10px;
-  }
-  .points {
-    font-size: 25px;
   }
 }

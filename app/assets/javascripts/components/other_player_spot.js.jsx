@@ -1,17 +1,28 @@
 var OtherPlayerSpot = React.createClass({
   propTypes: {
-    name: React.PropTypes.string.isRequired,
-    points: React.PropTypes.number.isRequired
+    player: React.PropTypes.object.isRequired
   },
 
   render: function() {
     return (
-      <div className="col-lg-3 user-game-spot other">
+      <div className={"col-lg-3 player-game-spot other text-center " + this.resultClass()}>
         <div className="name-points text-center">
-          <span className="name">{this.props.name}</span>
-          <span className="points text-primary">{this.props.points}</span>
+          <span className="name">{this.props.player.name}</span>
+          <span className="cool-number">{this.props.player.points}</span>
         </div>
       </div>
     );
-  }
+  },
+
+  resultClass() {
+    console.log(this.props.player)
+    switch (this.props.player.winner) {
+      case true:
+        return 'winner'
+      case false:
+        return 'looser'
+      default:
+        return ''
+    }
+  },
 });

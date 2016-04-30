@@ -3,7 +3,7 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.create(game_params)
-    current_user.update(game_id: @game.id)
+    @game.users << current_user
     redirect_to @game
   end
 
@@ -11,7 +11,7 @@ class GamesController < ApplicationController
   end
 
   def connect
-    current_user.update(game_id: @game.id)
+    @game.users << current_user unless @game.users.exists? current_user
     redirect_to @game
   end
 

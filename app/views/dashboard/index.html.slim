@@ -6,14 +6,14 @@
         = f.text_field :name, value: 'my game', class: 'form-control'
       label.control-label.col-sm-2 Players Amount
       .col-sm-3
-        = f.text_field :players_amount, value: '5', class: 'form-control'
+        = f.text_field :players_amount, value: '1', class: 'form-control'
     .form-group
       label.control-label.col-sm-2 Rounds
       .col-sm-3
-        = f.text_field :rounds, value: '10', class: 'form-control'
+        = f.text_field :rounds, value: '3', class: 'form-control'
       label.control-label.col-sm-2 Time to Think
       .col-sm-3
-        = f.text_field :time_to_think, value: '20', class: 'form-control'
+        = f.text_field :time_to_think, value: '10', class: 'form-control'
     .form-group.pull-right.create-game-button
       = f.submit 'Create Game', class: 'btn btn-primary'
 

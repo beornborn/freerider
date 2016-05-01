@@ -1,9 +1,9 @@
 let Game = React.createClass({
   componentWillMount() {
-    this.gameChannel = App.cable.subscriptions.create("GameChannel", App.createGameCommunicationLogic(this))
+    this.gameChannel = App.cable.subscriptions.create("GameChannel", App.createGameChannel(this))
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {players: [], game: {}, me: {}, winners: []};
   },
 

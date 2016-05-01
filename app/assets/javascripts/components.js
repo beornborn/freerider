@@ -1,1 +1,2 @@
-//= require_tree ./components
+//= require_tree ./components/game
+//= require_tree ./components/dashboard

@@ -1,4 +1,4 @@
-App.createGameCommunicationLogic = (react) ->
+App.createGameChannel = (react) ->
   {
     connected: ->
       console.log('connected game channel')
@@ -8,7 +8,7 @@ App.createGameCommunicationLogic = (react) ->
       console.log('disconnected game channel')
 
     received: (data) ->
-      console.log('got ' + data.msg)
+      console.log('game got ' + data.msg)
       console.log(data)
       switch data.msg
         when 'me'

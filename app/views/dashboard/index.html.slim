@@ -17,24 +17,7 @@
     .form-group.pull-right.create-game-button
       = f.submit 'Create Game', class: 'btn btn-primary'
 
-  table.table.table-hover.table-condensed.games-table
-    thead
-      tr
-        th Name
-        th Players
-        th Rounds
-        th Time to Think (sec)
-
-    tbody
-      - @games.each do |game|
-        tr
-          td= link_to game.name, connect_game_path(game), method: :post
-          td= "#{game.users.size} / #{game.players_amount}"
-          td= game.rounds
-          td= game.time_to_think
-
-  - if @games.blank?
-    p no games
+  = react_component 'GamesList'
 
 .col-lg-3
   .users-container

@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/rails-api/active_model_serializers.git
+  revision: 0433869cc1d59af04c115feff1504b4e8b22eef0
+  branch: master
+  specs:
+    active_model_serializers (0.10.0.rc5)
+      actionpack (>= 4.0)
+      activemodel (>= 4.0)
+      railties (>= 4.0)
+
+GIT
   remote: git://github.com/sinatra/sinatra.git
   revision: 84e76b839b8e356e36397c5395db0fa39a6d5642
   branch: master
@@ -87,7 +97,7 @@ GEM
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
-    listen (3.0.6)
+    listen (3.0.7)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9.7)
     loofah (2.0.3)
@@ -187,7 +197,7 @@ GEM
     transitions (1.1.0)
     turbolinks (5.0.0.beta2)
       turbolinks-source
-    turbolinks-source (5.0.0.beta4)
+    turbolinks-source (5.0.0.beta3)
     twitter-bootstrap-rails (3.2.2)
       actionpack (>= 3.1)
       execjs (>= 2.2.2, >= 2.2)
@@ -210,6 +220,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers!
   awesome_print
   byebug
   coffee-rails (~> 4.1.0)

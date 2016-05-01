@@ -26,5 +26,7 @@ module Hitrojop
     config.generators do |g|
       g.test_framework false
     end
+
+    config.autoload_paths += %W(#{config.root}/app/models/cable_managers)
   end
 end

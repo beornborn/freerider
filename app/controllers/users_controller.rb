@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      render :show, status: :ok, location: @user, format: :json
+      render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity, format: :json
     end

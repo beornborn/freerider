@@ -17,4 +17,10 @@ class GameListManager < ApplicationManager
   def personal_channel(user)
     "game_list_#{user.id}"
   end
+
+  private
+
+  def manager
+    @manager ||= GameListManager.new
+  end
 end

@@ -1,15 +1,16 @@
 class UsersOnlineChannel < ApplicationCable::Channel
   def subscribed
-    current_user.update(online: true)
-    stream_from "users_online"
+    stream_from manager.common_channel
+    manager.user_online(current_user)
   end
 
   def unsubscribed
-    current_user.update(online: false)
-    ActionCable.server.broadcast "users_online", User.online.as_json(only: [:id, :name, :online])
+    manager.user_offline(current_user)
   end
 
-  def i_am_online
-    ActionCable.server.broadcast "users_online", User.online.as_json(only: [:id, :name, :online])
+  private
+
+  def manager
+    @manager ||= UsersOnlineManager.new
   end
 end

@@ -61,8 +61,4 @@ class Game < ApplicationRecord
   def users_before_round_refresh
     players.update_all(hitrojop: false, decided: false)
   end
-
-  def serial_as_json(options = {})
-    Game.serializer.new(game, options).as_json
-  end
 end

@@ -5,16 +5,16 @@ let GameItem = React.createClass({
   },
 
   componentDidUpdate(prevProps, prevState) {
-    this.animateIfChanged()
+    this.animateChange()
   },
 
-  componentDidMount(){
-    this.animateIfChanged()
+  componentDidMount() {
+    this.animateAppear()
   },
 
   render() {
     return (
-      <div className="rTableRow animated game-list-row" ref={this.currentRef()} >
+      <div className="rTableRow game-list-row" ref={this.currentRef()} >
         <div className='rTableCell'>
           <a rel="nofollow" data-method="post" href={`/games/${this.props.game.id}/connect`}>{this.props.game.name}</a>
         </div>
@@ -29,13 +29,25 @@ let GameItem = React.createClass({
     return 'game' + this.props.game.id
   },
 
-  animateIfChanged() {
+  animateAppear() {
     var row = ReactDOM.findDOMNode(this.refs[this.currentRef()])
-    if (row && this.props.updated) {
+    row.style.opacity = 0
+    row.addEventListener('transitionend', ()=>{
+      setTimeout(() => {
+        row.style.opacity = 1
+        row.classList.remove("animated-state-appear")
+      }, 10)
+    })
+    setTimeout(() => { row.className += " animated-state-appear" }, 10)
+  },
+
+  animateChange(row) {
+    var row = ReactDOM.findDOMNode(this.refs[this.currentRef()])
+    if (this.props.updated) {
       row.addEventListener('transitionend', ()=>{
-        setTimeout(() => { row.classList.remove("animated-state") }, 10)
+        setTimeout(() => { row.classList.remove("animated-state-update") }, 10)
       })
-      setTimeout(() => { row.className += " animated-state" }, 10)
+      setTimeout(() => { row.className += " animated-state-update" }, 10)
     } // TODO why doesn't work without setTimeout?
   }
 });

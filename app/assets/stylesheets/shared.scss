@@ -12,21 +12,28 @@
 }
 
 .animated {
-  -moz-transition: all 0.065s cubic-bezier(0.82,-0.06, 0.32, 1.08);
-  -webkit-transition: all 0.065s cubic-bezier(0.82,-0.06, 0.32, 1.08);
-  -o-transition: all 0.065s cubic-bezier(0.82,-0.06, 0.32, 1.08);
-  transition: all 0.065s cubic-bezier(0.82,-0.06, 0.32, 1.08);
+  -moz-transition: all 0.165s cubic-bezier(0.82,-0.06, 0.32, 1.08);
+  -webkit-transition: all 0.165s cubic-bezier(0.82,-0.06, 0.32, 1.08);
+  -o-transition: all 0.165s cubic-bezier(0.82,-0.06, 0.32, 1.08);
+  transition: all 0.165s cubic-bezier(0.82,-0.06, 0.32, 1.08);
 }
 
 .animated-state {
-  background-color: rgba(66, 139, 202, 0.3);
+  background-color: rgba(66, 177, 202, 0.51)!important;
 }
 
 .rTable {
   display: table;
   width: 100%;
 }
-.rTableRow { display: table-row; }
+.rTableRow {
+  display: table-row;
+  background-color: rgba(66, 139, 202, 0.05);
+  &:hover {
+    background-color: rgba(66, 139, 202, 0.3);
+    cursor: pointer;
+  }
+}
 .rTableHeading {
   display: table-header-group;
   background-color: #428bca;
@@ -34,7 +41,7 @@
 }
 .rTableCell, .rTableHead {
   display: table-cell;
-  padding: 3px 10px;
+  padding: 5px 10px;
 }
 .rTableFoot {
   display: table-footer-group;

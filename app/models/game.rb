@@ -24,6 +24,7 @@ class Game < ApplicationRecord
     end
   end
 
+  scope :waiting_for_start, -> { where(state: :waiting_for_start) }
   validates :name, presence: true
   has_many :players, dependent: :destroy
   has_many :users, through: :players

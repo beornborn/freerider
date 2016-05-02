@@ -8,7 +8,7 @@ class GameListManager < ApplicationManager
   end
 
   def games
-    @games ||= Game.includes(players: :user).order(id: :desc)
+    @games ||= Game.waiting_for_start.includes(players: :user).order(id: :desc)
   end
 
   def common_channel

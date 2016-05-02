@@ -4,27 +4,25 @@ let GamesList = React.createClass({
   },
 
   getInitialState: function() {
-    return {games: []};
+    return {games: [], changedGamesIds: []};
   },
 
   render() {
     return (
-      <div>
-        <table className="table table-hover table-condensed games-table">
-          <thead>
-            <tr>
-              <th> Name </th>
-              <th> Players </th>
-              <th> Rounds </th>
-              <th> Time to Think (sec) </th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.games.map(game => {
-              return <GameItem game={game} key={game.id} />
-            })}
-          </tbody>
-        </table>
+      <div className='rTable'>
+        <div className='rTableHeading'>
+          <div className='rTableRow'>
+            <div className='rTableCell'> Name </div>
+            <div className='rTableCell'> Players </div>
+            <div className='rTableCell'> Rounds </div>
+            <div className='rTableCell'> Time to Think (sec) </div>
+          </div>
+        </div>
+        <div className='rTableBody'>
+          {this.state.games.map(game => {
+            return <GameItem game={game} key={game.id} updated={this.state.changedGamesIds.includes(game.id)} />
+          })}
+        </div>
       </div>
     )
   }

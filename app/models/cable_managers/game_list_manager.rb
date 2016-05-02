@@ -1,7 +1,8 @@
 class GameListManager < ApplicationManager
-  def refresh(channel_name)
+  def refresh(channel_name, options = {})
     ActionCable.server.broadcast channel_name, {
       msg: 'refresh',
+      changed_games_ids: options[:changed_games_ids] || [],
       games: Game.serializer.new(games).as_json
     }
   end

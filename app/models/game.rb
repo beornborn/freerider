@@ -1,7 +1,7 @@
 class Game < ApplicationRecord
   include ActiveModel::Transitions
 
-  state_machine do
+  state_machine auto_scopes: true do
     state :waiting_for_start
     state :waiting_for_round
     state :handling_round
@@ -24,7 +24,6 @@ class Game < ApplicationRecord
     end
   end
 
-  scope :waiting_for_start, -> { where(state: :waiting_for_start) }
   validates :name, presence: true
   has_many :players, dependent: :destroy
   has_many :users, through: :players

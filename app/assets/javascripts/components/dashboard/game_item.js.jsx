@@ -33,9 +33,9 @@ let GameItem = React.createClass({
     var row = ReactDOM.findDOMNode(this.refs[this.currentRef()])
     if (row && this.props.updated) {
       row.addEventListener('transitionend', ()=>{
-        setTimeout(() => { row.classList.remove("animated-state") }, 1)
+        setTimeout(() => { row.classList.remove("animated-state") }, 10)
       })
-      setTimeout(() => { row.className += " animated-state" }, 1)
+      setTimeout(() => { row.className += " animated-state" }, 10)
     } // TODO why doesn't work without setTimeout?
   }
 });

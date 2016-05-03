@@ -18,11 +18,6 @@
       = f.submit 'Create Game', class: 'btn btn-primary'
 
   = react_component 'GamesList'
-
 .col-lg-3
-  .users-container
-    h4
-      | Players
-      '
-      span.text-success Online
-    .users-online
+  = react_component 'UsersOnline'
+

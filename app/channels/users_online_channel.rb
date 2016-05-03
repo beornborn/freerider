@@ -8,6 +8,10 @@ class UsersOnlineChannel < ApplicationCable::Channel
     manager.user_offline(current_user)
   end
 
+  def refresh(options)
+    manager.send_refresh(options)
+  end
+
   private
 
   def manager

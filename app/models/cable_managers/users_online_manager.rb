@@ -9,10 +9,11 @@ class UsersOnlineManager < ApplicationManager
     send_refresh
   end
 
-  def send_refresh
+  def send_refresh(options = {})
     ActionCable.server.broadcast common_channel, {
       msg: 'refresh',
-      users: User.serializer.new(User.online).as_json
+      changed_users_ids: options['changed_users_ids'] || [],
+      users: User.serializer.new(User.online.order(name: :asc)).as_json
     }
   end
 

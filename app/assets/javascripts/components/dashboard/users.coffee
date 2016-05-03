@@ -5,6 +5,8 @@ $(document).ready ->
     input.focus().val input.val()
     $('.user-section').hide()
   $('.edit-user-form').on 'ajax:success', (ev,data) ->
+    App.usersOnline.refresh({changed_users_ids: [data.id]})
     $('.edit-user-form').hide()
     $('.user-name').text data.name
     $('.user-section').show()
+

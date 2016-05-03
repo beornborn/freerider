@@ -9,3 +9,5 @@ $(document).on 'turbolinks:load', ->
     $('.edit-user-form').hide()
     $('.user-name').text data.name
     $('.user-section').show()
+
+  $(".create-game-form").validate()

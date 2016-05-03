@@ -3,17 +3,17 @@
     .form-group
       label.control-label.col-sm-2 Name
       .col-sm-3
-        = f.text_field :name, value: 'my game', class: 'form-control'
+        = f.text_field :name, value: 'my game', class: 'form-control', required: true, minlength: 3, maxlength: 30
       label.control-label.col-sm-2 Players Amount
       .col-sm-3
-        = f.text_field :players_amount, value: '1', class: 'form-control'
+        = f.text_field :players_amount, value: '1', class: 'form-control', required: true, min: 2, max: 10
     .form-group
       label.control-label.col-sm-2 Rounds
       .col-sm-3
-        = f.text_field :rounds, value: '3', class: 'form-control'
+        = f.text_field :rounds, value: '3', class: 'form-control', required: true, min: 3, max: 30
       label.control-label.col-sm-2 Time to Think
       .col-sm-3
-        = f.text_field :time_to_think, value: '10', class: 'form-control'
+        = f.text_field :time_to_think, value: '10', class: 'form-control', required: true, min: 10, max: 60
     .form-group.pull-right.create-game-button
       = f.submit 'Create Game', class: 'btn btn-primary'
 

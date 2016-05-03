@@ -12,6 +12,7 @@ gem 'twitter-bootstrap-rails'
 gem 'slim-rails'
 
 gem 'jquery-rails'
+gem 'jquery-validation-rails'
 gem 'turbolinks', '~> 5.x'
 gem 'react-rails', '~> 1.6.0'
 gem 'transitions', :require => ['transitions', 'active_model/transitions']

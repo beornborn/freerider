@@ -11,6 +11,10 @@
   margin-top: 20px;
 }
 
+.error {
+  color: #a94442;
+}
+
 .animated-state-update {
   -moz-transition: all 0.165s cubic-bezier(0.82,-0.06, 0.32, 1.08);
   -webkit-transition: all 0.165s cubic-bezier(0.82,-0.06, 0.32, 1.08);

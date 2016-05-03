@@ -14,7 +14,7 @@ gem 'slim-rails'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5.x'
 gem 'react-rails', '~> 1.6.0'
-gem 'transitions', :require => ['transitions', 'active_model/transitions'], github: 'beornborn/transitions', branch: 'master'
+gem 'transitions', :require => ['transitions', 'active_model/transitions']
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers', branch: 'master'
 gem 'sidekiq'
 gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'

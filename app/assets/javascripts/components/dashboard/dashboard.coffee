@@ -1,4 +1,4 @@
-$(document).ready ->
+$(document).on 'turbolinks:load', ->
   $('.edit-user-name-button').click ->
     $('.edit-user-form').show()
     input = $(".edit-user-form input[name='user[name]']")
@@ -9,4 +9,3 @@ $(document).ready ->
     $('.edit-user-form').hide()
     $('.user-name').text data.name
     $('.user-section').show()
-

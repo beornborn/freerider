@@ -23,4 +23,9 @@
 
 .game-list-row {
   background-color: #fff;
+  a:hover {
+    text-decoration: none;
+    background-color: inherit;
+    color: inherit;
+  }
 }

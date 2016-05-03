@@ -12,4 +12,7 @@ App.createGameListChannel = (react) ->
       switch data.msg
         when 'refresh'
           react.setState({games: data.games, changedGamesIds: data.changed_games_ids})
+
+    refresh: () ->
+      @perform 'refresh'
   }

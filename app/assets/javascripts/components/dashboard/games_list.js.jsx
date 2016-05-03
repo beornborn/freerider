@@ -1,6 +1,13 @@
 let GamesList = React.createClass({
   componentWillMount() {
-    this.gameChannel = App.cable.subscriptions.create("GameListChannel", App.createGameListChannel(this))
+    this.gameListChannel = App.cable.subscriptions.create("GameListChannel", App.createGameListChannel(this))
+    // little hack: when page is loaded first time, this.gameListChannel.refresh() doesn't run
+    // because connection isn't established yet, so list of games is received always 1 time
+    this.gameListChannel.refresh()
+  },
+
+  componentWillUnmount() {
+    this.gameListChannel.unsubscribe()
   },
 
   getInitialState: function() {

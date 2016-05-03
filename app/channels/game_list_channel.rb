@@ -1,8 +1,6 @@
 class GameListChannel < ApplicationCable::Channel
   def subscribed
     stream_from manager.common_channel
-
-    personal_channel = manager.personal_channel(current_user)
     stream_from(personal_channel)
     manager.refresh(personal_channel)
   end
@@ -11,7 +9,15 @@ class GameListChannel < ApplicationCable::Channel
 
   end
 
+  def refresh
+    manager.refresh(personal_channel)
+  end
+
   private
+
+  def personal_channel
+    manager.personal_channel(current_user)
+  end
 
   def manager
     @manager ||= GameListManager.new

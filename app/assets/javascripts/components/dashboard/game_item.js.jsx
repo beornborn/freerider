@@ -19,7 +19,8 @@ let GameItem = React.createClass({
     return (
       <div className="rTableRow game-list-row" ref="row" onClick={this.connectToGame} >
         <div className='rTableCell'>
-          <a ref="link" rel="nofollow" data-method="post" href={`/games/${this.props.game.id}/connect`}>{this.props.game.name}</a>
+          {this.props.game.name}
+          <a ref="link" rel="nofollow" data-method="post" href={`/games/${this.props.game.id}/connect`}></a>
         </div>
         <div className='rTableCell'>{this.props.game.players.length + '/' + this.props.game.players_amount}</div>
         <div className='rTableCell'>{this.props.game.rounds}</div>

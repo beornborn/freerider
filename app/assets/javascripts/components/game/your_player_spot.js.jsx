@@ -40,22 +40,23 @@ var YourPlayerSpot = React.createClass({
     }
   },
   status() {
-    switch (this.props.player.hitrojop) {
-      case true:
+    if (this.props.player.decided) {
+      if (this.props.player.hitrojop) {
         return {
           text: 'selfish and ugly person',
           className: 'text-danger'
         }
-      case false:
+      } else {
         return {
           text: 'beautiful and kind person',
           className: 'text-success'
         }
-      default:
-        return {
-          text: 'who are you gonna be?',
-          className: 'text-primary'
-        }
+      }
+    } else {
+      return {
+        text: 'who are you gonna be?',
+        className: 'text-primary'
+      }
     }
   }
 });

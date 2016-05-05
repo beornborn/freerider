@@ -8,10 +8,14 @@ class GamesController < ApplicationController
   end
 
   def show
+    redirect_to root_path, alert: 'You are not a player of this game' unless @game.users.exists?(current_user)
   end
 
   def connect
-    @game.users << current_user unless @game.users.exists? current_user
+    redirect_to @game and return if @game.users.exists?(current_user)
+    redirect_to root_path, alert: 'Game is full' and return if @game.players_amount == @game.players.count
+
+    @game.users << current_user
     redirect_to @game
   end
 

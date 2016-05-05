@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+# source 'https://rubygems.org'
 
 ruby '2.3.0'
 
@@ -24,7 +24,7 @@ gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
 
 gem 'puma'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+gem 'redis', '~> 3.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

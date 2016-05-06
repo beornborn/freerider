@@ -27,6 +27,7 @@ module Hitrojop
       g.test_framework false
     end
 
+    config.react.addons = true
     config.autoload_paths += %W(#{config.root}/app/models/cable_managers)
   end
 end

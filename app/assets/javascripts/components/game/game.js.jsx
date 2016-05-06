@@ -1,3 +1,5 @@
+var update = React.addons.update
+
 let Game = React.createClass({
   componentWillMount() {
     this.gameChannel = App.cable.subscriptions.create("GameChannel", App.createGameChannel(this))
@@ -35,5 +37,12 @@ let Game = React.createClass({
   gameFinished() { },
 
   cbStopwatchTimeout() { this.gameChannel.maybeNextRound(this.state.game.current_round) },
-  cbHitrojopButton(hitrojop) { this.gameChannel.decide({hitrojop: hitrojop, round: this.state.game.current_round}) }
+  cbHitrojopButton(hitrojop) {
+    var index = this.state.players.findIndex(p => p.id === this.state.me.id)
+    updateCommand = {}
+    updateCommand[index] = {decided: {$set: true}}
+    var updatedPlayers = update(this.state.players, updateCommand)
+    this.setState({players: updatedPlayers})
+    this.gameChannel.decide({hitrojop: hitrojop, round: this.state.game.current_round})
+  }
 });

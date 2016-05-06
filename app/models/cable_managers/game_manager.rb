@@ -25,6 +25,7 @@ class GameManager < ApplicationManager
   end
 
   def player_made_decision(player, data)
+    return if player.decided?
     player.decide!(data) if @game.reload.current_round == data['round']
     send_players
     if @game.ready_to_finish_round?

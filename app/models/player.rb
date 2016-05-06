@@ -9,7 +9,7 @@ class Player < ApplicationRecord
   scope :cool, -> { where(hitrojop: false) }
   scope :winners, -> { where(winner: true) }
 
-  after_create :refresh_games
+  after_create :refresh_games, :refresh_player_game
 
   def decide!(data)
     self.hitrojop = data['hitrojop']
@@ -24,5 +24,10 @@ class Player < ApplicationRecord
   def refresh_games
     manager = GameListManager.new
     manager.refresh(manager.common_channel, changed_games_ids: [self.game.id])
+  end
+
+  def refresh_player_game
+    manager = GameManager.new(game)
+    manager.send_players
   end
 end

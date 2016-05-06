@@ -23,6 +23,7 @@ App.createGameChannel = (react) ->
           react.gameFinished()
         when 'refresh_all'
           @setAllData(data)
+          react.continueAfterRefresh()
 
     decide: (decision) ->
       @perform 'decided', decision

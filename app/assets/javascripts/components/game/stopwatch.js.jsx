@@ -16,8 +16,8 @@ var Stopwatch = React.createClass({
     return (<span>{this.view(time)}</span>)
   },
 
-  run() {
-    this.setState({remainingTime: this.props.time - 1})
+  run(time) {
+    this.setState({remainingTime: time - 1})
     let intervalId = setInterval(() => {
       if (this.props.cbInterval) { this.props.cbInterval(this.state.remainingTime) }
       if (this.state.remainingTime === 0) {
@@ -28,7 +28,7 @@ var Stopwatch = React.createClass({
     }.bind(this), 1000)
     this.setState({intervalId: intervalId})
 
-    if (this.props.cbTimeout) { this.setState({timeoutId: setTimeout(this.props.cbTimeout, this.props.time * 1000)}) }
+    if (this.props.cbTimeout) { this.setState({timeoutId: setTimeout(this.props.cbTimeout, time * 1000)}) }
   },
 
   stop() {
@@ -36,9 +36,9 @@ var Stopwatch = React.createClass({
     clearTimeout(this.state.timeoutId)
   },
 
-  reset() {
+  reset(time) {
     this.stop()
-    this.run()
+    this.run(time)
   },
 
   view(time) {

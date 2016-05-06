@@ -36,7 +36,7 @@ let Game = React.createClass({
   },
 
   newRound() {
-    this.refs.gameInfo.refs.stopwatch.reset()
+    this.refs.gameInfo.refs.stopwatch.reset(this.state.game.time_to_think)
     if (this.state.game.current_round == 1) { return }
 
     var hitrojop = this.state.players.find((p) => { return p.previous_round_hitrojop })
@@ -52,6 +52,13 @@ let Game = React.createClass({
     })
   },
   gameFinished() { },
+  continueAfterRefresh() {
+    if (this.state.game.state === 'waiting_for_round') {
+      var goneTime = Math.floor((Date.now() - Date.parse(this.state.game.last_round_on)) / 1000)
+      var remainingTime = this.state.game.time_to_think - goneTime
+      this.refs.gameInfo.refs.stopwatch.reset(remainingTime)
+    }
+  },
 
   cbStopwatchTimeout() { this.gameChannel.maybeNextRound(this.state.game.current_round) },
   cbHitrojopButton(hitrojop) {

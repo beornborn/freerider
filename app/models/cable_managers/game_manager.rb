@@ -6,7 +6,7 @@ class GameManager < ApplicationManager
 
   def player_connected_to_game(player)
     send_me(player)
-    send_refresh_all
+    send_refresh_all(personal_game_channel(player))
     if @game.ready_to_start?
       @game.start!
       send_new_round
@@ -65,8 +65,8 @@ class GameManager < ApplicationManager
     ActionCable.server.broadcast common_game_channel, { msg: 'game_finished' }.merge(all_data)
   end
 
-  def send_refresh_all
-    ActionCable.server.broadcast common_game_channel, { msg: 'refresh_all' }.merge(all_data)
+  def send_refresh_all(channel = common_game_channel)
+    ActionCable.server.broadcast channel, { msg: 'refresh_all' }.merge(all_data)
   end
 
   private

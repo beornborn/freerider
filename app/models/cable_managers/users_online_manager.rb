@@ -1,7 +1,7 @@
 class UsersOnlineManager < ApplicationManager
   def user_online(user)
     user.update(online: true)
-    send_refresh
+    send_connected(user)
   end
 
   def user_offline(user)
@@ -17,7 +17,15 @@ class UsersOnlineManager < ApplicationManager
     }
   end
 
+  def send_connected(user)
+    ActionCable.server.broadcast personal_channel(user), { msg: 'connected' }
+  end
+
   def common_channel
     "users_online"
+  end
+
+  def personal_channel(user)
+    "users_online_#{user.id}"
   end
 end

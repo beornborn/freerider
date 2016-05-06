@@ -13,6 +13,8 @@ App.createUsersOnlineChannel = (react) ->
       console.log('users online got ' + data.msg)
       console.log(data)
       switch data.msg
+        when 'connected'
+          @perform 'refresh', {}
         when 'refresh'
           react.setState({users: data.users, changedUsersIds: data.changed_users_ids})
   }

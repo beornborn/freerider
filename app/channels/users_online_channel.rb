@@ -1,6 +1,7 @@
 class UsersOnlineChannel < ApplicationCable::Channel
   def subscribed
     stream_from manager.common_channel
+    stream_from manager.personal_channel(current_user)
     manager.user_online(current_user)
   end
 

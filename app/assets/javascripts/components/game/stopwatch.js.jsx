@@ -12,7 +12,7 @@ var Stopwatch = React.createClass({
   componentWillUnmount() { this.stop() },
 
   render() {
-    var time = this.state.remainingTime !== undefined ? this.state.remainingTime : this.props.time
+    var time = this.state.intervalId === 0 ? this.props.time : this.state.remainingTime
     return (<span>{this.view(time)}</span>)
   },
 

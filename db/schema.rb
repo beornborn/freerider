@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427184807) do
+ActiveRecord::Schema.define(version: 20160506135040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,10 +31,11 @@ ActiveRecord::Schema.define(version: 20160427184807) do
   create_table "players", force: :cascade do |t|
     t.integer "game_id"
     t.integer "user_id"
-    t.integer "points",   default: 0
-    t.boolean "hitrojop", default: false
-    t.boolean "decided",  default: false
+    t.integer "points",                  default: 0
+    t.boolean "hitrojop",                default: false
+    t.boolean "decided",                 default: false
     t.boolean "winner"
+    t.boolean "previous_round_hitrojop"
   end
 
   add_index "players", ["game_id"], name: "index_players_on_game_id", using: :btree

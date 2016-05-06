@@ -13,6 +13,7 @@ class Player < ApplicationRecord
 
   def decide!(data)
     self.hitrojop = data['hitrojop']
+    self.previous_round_hitrojop = data['hitrojop']
     self.increment(:points) if data['hitrojop']
     self.decided = true
     self.save!

@@ -7,7 +7,7 @@ let GameItem = React.createClass({
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.updated) {
-      this.animateChange(ReactDOM.findDOMNode(this.refs.row))
+      this.animateUpdate(ReactDOM.findDOMNode(this.refs.row))
     }
   },
 

@@ -15,7 +15,6 @@ var OtherPlayerSpot = React.createClass({
   },
 
   resultClass() {
-    console.log(this.props.player)
     switch (this.props.player.winner) {
       case true:
         return 'winner'

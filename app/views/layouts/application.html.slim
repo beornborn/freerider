@@ -20,22 +20,21 @@ html lang="en"
 
 
   body
-    .navbar.navbar-default.navbar-static-top
+    nav.navbar.navbar-default
       .container
-        button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse"
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        = link_to 'Hitrojop', root_path, class: 'navbar-brand'
-        .user-section.navbar-right
-          .navbar-text.user-name= current_user.name
-          .navbar-btn.btn.btn-primary.edit-user-name-button Edit
-        = form_for current_user, format: :json, remote: true,
-          html: { class: "navbar-form navbar-right edit-user-form" } do |f|
-          .form-group
-            = f.text_field :name, :class => 'form-control'
-          .form-group
-            = f.submit 'Save', :class => 'btn btn-primary'
+        .row.header
+          .col-lg-12.col-xs-12
+            = link_to 'Hitrojop', root_path, class: 'navbar-brand'
+            .user-edit
+              .user-section
+                .navbar-text.user-name= current_user.name
+                .navbar-btn.btn.btn-primary.edit-user-name-button Edit
+              = form_for current_user, format: :json, remote: true,
+                html: { class: "edit-user-form" } do |f|
+                .form-group
+                  = f.text_field :name, :class => 'form-control edit-user-form-name'
+                .form-group
+                  = f.submit 'Save', :class => 'btn btn-primary'
 
     .container
       .row

@@ -17,7 +17,7 @@ var GameInfo = React.createClass({
   content() {
     switch (this.props.game.state) {
       case 'waiting_for_start':
-        let playersNumber = this.props.players.length + '\\' + this.props.game.players_amount
+        let playersNumber = this.props.players.length + ' \\ ' + this.props.game.players_amount
         return (
           <div>
             <div className="col-lg-4">
@@ -38,23 +38,21 @@ var GameInfo = React.createClass({
         )
       case 'waiting_for_round':
         let decidedCount = this.props.players.filter(u => u.decided).length
-        let decisionMadeCount = decidedCount + '\\' + this.props.game.players_amount
+        let decisionMadeCount = decidedCount + ' \\ ' + this.props.game.players_amount
         return (
           <div>
             <div className="col-lg-4">
               <span> Round </span>
               <span className="cool-number">{this.props.game.current_round}</span>
               <span> of </span>
-              <span className="cool-number">{this.props.game.rounds}</span>
-            </div>
-            <div className="col-lg-4">
+              <span className="cool-number">{this.props.game.rounds + ": "}</span>
               <span className="cool-number">
                 <Stopwatch ref="stopwatch"
-                  time={this.props.game.time_to_think}
-                  cbTimeout={this.props.cbStopwatchTimeout} />
+                    time={this.props.game.time_to_think}
+                    cbTimeout={this.props.cbStopwatchTimeout} />
               </span>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-8">
               <span>Decision Made: </span>
               <span className="cool-number">{decisionMadeCount}</span>
             </div>

@@ -1,18 +1,20 @@
 .col-lg-9
   = form_for Game.new, html: { class: "form-horizontal create-game-form" } do |f|
-    .form-group
-      label.control-label.col-sm-2 Name
-      .col-sm-3
+    .form-group.col-lg-6
+      label.control-label.col-lg-5 Name
+      .col-lg-7
         = f.text_field :name, value: 'my game', class: 'form-control', required: true, minlength: 3, maxlength: 30
-      label.control-label.col-sm-2 Players Amount
-      .col-sm-3
+    .form-group.col-lg-6
+      label.control-label.col-lg-5 Players Amount
+      .col-lg-7
         = f.text_field :players_amount, value: '2', class: 'form-control', required: true, min: 2, max: 10
-    .form-group
-      label.control-label.col-sm-2 Rounds
-      .col-sm-3
+    .form-group.col-lg-6
+      label.control-label.col-lg-5 Rounds
+      .col-lg-7
         = f.text_field :rounds, value: '3', class: 'form-control', required: true, min: 3, max: 30
-      label.control-label.col-sm-2 Time to Think
-      .col-sm-3
+    .form-group.col-lg-6
+      label.control-label.col-lg-5 Time to Think
+      .col-lg-7
         = f.text_field :time_to_think, value: '10', class: 'form-control', required: true, min: 10, max: 60
     .form-group.pull-right.create-game-button
       = f.submit 'Create Game', class: 'btn btn-primary'
@@ -20,4 +22,3 @@
   = react_component 'GamesList'
 .col-lg-3
   = react_component 'UsersOnline'
-

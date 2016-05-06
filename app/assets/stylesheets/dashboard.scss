@@ -1,9 +1,9 @@
-.games-table > thead > tr > th {
-  border-bottom: 0px;
-}
+$screen-lg-min: 1200px;
+$screen-xs-max: 768px;
 
 .create-game-form .create-game-button{
-  margin-right: 146px;
+  @media (min-width: $screen-lg-min) { margin-right: 146px; }
+  @media (max-width: $screen-xs-max) { margin-right: 0px; }
 }
 
 .users-container {
@@ -29,3 +29,28 @@
     color: inherit;
   }
 }
+
+.header {
+  height: 64px;
+  .user-edit {
+    float: right;
+    .btn { width: 61px; }
+    .user-section {
+      margin-top: 7px;
+      margin-right: 10px;
+      .user-name {
+        float: left;
+        margin-right: 20px;
+      }
+    }
+    .edit-user-form {
+      margin-top: 10px;
+      .edit-user-form-name {
+        float: left;
+        width: 60%;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+

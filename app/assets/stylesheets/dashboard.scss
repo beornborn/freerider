@@ -6,6 +6,21 @@ $screen-xs-max: 768px;
   @media (max-width: $screen-xs-max) { margin-right: 0px; }
 }
 
+nav.navbar .header-text {
+  color: #428bca;
+}
+
+#rules-modal .modal-header {
+  background-color: #428bca;
+  .modal-title {
+    color: #fff;
+  }
+  .close {
+    opacity: 1;
+    color: #fff;
+  }
+}
+
 .users-container {
   h4 { margin-bottom: 20px; }
   .users-online {

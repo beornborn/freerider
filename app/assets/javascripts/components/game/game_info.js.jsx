@@ -59,19 +59,12 @@ var GameInfo = React.createClass({
           </div>
         )
       case 'finished':
-        let message;
         if (this.props.winners.length === 0) {
-          message = <div className="text-danger text-center low-mt">You are all nasty, horrible, lousy, selfinsh LOOSERS! Shame on you! BOOOOO!!</div>
+          return <div className="text-danger text-center">Bus Company has bankrupted.. Shame on you! </div>
         } else {
           let winners_view = this.props.winners.map(w => w.name).join(', ')
-          message = <div className="text-success text-center low-mt">Winners are: {winners_view}</div>
+          return <div className="text-success text-center">Bus company survived! Winners are: {winners_view}</div>
         }
-        return (
-          <div>
-            <div className="text-success text-center">Game Over! Thanks for playing!</div>
-            {message}
-          </div>
-        )
       default:
         return 'loading'
     }

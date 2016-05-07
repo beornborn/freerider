@@ -20,9 +20,9 @@ var YourPlayerSpot = React.createClass({
         </div>
         <div className={'status ' + statusData['className']}> {statusData['text']} </div>
         <button className="btn btn-danger btn-lg hitrojop-button"
-          disabled={showButtons} onClick={this.hitrojopClick}> become Hitrojop! </button>
+          disabled={showButtons} onClick={this.hitrojopClick}> Stole a Ride </button>
         <button className="btn btn-success btn-lg hitrojop-button"
-          disabled={showButtons} onClick={this.coolClick}> be Cool! </button>
+          disabled={showButtons} onClick={this.coolClick}> Buy Ticket </button>
       </div>
     );
   },

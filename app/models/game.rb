@@ -11,7 +11,7 @@ class Game < ApplicationRecord
       transitions from: :waiting_for_start, to: :waiting_for_round, on_transition: :increment_round
     end
 
-    event :finish_round, success: :proceed_further do
+    event :finish_round, success: [:handle_round, :proceed_further] do
       transitions from: :waiting_for_round, to: :handling_round, on_transition: :increment_round
     end
 
@@ -38,6 +38,10 @@ class Game < ApplicationRecord
 
   def ready_to_finish_game?
     (self.current_round > self.rounds || self.players.cool.count.zero?) && self.reload.can_finish?
+  end
+
+  def handle_round
+    players.hitrojops.each {|p| p.increment(:points).save }
   end
 
   def proceed_further

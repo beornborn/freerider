@@ -27,7 +27,8 @@ module Freerider
       g.test_framework false
     end
 
-    config.react.addons = true
     config.autoload_paths += %W(#{config.root}/app/models/cable_managers)
+    config.api_only = true
+    config.debug_exception_response_format = :api
   end
 end

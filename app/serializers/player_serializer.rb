@@ -1,3 +1,3 @@
 class PlayerSerializer < ActiveModel::Serializer
-  attributes :id, :name, :winner, :points, :decided, :hitrojop, :previous_round_hitrojop
+  attributes :id, :name, :winner, :points, :decided, :freerider, :previous_round_freerider
 end

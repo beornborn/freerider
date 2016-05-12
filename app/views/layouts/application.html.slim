@@ -4,7 +4,7 @@ html lang="en"
     meta charset="utf-8"
     meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
-    title= content_for?(:title) ? yield(:title) : "Hitrojop"
+    title= content_for?(:title) ? yield(:title) : "Freerider"
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all", 'data-turbolinks-track' => 'reload'
     = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
@@ -24,7 +24,7 @@ html lang="en"
       .container
         .row.header
           .col-lg-12.col-xs-12
-            = link_to 'Hitrojop', root_path, class: 'navbar-brand header-text'
+            = link_to 'Freerider', root_path, class: 'navbar-brand header-text'
             button.btn.btn-primary.navbar-btn type="button" data-toggle="modal" data-target="#rules-modal" Rules
 
             .modal.fade#rules-modal tabindex="-1" role="dialog"
@@ -33,12 +33,12 @@ html lang="en"
                   .modal-header
                     button.close type="button" data-dismiss="modal" aria-label="Close"
                       span aria-hidden="true" &times;
-                    h4.modal-title Hitrojop Rules
+                    h4.modal-title Freerider Rules
                   .modal-body
                     ol
                       li You and other people use public transport, for example bus.
                       li To stay in business bus company needs to have at least 1 passanger bought a ticket during 1 trip.
-                      li Each round of the game is a trip. You decide to by or think that someone else buys it and steal a ride being smartass (hitrojop in Russian).
+                      li Each round of the game is a trip. You decide to by or think that someone else buys it and steal a ride.
                       li If everyone appears to be such a smartass, company bankrupts. Everyone loose public commute, that means everyone looses.
                       li Out society adores successfull smartasses, so if company survives, winner is the passenger who stole the most of rides.
 
@@ -46,7 +46,7 @@ html lang="en"
 
                     ol
                       li Вы и другие люди пользуетесь общественным транспортом, скажем, автобусом.
-                      li Автобусной компании чтобы не обанкротиться достаточно, чтобы хотя бы один пассажир за поездку купил билет.
+                      li Автобусная компания не должна обанкротиться. Для этого нужно, чтобы хотя бы один пассажир за поездку купил билет.
                       li
                         | Каждый раунд игры - это поездка.
                         br
@@ -55,7 +55,7 @@ html lang="en"
                         | Если хитрожопыми окажутся все, и автобусная компания обанкротится.
                         br
                         | Все останутся без автобусов вообще, то есть все проиграют.
-                      li А еще у нас в обществе почет хитрожопым, так что если автобусная компания выживет, то побеждает тот, кто схитрожопил больше :)
+                      li А еще у нас в обществе почет халявщикам, так что если автобусная компания выживет, то побеждает тот, кто схитрожопил больше :)
 
             .user-edit
               .user-section

@@ -26,7 +26,7 @@ let Game = React.createClass({
         <YourPlayerSpot
           player={me}
           gameState={this.state.game.state}
-          cbHitrojopButton={this.cbHitrojopButton}
+          cbFreeriderButton={this.cbFreeriderButton}
           ref={'playerSpot' + me.id} />
         {withoutMeUsers.map(player => {
           return <OtherPlayerSpot player={player} key={player.id} ref={'playerSpot' + player.id}/>
@@ -39,12 +39,12 @@ let Game = React.createClass({
     this.refs.gameInfo.refs.stopwatch.reset(this.state.game.time_to_think)
     if (this.state.game.current_round == 1) { return }
 
-    var hitrojop = this.state.players.find((p) => { return p.previous_round_hitrojop })
+    var freerider = this.state.players.find((p) => { return p.previous_round_freerider })
     this.state.players.forEach((p) => {
       var spot = ReactDOM.findDOMNode(this.refs['playerSpot' +  p.id])
-      if (!hitrojop) {
+      if (!freerider) {
         this.animateNeutral(spot)
-      } else if (p.previous_round_hitrojop) {
+      } else if (p.previous_round_freerider) {
         this.animateSuccess(spot)
       } else {
         this.animateFailure(spot)
@@ -61,12 +61,12 @@ let Game = React.createClass({
   },
 
   cbStopwatchTimeout() { this.gameChannel.maybeNextRound(this.state.game.current_round) },
-  cbHitrojopButton(hitrojop) {
+  cbFreeriderButton(freerider) {
     var index = this.state.players.findIndex(p => p.id === this.state.me.id)
     updateCommand = {}
     updateCommand[index] = {decided: {$set: true}}
     var updatedPlayers = update(this.state.players, updateCommand)
     this.setState({players: updatedPlayers})
-    this.gameChannel.decide({hitrojop: hitrojop, round: this.state.game.current_round})
+    this.gameChannel.decide({freerider: freerider, round: this.state.game.current_round})
   }
 });

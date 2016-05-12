@@ -41,7 +41,7 @@ class Game < ApplicationRecord
   end
 
   def handle_round
-    players.hitrojops.each {|p| p.increment(:points).save }
+    players.freeriders.each {|p| p.increment(:points).save }
   end
 
   def proceed_further
@@ -63,6 +63,6 @@ class Game < ApplicationRecord
   end
 
   def users_before_round_refresh
-    players.update_all(hitrojop: false, decided: false)
+    players.update_all(freerider: false, decided: false)
   end
 end

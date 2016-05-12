@@ -2,7 +2,7 @@ var YourPlayerSpot = React.createClass({
   propTypes: {
     player: React.PropTypes.object.isRequired,
     gameState: React.PropTypes.string,
-    cbHitrojopButton: React.PropTypes.func
+    cbFreeriderButton: React.PropTypes.func
   },
 
   render: function() {
@@ -19,16 +19,16 @@ var YourPlayerSpot = React.createClass({
           <span className="cool-number">{this.props.player.points}</span>
         </div>
         <div className={'status ' + statusData['className']}> {statusData['text']} </div>
-        <button className="btn btn-danger btn-lg hitrojop-button"
-          disabled={showButtons} onClick={this.hitrojopClick}> Stole a Ride </button>
-        <button className="btn btn-success btn-lg hitrojop-button"
+        <button className="btn btn-danger btn-lg freerider-button"
+          disabled={showButtons} onClick={this.freeriderClick}> Stole a Ride </button>
+        <button className="btn btn-success btn-lg freerider-button"
           disabled={showButtons} onClick={this.coolClick}> Buy Ticket </button>
       </div>
     );
   },
 
-  hitrojopClick() { this.props.cbHitrojopButton(true) },
-  coolClick() { this.props.cbHitrojopButton(false) },
+  freeriderClick() { this.props.cbFreeriderButton(true) },
+  coolClick() { this.props.cbFreeriderButton(false) },
   resultClass() {
     switch (this.props.player.winner) {
       case true:
@@ -41,7 +41,7 @@ var YourPlayerSpot = React.createClass({
   },
   status() {
     if (this.props.player.decided) {
-      if (this.props.player.hitrojop) {
+      if (this.props.player.freerider) {
         return {
           text: 'selfish and ugly person',
           className: 'text-danger'

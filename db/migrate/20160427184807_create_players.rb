@@ -4,7 +4,7 @@ class CreatePlayers < ActiveRecord::Migration[5.0]
       t.integer :game_id, index: true
       t.integer :user_id, index: true
       t.integer :points, default: 0
-      t.boolean :hitrojop, default: false
+      t.boolean :freerider, default: false
       t.boolean :decided, default: false
       t.boolean :winner
     end

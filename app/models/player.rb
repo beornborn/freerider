@@ -6,15 +6,15 @@ class Player < ApplicationRecord
   delegate :name, to: :user
 
   scope :decided, -> { where(decided: true) }
-  scope :hitrojops, -> { where(hitrojop: true) }
-  scope :cool, -> { where(hitrojop: false) }
+  scope :freeriders, -> { where(freerider: true) }
+  scope :cool, -> { where(freerider: false) }
   scope :winners, -> { where(winner: true) }
 
   after_create :refresh_games, :refresh_player_game
 
   def decide!(data)
-    self.hitrojop = data['hitrojop']
-    self.previous_round_hitrojop = data['hitrojop']
+    self.freerider = data['freerider']
+    self.previous_round_freerider = data['freerider']
     self.decided = true
     self.save!
   end

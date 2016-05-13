@@ -5,7 +5,7 @@
   "description": "online real-time multiplayer game devoted to Free Rider problem",
   "main": "index.js",
   "scripts": {
-    "dev": "./node_modules/.bin/webpack-dev-server --progress --color --inline --hot --host 0.0.0.0"
+    "dev": "./node_modules/.bin/webpack-dev-server -d --progress --color --inline --hot"
   },
   "author": "",
   "license": "ISC",

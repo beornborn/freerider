@@ -1,3 +1,5 @@
+require("./styles/app.css");
+
 import React from 'react'
 import { render } from 'react-dom'
 import App from './app/App'
@@ -8,8 +10,6 @@ injectTapEventPlugin()
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-
-require("./app.css");
 
 render((
   <MuiThemeProvider muiTheme={getMuiTheme()}>

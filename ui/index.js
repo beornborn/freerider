@@ -1,4 +1,4 @@
-require("./styles/app.css")
+require("./app/styles/app.css")
 require("./node_modules/react-grid-layout/css/styles.css")
 
 import React from 'react'

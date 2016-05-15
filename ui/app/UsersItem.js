@@ -11,12 +11,12 @@ let UsersItem = React.createClass({
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.updated) {
-      this.animateUpdate(ReactDOM.findDOMNode(this.refs.row))
+      this.animateUpdate(ReactDom.findDOMNode(this.refs.row))
     }
   },
 
   componentDidMount() {
-    this.animateAppear(ReactDOM.findDOMNode(this.refs.row))
+    this.animateAppear(ReactDom.findDOMNode(this.refs.row))
   },
 
   render() {

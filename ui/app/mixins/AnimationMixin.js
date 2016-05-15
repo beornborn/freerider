@@ -32,4 +32,6 @@ var AnimationMixin = {
     el.addEventListener('transitionend', cbIn)
     setTimeout(() => { el.classList.add(klassAnimationTypeIn, klassAnimation) }, 10)
   }
-};
+}
+
+export default AnimationMixin

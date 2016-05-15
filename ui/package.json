@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "action-cable-react": "^0.1.1",
     "material-ui": "^0.15.0",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",

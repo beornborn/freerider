@@ -1,6 +1,12 @@
 import React from 'react'
 import { AppBar } from 'material-ui'
 
+import { ActionCable, Cable } from 'action-cable-react'
+let actionCable = ActionCable.createConsumer('ws://localhost:3000/cable');
+let cable = new Cable({
+  UsersOnlineChannel: actionCable.subscriptions.create({channel: 'UsersOnlineChannel'})
+});
+
 var Layout = React.createClass({
   render() {
     return (
@@ -10,7 +16,7 @@ var Layout = React.createClass({
           iconClassNameRight="muidocs-icon-navigation-expand-more"
         >
         </AppBar>
-        {this.props.children}
+        {React.cloneElement(this.props.children, { cable: cable })}
       </div>
     )
   }

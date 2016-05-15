@@ -14,7 +14,7 @@ render((
   <MuiThemeProvider muiTheme={getMuiTheme()}>
     <Router history={hashHistory}>
       <Route path="/" component={Layout}>
-        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/dashboard" component={Dashboard}/>
       </Route>
     </Router>
   </MuiThemeProvider>

@@ -1,9 +1,14 @@
 import React from 'react'
 import Paper from 'material-ui/Paper'
+import UsersOnline from './UsersOnline'
 import {Responsive, WidthProvider} from 'react-grid-layout';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 var Dashboard = React.createClass({
+  propTypes: {
+    cable: React.PropTypes.object
+  },
+
   render() {
     var layouts = {lg: [
           {i: 'form', x: 1, y: 0, w: 7, h: 2, static: true},
@@ -22,7 +27,7 @@ var Dashboard = React.createClass({
           2
         </Paper>
         <Paper key={"users"}>
-          3
+          <UsersOnline cable={this.props.cable}/>
         </Paper>
       </ResponsiveReactGridLayout>
     )

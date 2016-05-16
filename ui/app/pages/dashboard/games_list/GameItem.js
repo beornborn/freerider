@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import { TableRow, TableRowColumn } from 'material-ui/Table'
-import AnimationMixin from './mixins/AnimationMixin'
+import AnimationMixin from '~/app/mixins/AnimationMixin'
 
 let GameItem = React.createClass({
   mixins: [AnimationMixin],

@@ -1,9 +1,9 @@
 import React from 'react'
 import Paper from 'material-ui/Paper'
-import UsersOnline from './UsersOnline'
-import GamesList from './GamesList'
-import {Responsive, WidthProvider} from 'react-grid-layout';
-const ResponsiveReactGridLayout = WidthProvider(Responsive);
+import { Responsive, WidthProvider } from 'react-grid-layout'
+const ResponsiveReactGridLayout = WidthProvider(Responsive)
+import GamesList from './games_list/GamesList'
+import UsersOnline from './users_online/UsersOnline'
 
 var Dashboard = React.createClass({
   propTypes: {
@@ -16,7 +16,7 @@ var Dashboard = React.createClass({
           {i: 'games', x: 1, y: 2, w: 7, h: 5, static: true},
           {i: 'users', x: 8, y: 0, w: 3, h: 7, static: true}
         ]}
-        console.log(' render dashboard')
+
     return (
       <ResponsiveReactGridLayout className="layout" layouts={layouts} margin={[20, 20]}
         breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}

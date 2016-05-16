@@ -1,4 +1,6 @@
 import React from 'react'
+import CSSModules from 'react-css-modules'
+import styles from './UsersOnline.css'
 import { CableMixin, ChannelMixin } from 'action-cable-react';
 import UsersItem from './UsersItem'
 
@@ -35,13 +37,14 @@ var UsersOnline = React.createClass({
   },
 
   render() {
+    console.log(styles)
     return (
-      <div className="users-container">
-        <h4>
+      <div>
+        <h4 styleName="header">
           Players
-          <span className="text-success"> Online</span>
+          <span styleName="status"> Online</span>
         </h4>
-        <div className="users-online">
+        <div>
           {this.state.users.map(user => {
             return (<UsersItem user={user} key={user.id} updated={this.state.changedUsersIds.includes(user.id)} />)
           })}
@@ -51,4 +54,4 @@ var UsersOnline = React.createClass({
   }
 })
 
-export default UsersOnline
+export default CSSModules(UsersOnline, styles)

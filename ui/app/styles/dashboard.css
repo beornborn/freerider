@@ -1,15 +1,3 @@
-$screen-lg-min: 1200px;
-$screen-xs-max: 768px;
-
-.create-game-form .create-game-button{
-  @media (min-width: $screen-lg-min) { margin-right: 146px; }
-  @media (max-width: $screen-xs-max) { margin-right: 0px; }
-}
-
-nav.navbar .header-text {
-  color: #428bca;
-}
-
 #rules-modal .modal-header {
   background-color: #428bca;
   .modal-title {
@@ -21,34 +9,20 @@ nav.navbar .header-text {
   }
 }
 
-.users-container {
-  h4 {
-    margin: 20px;
-    span { color: #1e824c; }
-  }
-  .users-online {
-    .player-name {
-      margin-bottom: 10px;
-      margin-left: 20px;
-      font-style: italic;
-      font-size: 13px;
-    }
-  }
-}
-
 .edit-user-form {
   display: none;
 }
-
-.game-list-row {
-  background-color: #fff;
-  a:hover {
-    text-decoration: none;
-    background-color: inherit;
-    color: inherit;
+:global {
+  .game-list-table {
+    .game-list-header {
+      background-color: #2196F3;
+      color: #FFF;
+    }
+    .game-list-row {
+      cursor: pointer;
+    }
   }
 }
-
 .header {
   height: 64px;
   .user-edit {

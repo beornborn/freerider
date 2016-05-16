@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import AnimationMixin from './mixins/AnimationMixin'
+import CSSModules from 'react-css-modules'
+import styles from './UsersItem.css'
+import AnimationMixin from '~/app/mixins/AnimationMixin'
 
 let UsersItem = React.createClass({
   mixins: [AnimationMixin],
@@ -21,9 +23,9 @@ let UsersItem = React.createClass({
 
   render() {
     return (
-      <div className="player-name" key={'player-name-' + this.props.user.id} ref="row">{this.props.user.name}</div>
+      <div styleName="record" key={'player-name-' + this.props.user.id} ref="row">{this.props.user.name}</div>
     )
   }
 })
 
-export default UsersItem
+export default CSSModules(UsersItem, styles)

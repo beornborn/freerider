@@ -1,81 +1,51 @@
-.cool-number {
-  font-size: 25px;
-  color: #428bca;
-}
-
-.low-ml {
-  margin-left: 20px;
-}
-
-.low-mt {
-  margin-top: 20px;
-}
-
-.error {
-  color: #a94442;
-}
-
-.animated-state-update {
-  background-color: rgba(66, 177, 202, 0.51)!important;
-}
-.animated-state-success {
-  background-color: rgba(60, 118, 61, 0.5)!important;
-}
-.animated-state-failure {
-  background-color: rgba(169, 68, 66, 0.6)!important;
-}
-.animated-state-neutral {
-  background-color: rgba(66, 139, 202, 0.25)!important;
-}
-.animated-state-change-fast {
-  -moz-transition: all 0.2s cubic-bezier(0.82,-0.06, 0.32, 1.08);
-  -webkit-transition: all 0.2s cubic-bezier(0.82,-0.06, 0.32, 1.08);
-  -o-transition: all 0.2s cubic-bezier(0.82,-0.06, 0.32, 1.08);
-  transition: all 0.2s cubic-bezier(0.82,-0.06, 0.32, 1.08);
-}
-.animated-state-change-slow {
-  -moz-transition: all 1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
-  -webkit-transition: all 1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
-  -o-transition: all 1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
-  transition: all 1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
-}
-
-.animated-state-appear {
-  -moz-transition: all 1s;
-  -webkit-transition: all 1s;
-  -o-transition: all 1s;
-  transition: all 1s;
-  opacity: 1!important;
-}
-
-.rTable {
-  display: table;
-  width: 100%;
-}
-.rTableRow {
-  display: table-row;
-  background-color: rgba(66, 139, 202, 0.05);
-  border: 1px solid #f9f9f9;
-  &:hover {
-    background-color: rgba(66, 139, 202, 0.3);
-    cursor: pointer;
+:global {
+  .cool-number {
+    font-size: 25px;
+    color: #428bca;
   }
-}
-.rTableHeading {
-  display: table-header-group;
-  background-color: #428bca;
-  color: #fff;
-}
-.rTableCell, .rTableHead {
-  display: table-cell;
-  padding: 5px 10px;
-  border-bottom: 1px solid rgba(66, 139, 202, 0.31);
-}
-.rTableFoot {
-  display: table-footer-group;
-  font-weight: bold;
-  background-color: #ddd;
-}
-.rTableBody {
-  display: table-row-group;
+
+  .low-ml {
+    margin-left: 20px;
+  }
+
+  .low-mt {
+    margin-top: 20px;
+  }
+
+  .error {
+    color: #a94442;
+  }
+
+  .animated-state-update {
+    background-color: rgba(66, 177, 202, 0.51)!important;
+  }
+  .animated-state-success {
+    background-color: rgba(60, 118, 61, 0.5)!important;
+  }
+  .animated-state-failure {
+    background-color: rgba(169, 68, 66, 0.6)!important;
+  }
+  .animated-state-neutral {
+    background-color: rgba(66, 139, 202, 0.25)!important;
+  }
+  .animated-state-change-fast {
+    -moz-transition: all 0.2s cubic-bezier(0.82,-0.06, 0.32, 1.08);
+    -webkit-transition: all 0.2s cubic-bezier(0.82,-0.06, 0.32, 1.08);
+    -o-transition: all 0.2s cubic-bezier(0.82,-0.06, 0.32, 1.08);
+    transition: all 0.2s cubic-bezier(0.82,-0.06, 0.32, 1.08);
+  }
+  .animated-state-change-slow {
+    -moz-transition: all 1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
+    -webkit-transition: all 1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
+    -o-transition: all 1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
+    transition: all 1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
+  }
+
+  .animated-state-appear {
+    -moz-transition: all 1s;
+    -webkit-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+    opacity: 1!important;
+  }
 }

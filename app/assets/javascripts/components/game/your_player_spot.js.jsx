@@ -20,7 +20,7 @@ var YourPlayerSpot = React.createClass({
         </div>
         <div className={'status ' + statusData['className']}> {statusData['text']} </div>
         <button className="btn btn-danger btn-lg freerider-button"
-          disabled={showButtons} onClick={this.freeriderClick}> Stole a Ride </button>
+          disabled={showButtons} onClick={this.freeriderClick}> Steal a Ride </button>
         <button className="btn btn-success btn-lg freerider-button"
           disabled={showButtons} onClick={this.coolClick}> Buy Ticket </button>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import Paper from 'material-ui/Paper'
 import UsersOnline from './UsersOnline'
+import GamesList from './GamesList'
 import {Responsive, WidthProvider} from 'react-grid-layout';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -24,10 +25,10 @@ var Dashboard = React.createClass({
           1
         </Paper>
         <Paper key={"games"}>
-          2
+          <GamesList cable={this.props.cable} />
         </Paper>
         <Paper key={"users"}>
-          <UsersOnline cable={this.props.cable}/>
+          <UsersOnline cable={this.props.cable} />
         </Paper>
       </ResponsiveReactGridLayout>
     )

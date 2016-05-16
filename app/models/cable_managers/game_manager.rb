@@ -1,7 +1,7 @@
 class GameManager < ApplicationManager
   def initialize(game)
     @game = game
-    @game_list_manager = GameListManager.new
+    @games_list_manager = GamesListManager.new
   end
 
   def player_connected_to_game(player)
@@ -10,7 +10,7 @@ class GameManager < ApplicationManager
     if @game.ready_to_start?
       @game.start!
       send_new_round
-      @game_list_manager.refresh(@game_list_manager.common_channel, changed_games_ids: [@game.id])
+      @games_list_manager.refresh(@games_list_manager.common_channel, changed_games_ids: [@game.id])
     end
   end
 

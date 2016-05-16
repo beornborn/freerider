@@ -1,4 +1,4 @@
-class GameListChannel < ApplicationCable::Channel
+class GamesListChannel < ApplicationCable::Channel
   def subscribed
     stream_from manager.common_channel
     stream_from(personal_channel)
@@ -20,6 +20,6 @@ class GameListChannel < ApplicationCable::Channel
   end
 
   def manager
-    @manager ||= GameListManager.new
+    @manager ||= GamesListManager.new
   end
 end

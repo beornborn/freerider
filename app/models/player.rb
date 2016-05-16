@@ -22,7 +22,7 @@ class Player < ApplicationRecord
   private
 
   def refresh_games
-    manager = GameListManager.new
+    manager = GamesListManager.new
     manager.refresh(manager.common_channel, changed_games_ids: [self.game.id])
   end
 

@@ -1,4 +1,4 @@
-class GameListManager < ApplicationManager
+class GamesListManager < ApplicationManager
   def refresh(channel_name, options = {})
     ActionCable.server.broadcast channel_name, {
       msg: 'refresh',
@@ -12,16 +12,16 @@ class GameListManager < ApplicationManager
   end
 
   def common_channel
-    "game_list"
+    "games_list"
   end
 
   def personal_channel(user)
-    "game_list_#{user.id}"
+    "games_list_#{user.id}"
   end
 
   private
 
   def manager
-    @manager ||= GameListManager.new
+    @manager ||= GamesListManager.new
   end
 end

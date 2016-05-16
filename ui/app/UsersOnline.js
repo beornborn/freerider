@@ -4,9 +4,8 @@ import UsersItem from './UsersItem'
 
 var UsersOnline = React.createClass({
   mixins: [CableMixin(React), ChannelMixin('UsersOnlineChannel')],
-
-  componentWillUnmount() {
-    this.usersOnlineChannel.unsubscribe()
+  propTypes: {
+    cable: React.PropTypes.object.isRequired
   },
 
   getInitialState() {
@@ -14,11 +13,11 @@ var UsersOnline = React.createClass({
   },
 
   handleConnected() {
-    console.log('connected users_online')
+    console.log('connected users_online channel')
   },
 
   handleDisconnected() {
-    console.log('disconnected users_online')
+    console.log('disconnected users_online channel')
   },
 
   handleReceived(data) {
@@ -26,7 +25,7 @@ var UsersOnline = React.createClass({
     console.log(data);
     switch (data.msg) {
       case 'connected':
-        return this.perform('UsersOnlineChannel', 'refresh', {});
+        return this.perform('UsersOnlineChannel', 'refresh', {})
       case 'refresh':
         return this.setState({
           users: data.users,

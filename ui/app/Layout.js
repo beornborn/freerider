@@ -4,7 +4,8 @@ import { AppBar } from 'material-ui'
 import { ActionCable, Cable } from 'action-cable-react'
 let actionCable = ActionCable.createConsumer('ws://localhost:3000/cable');
 let cable = new Cable({
-  UsersOnlineChannel: actionCable.subscriptions.create({channel: 'UsersOnlineChannel'})
+  UsersOnlineChannel: actionCable.subscriptions.create({channel: 'UsersOnlineChannel'}),
+  GamesListChannel: actionCable.subscriptions.create({channel: 'GamesListChannel'})
 });
 
 var Layout = React.createClass({

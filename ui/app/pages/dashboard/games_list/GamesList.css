@@ -1,0 +1,6 @@
+@import 'app/styles/theme';
+
+.header {
+  background-color: $primary1Color;
+  color: $alternateTextColor;
+}

@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import { TableRow, TableRowColumn } from 'material-ui/Table'
+import CSSModules from 'react-css-modules'
+import styles from './GameItem.css'
 import AnimationMixin from '~/app/mixins/AnimationMixin'
 
 let GameItem = React.createClass({
@@ -22,7 +24,7 @@ let GameItem = React.createClass({
 
   render() {
     return (
-      <TableRow className="game-list-row" ref="row" onClick={this.connectToGame} hoverable={true} >
+      <TableRow styleName="game-row" ref="row" onClick={this.connectToGame} hoverable={true} >
         <TableRowColumn>
           {this.props.game.name}
           <a ref="link" rel="nofollow" data-method="post" href={`/games/${this.props.game.id}/connect`}></a>
@@ -39,4 +41,4 @@ let GameItem = React.createClass({
   }
 })
 
-export default GameItem
+export default CSSModules(GameItem, styles)

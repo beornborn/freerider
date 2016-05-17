@@ -1,9 +1,9 @@
+@import 'app/styles/theme';
+
 .header {
   margin: 20px;
-
 }
+
 .status {
-  color: #1e824c;
+  color: $green;
 }
-
-$blue-500: #2196F3;

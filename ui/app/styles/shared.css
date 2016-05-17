@@ -1,4 +1,89 @@
 :global {
+  #rules-modal .modal-header {
+    background-color: #428bca;
+    .modal-title {
+      color: #fff;
+    }
+    .close {
+      opacity: 1;
+      color: #fff;
+    }
+  }
+
+  .edit-user-form {
+    display: none;
+  }
+
+  .header {
+    height: 64px;
+    .user-edit {
+      float: right;
+      .btn { width: 61px; }
+      .user-section {
+        margin-top: 7px;
+        margin-right: 10px;
+        .user-name {
+          float: left;
+          margin-right: 20px;
+        }
+      }
+      .edit-user-form {
+        margin-top: 10px;
+        .edit-user-form-name {
+          float: left;
+          width: 60%;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+/* ---------------------------------------- */
+  .game-info {
+    font-size: 20px;
+  }
+
+
+  .player-game-spot {
+    &.other {
+      height: 50px;
+      padding: 5px;
+    }
+    &.you {
+      height: 275px;
+      padding-top: 18px;
+      .freerider-button {
+        margin-top: 30px;
+        width: 190px;
+      }
+      .status { margin-top: 15px; }
+    }
+    &.winner {
+      background-color: rgba(37, 175, 48, 0.15);
+    }
+    &.looser {
+      background-color: rgba(146, 7, 0, 0.29);
+    }
+
+    margin: 13px 20px 12px 20px;
+    background-color: rgba(192, 194, 206, 0.1);
+    border: 1px solid rgba(150, 148, 175, 0.3);
+    border-radius: 4px;
+
+    .name {
+      font-size: 20px;
+      margin-right: 10px;
+    }
+  }
+
+
+
+
+
+
+/*----------------------------------------------------*/
+
+
   .cool-number {
     font-size: 25px;
     color: #428bca;

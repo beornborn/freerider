@@ -1,6 +1,8 @@
 import React from 'react'
 import { CableMixin, ChannelMixin } from 'action-cable-react'
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
+import CSSModules from 'react-css-modules'
+import styles from './GamesList.css'
 import GameItem from './GameItem'
 
 let GamesList = React.createClass({
@@ -32,9 +34,9 @@ let GamesList = React.createClass({
 
   render() {
     return (
-      <Table className="game-list-table">
-        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-          <TableRow className="game-list-header">
+      <Table>
+        <TableHeader displaySelectAll={false} adjustForCheckbox={false} styleName="header">
+          <TableRow>
             <TableHeaderColumn>Name</TableHeaderColumn>
             <TableHeaderColumn>Players</TableHeaderColumn>
             <TableHeaderColumn>Rounds</TableHeaderColumn>
@@ -52,4 +54,4 @@ let GamesList = React.createClass({
   }
 })
 
-export default GamesList
+export default CSSModules(GamesList, styles)

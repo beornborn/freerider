@@ -13,6 +13,9 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 const muiTheme = merge(getMuiTheme(FreeriderTheme.commonSettings), FreeriderTheme.componentSettings)
 
+import 'styles/theme'
+import 'styles/shared'
+
 render((
   <MuiThemeProvider muiTheme={muiTheme}>
     <Router history={hashHistory}>

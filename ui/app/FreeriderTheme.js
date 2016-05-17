@@ -1,4 +1,4 @@
-import { blue500, blue700, blue300, greenA400, greenA100, greenA700,
+import { blue500, blue700, blue300, deepOrangeA400, deepOrangeA100, deepOrangeA700,
     white, darkBlack, fullBlack, grey300 } from 'material-ui/styles/colors'
 import {fade} from 'material-ui/utils/colorManipulator'
 
@@ -22,9 +22,9 @@ function commonSettings() {
       primary1Color: blue500,
       primary2Color: blue700,
       primary3Color: blue300,
-      accent3Color: greenA400,
-      accent2Color: greenA100,
-      accent1Color: greenA700,
+      accent1Color: deepOrangeA400,
+      accent2Color: deepOrangeA100,
+      accent3Color: deepOrangeA700,
       textColor: darkBlack,
       alternateTextColor: white,
       canvasColor: white,

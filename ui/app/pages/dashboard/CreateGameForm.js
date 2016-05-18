@@ -3,6 +3,7 @@ import ReactDom from 'react-dom'
 import CSSModules from 'react-css-modules'
 import styles from './CreateGameForm.css'
 import _ from 'lodash'
+import request from 'superagent'
 
 import { FloatingActionButton, FlatButton, Dialog, TextField, SelectField, MenuItem } from 'material-ui'
 import ContentAdd from 'material-ui/svg-icons/content/add'
@@ -25,6 +26,16 @@ let CreateGameForm = React.createClass({
   handleCreate() {
     this.setState({neverWasSubmitted: false})
     this.validate()
+    console.log(111)
+    request
+      .post('http://localhost:3000/games')
+      .send({ name: 'ololo' })
+      .set('Accept', 'application/json')
+      .set('ContentType', 'application/json')
+      .end(function(err, res){
+        console.log(1.5)
+      });
+    console.log(222)
   },
 
   validate() {

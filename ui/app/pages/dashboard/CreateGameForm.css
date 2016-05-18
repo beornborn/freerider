@@ -1,0 +1,16 @@
+@import 'app/styles/theme';
+
+.new-game-button {
+  position: fixed;
+  top: -20px;
+  right: -15px;
+}
+
+.form {
+  max-width: 350px!important;
+}
+
+.title {
+  background-color: $primary1Color;
+  color: $alternateTextColor!important;
+}

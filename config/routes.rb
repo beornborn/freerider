@@ -1,12 +1,10 @@
-require 'sidekiq/web'
-
 Rails.application.routes.draw do
-  root to: 'dashboard#index'
-  resources :users, only: [:update]
-  resources :games, only: [:create, :show] do
+  resources :users, only: :update
+  resources :games, only: :create do
     post :connect, on: :member
   end
 
   mount ActionCable.server => '/cable'
-  mount Sidekiq::Web, at: "/sidekiq"
+
+  match '*', to: 'application#index', via: :get
 end

@@ -1,7 +1,7 @@
 @import 'app/styles/theme';
 
 .header {
-  background-color: $primary1Color;
+  background-color: $primary2Color;
   color: $alternateTextColor;
 }
 

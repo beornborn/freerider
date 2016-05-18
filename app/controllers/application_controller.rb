@@ -6,6 +6,10 @@ class ApplicationController < ActionController::API
     end
   end
 
+  def index
+    render file: 'public/index.html'
+  end
+
   private
 
   def create_guest

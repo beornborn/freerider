@@ -1,6 +1,10 @@
 class Game < ApplicationRecord
   include ActiveModel::Transitions
 
+  after_create ->(game) { # TODO remove
+    manager = GamesListManager.new
+    manager.refresh(manager.common_channel, changed_games_ids: [game.id])
+  }
   state_machine auto_scopes: true do
     state :waiting_for_start
     state :waiting_for_round

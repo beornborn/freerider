@@ -3,8 +3,7 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.create(game_params)
-    @game.users << current_user
-    redirect_to @game
+    render json: {}
   end
 
   def show

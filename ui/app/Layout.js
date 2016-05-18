@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar } from 'material-ui'
+import { AppBar, Snackbar } from 'material-ui'
 import CSSModules from 'react-css-modules'
 import styles from './Layout.css'
 import { ActionCable, Cable } from 'action-cable-react'
@@ -10,6 +10,17 @@ let cable = new Cable({
 });
 
 var Layout = React.createClass({
+  childContextTypes: {
+    snackbarCallback: React.PropTypes.func
+  },
+  getChildContext() {
+    return {snackbarCallback: this.showSnackbar}
+  },
+
+  showSnackbar(message) {
+    this.refs.snackbar.setState({open: true, message: message})
+  },
+
   render() {
     return (
       <div>
@@ -22,6 +33,10 @@ var Layout = React.createClass({
         <div styleName='content'>
           {React.cloneElement(this.props.children, { cable: cable })}
         </div>
+        <Snackbar ref="snackbar"
+          open={false}
+          message='qweqwe'
+          autoHideDuration={4000}/>
       </div>
     )
   }

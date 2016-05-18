@@ -9,6 +9,9 @@ import { FloatingActionButton, FlatButton, Dialog, TextField, SelectField, MenuI
 import ContentAdd from 'material-ui/svg-icons/content/add'
 
 let CreateGameForm = React.createClass({
+  contextTypes: {
+    snackbarCallback: React.PropTypes.func
+  },
   getInitialState() {
     return {
       open: false,
@@ -25,21 +28,28 @@ let CreateGameForm = React.createClass({
 
   handleCreate() {
     this.setState({neverWasSubmitted: false})
-    this.validate()
-    console.log(111)
-    request
-      .post('http://localhost:3000/games')
-      .send({ name: 'ololo' })
-      .set('Accept', 'application/json')
-      .set('ContentType', 'application/json')
-      .end(function(err, res){
-        console.log(1.5)
-      });
-    console.log(222)
+    if (this.formValid()) {
+      request
+        .post('http://localhost:3000/games')
+        .send({
+          name: this.state.name,
+          players_amount: this.state.players,
+          rounds: this.state.rounds,
+          time_to_think: this.state.time
+        })
+        .set('Accept', 'application/json')
+        .set('ContentType', 'application/json')
+        .end((err, res) => {})
+      this.handleClose()
+      this.context.snackbarCallback('Game created')
+    }
   },
 
-  validate() {
-    if (this.valuePresent(this.state.name).valid) {}
+  formValid() {
+    return this.valuePresent(this.state.name).valid &&
+      this.valuePresent(this.state.players).valid &&
+      this.valuePresent(this.state.rounds).valid &&
+      this.valuePresent(this.state.time).valid
   },
 
   valuePresent(val) {
@@ -96,6 +106,7 @@ let CreateGameForm = React.createClass({
           titleClassName={styles.title}>
           <div>
             <TextField
+              defaultValue={this.state.name}
               onChange={this.handleChangeName}
               hintText="Name"
               floatingLabelText="Name of your game"

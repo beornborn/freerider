@@ -93,6 +93,7 @@ GEM
     puma (3.4.0)
     rack (2.0.0.alpha)
       json
+    rack-cors (0.4.0)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -168,6 +169,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   pg
   puma
+  rack-cors
   rails (>= 5.0.0.beta3, < 5.1)
   redis (~> 3.0)
   sidekiq

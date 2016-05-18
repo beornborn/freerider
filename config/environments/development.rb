@@ -61,4 +61,11 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_cable.allowed_request_origins = ['http://localhost:8080']
+
+  config.middleware.insert_before 0, "Rack::Cors" do
+    allow do
+      origins 'http://localhost:8080'
+      resource '*', :headers => :any, :methods => [:get, :post, :options]
+    end
+  end
 end

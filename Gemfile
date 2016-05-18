@@ -11,6 +11,7 @@ gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
 
 gem 'puma'
 gem 'redis', '~> 3.0'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   gem 'byebug'

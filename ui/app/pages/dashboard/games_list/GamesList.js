@@ -37,10 +37,10 @@ let GamesList = React.createClass({
       <Table>
         <TableHeader displaySelectAll={false} adjustForCheckbox={false} styleName="header">
           <TableRow>
-            <TableHeaderColumn>Name</TableHeaderColumn>
+            <TableHeaderColumn styleName="name-column">Name</TableHeaderColumn>
             <TableHeaderColumn>Players</TableHeaderColumn>
             <TableHeaderColumn>Rounds</TableHeaderColumn>
-            <TableHeaderColumn>Time to Think (sec)</TableHeaderColumn>
+            <TableHeaderColumn>Time</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody>

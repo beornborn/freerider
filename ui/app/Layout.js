@@ -1,6 +1,7 @@
 import React from 'react'
 import { AppBar } from 'material-ui'
-
+import CSSModules from 'react-css-modules'
+import styles from './Layout.css'
 import { ActionCable, Cable } from 'action-cable-react'
 let actionCable = ActionCable.createConsumer('ws://localhost:3000/cable');
 let cable = new Cable({
@@ -13,14 +14,17 @@ var Layout = React.createClass({
     return (
       <div>
         <AppBar
+          styleName='app-bar'
           title="Freerider"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
         >
         </AppBar>
-        {React.cloneElement(this.props.children, { cable: cable })}
+        <div styleName='content'>
+          {React.cloneElement(this.props.children, { cable: cable })}
+        </div>
       </div>
     )
   }
 })
 
-export default Layout
+export default CSSModules(Layout, styles)

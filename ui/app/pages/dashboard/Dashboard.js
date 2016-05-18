@@ -1,9 +1,10 @@
 import React from 'react'
-import Paper from 'material-ui/Paper'
+import { Card, CardTitle } from 'material-ui/Card'
 import { Responsive, WidthProvider } from 'react-grid-layout'
 const ResponsiveReactGridLayout = WidthProvider(Responsive)
-import GamesList from './games_list/GamesList'
-import UsersOnline from './users_online/UsersOnline'
+import GamesList from '~/app/pages/dashboard/games_list/GamesList'
+import UsersOnline from '~/app/pages/dashboard/users_online/UsersOnline'
+import CreateGameForm from '~/app/pages/dashboard/CreateGameForm'
 
 var Dashboard = React.createClass({
   propTypes: {
@@ -12,24 +13,22 @@ var Dashboard = React.createClass({
 
   render() {
     var layouts = {lg: [
-          {i: 'form', x: 1, y: 0, w: 7, h: 2, static: true},
-          {i: 'games', x: 1, y: 2, w: 7, h: 5, static: true},
-          {i: 'users', x: 8, y: 0, w: 3, h: 7, static: true}
-        ]}
+      {i: 'form', x: 2, y: 0, w: 4, h: 3, minH: 3, static: true},
+      {i: 'users', x: 6, y: 0, w: 4, h: 3, minH: 3, static: true}
+    ]}
 
     return (
-      <ResponsiveReactGridLayout className="layout" layouts={layouts} margin={[20, 20]}
+      <ResponsiveReactGridLayout layouts={layouts} margin={[20, 20]}
         breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
         cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}>
-        <Paper key={"form"}>
-          1
-        </Paper>
-        <Paper key={"games"}>
+        <Card key={"form"}>
+          <CardTitle title="Games" />
+          <CreateGameForm />
           <GamesList cable={this.props.cable} />
-        </Paper>
-        <Paper key={"users"}>
+        </Card>
+        <Card key={"users"}>
           <UsersOnline cable={this.props.cable} />
-        </Paper>
+        </Card>
       </ResponsiveReactGridLayout>
     )
   }

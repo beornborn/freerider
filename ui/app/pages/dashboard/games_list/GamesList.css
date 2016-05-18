@@ -4,3 +4,7 @@
   background-color: $primary1Color;
   color: $alternateTextColor;
 }
+
+.name-column {
+  width: 40%;
+}

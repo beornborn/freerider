@@ -1,0 +1,11 @@
+@import 'app/styles/theme';
+
+.app-bar {
+  height: 200px;
+}
+
+.content {
+  margin-top: -165px;
+  z-index: 1200;
+  position: relative;
+}

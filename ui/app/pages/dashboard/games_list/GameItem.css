@@ -3,3 +3,7 @@
 .game-row {
   cursor: pointer;
 }
+
+.name-column {
+  width: 40%;
+}

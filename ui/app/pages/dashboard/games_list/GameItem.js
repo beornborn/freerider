@@ -25,7 +25,7 @@ let GameItem = React.createClass({
   render() {
     return (
       <TableRow styleName="game-row" ref="row" onClick={this.connectToGame} hoverable={true} >
-        <TableRowColumn>
+        <TableRowColumn styleName="name-column">
           {this.props.game.name}
           <a ref="link" rel="nofollow" data-method="post" href={`/games/${this.props.game.id}/connect`}></a>
         </TableRowColumn>

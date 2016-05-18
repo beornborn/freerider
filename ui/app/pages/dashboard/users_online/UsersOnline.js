@@ -37,7 +37,6 @@ var UsersOnline = React.createClass({
   },
 
   render() {
-    console.log(styles)
     return (
       <div>
         <h4 styleName="header">

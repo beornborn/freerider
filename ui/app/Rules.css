@@ -1,0 +1,6 @@
+@import 'app/styles/theme';
+
+.title {
+  background-color: $primary1Color;
+  color: $alternateTextColor!important;
+}

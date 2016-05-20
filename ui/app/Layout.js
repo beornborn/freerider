@@ -1,11 +1,11 @@
 import React from 'react'
-import { AppBar, Snackbar, FlatButton } from 'material-ui'
+import { AppBar, Snackbar, FlatButton, Drawer, MenuItem } from 'material-ui'
 import CSSModules from 'react-css-modules'
 import styles from './Layout.css'
 import Username from '~/app/pages/Username'
+import Rules from '~/app/Rules'
 import { ActionCable, Cable } from 'action-cable-react'
 import CurrentUser from '~/app/services/CurrentUser'
-
 
 var Layout = React.createClass({
   childContextTypes: {
@@ -23,7 +23,7 @@ var Layout = React.createClass({
   },
 
   getInitialState() {
-    return {currentUser: {}, cable: new Cable({})}
+    return {currentUser: {}, cable: new Cable({}), drowerOpen: false}
   },
 
   componentWillMount() {
@@ -36,6 +36,10 @@ var Layout = React.createClass({
       })
       this.setState({cable: cable})
     })
+  },
+
+  toggleDrower() {
+    this.setState({drowerOpen: !this.state.drowerOpen})
   },
 
   showSnackbar(message) {
@@ -53,11 +57,20 @@ var Layout = React.createClass({
           styleName='app-bar'
           title="Freerider"
           iconElementRight={<Username styleName="username" cbUpdateCurrentUser={this.updateCurrentUser}/>}
-        >
+          onLeftIconButtonTouchTap={this.toggleDrower}>
         </AppBar>
         <div styleName='content'>
           {this.props.children}
         </div>
+        <Drawer
+          docked={false}
+          width={200}
+          open={this.state.drowerOpen}
+          onRequestChange={this.toggleDrower}>
+          <Rules ref="rules">
+            <MenuItem onTouchTap={() => { this.refs.rules.handleOpen()} }>Rules</MenuItem>
+          </Rules>
+        </Drawer>
         <Snackbar ref="snackbar"
           open={false}
           message='qweqwe'

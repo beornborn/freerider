@@ -5,14 +5,19 @@ import CSSModules from 'react-css-modules'
 import styles from './GamesList.css'
 import GameItem from './GameItem'
 
+var channelName = 'GamesListChannel'
+
 let GamesList = React.createClass({
-  mixins: [CableMixin(React), ChannelMixin('GamesListChannel')],
-  propTypes: {
-    cable: React.PropTypes.object.isRequired
-  },
+  mixins: [CableMixin(React), ChannelMixin(channelName)],
 
   getInitialState: function() {
     return {games: [], changedGamesIds: []}
+  },
+
+  componentDidUpdate(prevProps, prevState, prevContext) {
+    if (this.context.cable.channels !== prevContext.cable.chanels) {
+      ChannelMixin(channelName).componentDidMount.apply(this)
+    }
   },
 
   handleConnected() {

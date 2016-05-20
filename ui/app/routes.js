@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { hashHistory, Router, Route, Link, withRouter, IndexRoute } from 'react-router'
+import { browserHistory, Router, Route, Link, withRouter, IndexRoute } from 'react-router'
 import merge from 'lodash.merge'
 import Layout from '~/app/Layout'
 import Dashboard from '~/app/pages/dashboard/Dashboard'
@@ -18,7 +18,7 @@ import 'styles/shared'
 
 render((
   <MuiThemeProvider muiTheme={muiTheme}>
-    <Router history={hashHistory}>
+    <Router history={browserHistory}>
       <Route path="/" component={Layout}>
         <IndexRoute component={Dashboard}/>
       </Route>

@@ -5,12 +5,13 @@
   "description": "online real-time multiplayer game devoted to Free Rider problem",
   "main": "index.js",
   "scripts": {
-    "dev": "./node_modules/.bin/webpack-dev-server -d --content-base ../public/ --progress --color --inline --hot"
+    "dev": "./node_modules/.bin/webpack-dev-server -d --content-base ../public/ --progress --color --inline --hot --history-api-fallback"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "action-cable-react": "^0.1.1",
+    "cookie": "^0.2.3",
     "material-ui": "^0.15.0",
     "react": "^15.0.2",
     "react-css-modules": "^3.7.6",

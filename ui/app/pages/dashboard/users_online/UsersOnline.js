@@ -4,10 +4,14 @@ import styles from './UsersOnline.css'
 import { CableMixin, ChannelMixin } from 'action-cable-react';
 import UsersItem from './UsersItem'
 
+var channelName = 'UsersOnlineChannel'
 var UsersOnline = React.createClass({
-  mixins: [CableMixin(React), ChannelMixin('UsersOnlineChannel')],
-  propTypes: {
-    cable: React.PropTypes.object.isRequired
+  mixins: [CableMixin(React), ChannelMixin(channelName)],
+
+  componentDidUpdate(prevProps, prevState, prevContext) {
+    if (this.context.cable.channels !== prevContext.cable.chanels) {
+      ChannelMixin(channelName).componentDidMount.apply(this)
+    }
   },
 
   getInitialState() {
@@ -27,7 +31,7 @@ var UsersOnline = React.createClass({
     console.log(data);
     switch (data.msg) {
       case 'connected':
-        return this.perform('UsersOnlineChannel', 'refresh', {})
+        return this.perform(channelName, 'refresh', {})
       case 'refresh':
         return this.setState({
           users: data.users,

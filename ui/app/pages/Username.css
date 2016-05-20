@@ -1,0 +1,14 @@
+@import 'app/styles/theme';
+
+.username-container {
+  color: $alternateTextColor;
+  font-size: 20px;
+  margin-right: 60px;
+  margin-top: 12px;
+}
+
+.username {
+  float: right;
+  margin-left: 4px;
+  font-size: 24px;
+}

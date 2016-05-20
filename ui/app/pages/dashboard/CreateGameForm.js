@@ -3,7 +3,7 @@ import ReactDom from 'react-dom'
 import CSSModules from 'react-css-modules'
 import styles from './CreateGameForm.css'
 import _ from 'lodash'
-import request from 'superagent'
+import superagent from 'superagent'
 
 import { FloatingActionButton, FlatButton, Dialog, TextField, SelectField, MenuItem } from 'material-ui'
 import ContentAdd from 'material-ui/svg-icons/content/add'
@@ -12,6 +12,7 @@ let CreateGameForm = React.createClass({
   contextTypes: {
     snackbarCallback: React.PropTypes.func
   },
+
   getInitialState() {
     return {
       open: false,
@@ -29,7 +30,7 @@ let CreateGameForm = React.createClass({
   handleCreate() {
     this.setState({neverWasSubmitted: false})
     if (this.formValid()) {
-      request
+      superagent
         .post('http://localhost:3000/games')
         .send({
           name: this.state.name,

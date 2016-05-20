@@ -5,6 +5,7 @@ import CreateIcon from 'material-ui/svg-icons/content/create'
 import Theme from '~/app/FreeriderTheme'
 import { FlatButton, Dialog, TextField } from 'material-ui'
 import superagent from 'superagent'
+import _ from 'lodash'
 
 let Username = React.createClass({
   PropTypes: {
@@ -68,6 +69,7 @@ let Username = React.createClass({
     if (!this.state.neverWasSubmitted) {
       errorNameMessage = this.valuePresent(this.state.name).message
     }
+    let displayName = _.truncate(this.context.currentUser.name, {length: 10})
 
     const actions = [
       <FlatButton
@@ -85,7 +87,7 @@ let Username = React.createClass({
     return (
       <div styleName="username-container">
         <CreateIcon color={Theme.commonSettings.palette.accent4Color} onTouchTap={this.handleOpen}/>
-        <span styleName="username" onTouchTap={this.handleOpen}>{this.context.currentUser.name}</span>
+        <span styleName="username" onTouchTap={this.handleOpen}>{displayName}</span>
         <Dialog
           title="Edit Username"
           open={this.state.open}

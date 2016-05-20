@@ -5,6 +5,10 @@ class User < ApplicationRecord
 
   scope :online, -> { where(online: true) }
 
+  after_update -> {
+    UsersOnlineManager.new.send_refresh({'changed_users_ids' => [self.id]})
+  }
+
   def player
     players.last
   end

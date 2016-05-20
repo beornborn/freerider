@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDom from 'react-dom'
 import CSSModules from 'react-css-modules'
 import styles from './CreateGameForm.css'
 import _ from 'lodash'
@@ -31,7 +30,7 @@ let CreateGameForm = React.createClass({
     this.setState({neverWasSubmitted: false})
     if (this.formValid()) {
       superagent
-        .post('http://localhost:3000/games')
+        .post('/games')
         .send({
           name: this.state.name,
           players_amount: this.state.players,

@@ -1,4 +1,4 @@
-import { blue500, blue700, blue300, deepOrangeA400, deepOrangeA100, deepOrangeA700,
+import { blue500, blue700, blue300, deepOrangeA400, deepOrangeA200, deepOrangeA100, deepOrangeA700,
     white, darkBlack, fullBlack, grey300 } from 'material-ui/styles/colors'
 import {fade} from 'material-ui/utils/colorManipulator'
 
@@ -24,6 +24,7 @@ const commonSettings = {
     accent1Color: deepOrangeA400,
     accent2Color: deepOrangeA100,
     accent3Color: deepOrangeA700,
+    accent4Color: deepOrangeA200,
     textColor: darkBlack,
     alternateTextColor: white,
     canvasColor: white,

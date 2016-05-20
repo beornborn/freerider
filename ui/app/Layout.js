@@ -42,13 +42,17 @@ var Layout = React.createClass({
     this.refs.snackbar.setState({open: true, message: message})
   },
 
+  updateCurrentUser(currentUser) {
+    this.setState({currentUser: currentUser})
+  },
+
   render() {
     return (
       <div>
         <AppBar
           styleName='app-bar'
           title="Freerider"
-          iconElementRight={<Username styleName="username"/>}
+          iconElementRight={<Username styleName="username" cbUpdateCurrentUser={this.updateCurrentUser}/>}
         >
         </AppBar>
         <div styleName='content'>

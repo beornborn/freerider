@@ -10,6 +10,7 @@ gem 'active_model_serializers', github: 'rails-api/active_model_serializers', br
 gem 'puma'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'awesome_print'
+gem 'redis'
 
 group :development, :test do
   gem 'pry-rails'

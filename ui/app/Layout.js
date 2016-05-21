@@ -29,7 +29,7 @@ var Layout = React.createClass({
   componentWillMount() {
     CurrentUser.authenticate((response) => {
       this.setState({currentUser: response.current_user})
-      let actionCable = ActionCable.createConsumer('ws://localhost:3000/cable')
+      let actionCable = ActionCable.createConsumer('/cable')
       let cable = new Cable({
         UsersOnlineChannel: actionCable.subscriptions.create({channel: 'UsersOnlineChannel'}),
         GamesListChannel: actionCable.subscriptions.create({channel: 'GamesListChannel'})

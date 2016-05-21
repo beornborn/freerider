@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
   end
 
   def index
-    render file: 'public/index.html'
+    index_file = Rails.env.development? ? 'public/dev_index.html' : 'public/prod_index.html'
+    render file: index_file
   end
 
   private

@@ -8,5 +8,5 @@ Rails.application.routes.draw do
 
   mount ActionCable.server => '/cable'
 
-  match '*', to: 'application#index', via: :get
+  root to: 'application#index'
 end

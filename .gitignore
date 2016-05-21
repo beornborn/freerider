@@ -15,3 +15,5 @@
 /log/*
 !/log/.keep
 /tmp
+/public/styles.css
+/public/bundle.js

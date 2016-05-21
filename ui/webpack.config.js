@@ -1,7 +1,8 @@
 var path = require('path')
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
+var validate = require('webpack-validator')
 
-module.exports = {
+module.exports = validate({
   entry: "./app/Routes",
   output: {
     path: path.join(__dirname, '../public'),
@@ -31,4 +32,4 @@ module.exports = {
     extensions: ['', '.js', '.css'],
     root: [path.join(__dirname, './app')]
   }
-}
+})

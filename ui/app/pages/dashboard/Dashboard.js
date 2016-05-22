@@ -18,7 +18,8 @@ var Dashboard = React.createClass({
     ]}
 
     return (
-      <ResponsiveReactGridLayout layouts={layouts} margin={[20, 20]}
+      <div>
+      {/*<ResponsiveReactGridLayout layouts={layouts} margin={[20, 20]}
         breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
         cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}>
         <Card key={"list"} className="dashboard-card">
@@ -29,7 +30,8 @@ var Dashboard = React.createClass({
         <Card key={"users"} className="dashboard-card">
           <UsersOnline cable={this.props.cable} />
         </Card>
-      </ResponsiveReactGridLayout>
+      </ResponsiveReactGridLayout>*/}
+      </div>
     )
   }
 })

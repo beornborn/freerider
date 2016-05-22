@@ -4,7 +4,7 @@ import styles from './Username.css'
 import CreateIcon from 'material-ui/svg-icons/content/create'
 import Theme from '~/app/FreeriderTheme'
 import { FlatButton, Dialog, TextField } from 'material-ui'
-import superagent from 'superagent'
+import axios from 'axios'
 import _ from 'lodash'
 
 let Username = React.createClass({
@@ -26,7 +26,7 @@ let Username = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    if (this.context.currentUser.name !== nextContext.currentUser.name) {
+    if (this.props.currentUser.name !== nextContext.currentUser.name) {
       this.setState({name: nextContext.currentUser.name})
     }
   },
@@ -38,8 +38,8 @@ let Username = React.createClass({
   handleCreate() {
     this.setState({neverWasSubmitted: false})
     if (this.formValid()) {
-      superagent
-        .put('/users/' +this.context.currentUser.id)
+      axios
+        .put('/users/' +this.props.currentUser.id)
         .send({ name: this.state.name })
         .set('Accept', 'application/json')
         .set('ContentType', 'application/json')
@@ -69,7 +69,7 @@ let Username = React.createClass({
     if (!this.state.neverWasSubmitted) {
       errorNameMessage = this.valuePresent(this.state.name).message
     }
-    let displayName = _.truncate(this.context.currentUser.name, {length: 10})
+    let displayName = _.truncate(this.props.currentUser.name, {length: 10})
 
     const actions = [
       <FlatButton
@@ -96,7 +96,7 @@ let Username = React.createClass({
           contentClassName={styles.form}
           titleClassName={styles.formTitle}>
           <TextField
-            defaultValue={this.context.currentUser.name}
+            defaultValue={this.props.currentUser.name}
             onChange={this.handleChangeName}
             hintText="John Dow"
             floatingLabelText="Your Name"

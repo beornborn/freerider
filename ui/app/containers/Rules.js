@@ -1,24 +1,23 @@
-import React from 'react'
+import React, { PropTypes as ptypes } from 'react'
 import CSSModules from 'react-css-modules'
 import styles from './Rules.css'
 import { FlatButton, Dialog, Divider } from 'material-ui'
+import { connect } from 'react-redux'
+import actions from '~/app/actions'
 
 let Rules = React.createClass({
-  getInitialState() {
-    return {
-      open: false
-    }
+  propTypes: {
+    open: ptypes.bool.isRequired,
+    closeDialog: ptypes.func.isRequired,
+    openDialog: ptypes.func.isRequired
   },
-
-  handleOpen() { this.setState({open: true}) },
-  handleClose() { this.setState({open: false}) },
 
   render() {
     const actions = [
       <FlatButton
         label="Got It"
         primary={true}
-        onTouchTap={this.handleClose}
+        onTouchTap={this.props.closeDialog}
       />
     ]
 
@@ -27,9 +26,9 @@ let Rules = React.createClass({
         {this.props.children}
         <Dialog
           title="Rules"
-          open={this.state.open}
+          open={this.props.open}
           actions={actions}
-          onRequestClose={this.handleClose}
+          onRequestClose={this.props.closeDialog}
           titleClassName={styles.title}>
           <div>
             <ol>
@@ -47,7 +46,7 @@ let Rules = React.createClass({
                 | Каждый раунд игры - это поездка.
                 br
                 | Вы решаете покупать билет или быть хитрожопым и проехать зайцем в надежде, что кто-то другой купит.
-               </li>
+              </li>
               <li>
                 | Если хитрожопыми окажутся все, и автобусная компания обанкротится.
                 br
@@ -62,4 +61,15 @@ let Rules = React.createClass({
   }
 })
 
-export default CSSModules(Rules, styles)
+var mapStateToProps = (state) => {
+  return {open: state.rulesOpen}
+}
+
+var mapDispatchToProps = (dispatch) => {
+  return {
+    closeDialog: () => { dispatch(actions.toggle(false)) },
+    openDialog: () => { dispatch(actions.toggle(true)) }
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(CSSModules(Rules, styles))

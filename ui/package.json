@@ -5,23 +5,25 @@
   "description": "online real-time multiplayer game devoted to Free Rider problem",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server -d --content-base ../public/ --progress --color --hot --history-api-fallback",
+    "dev": "webpack-dev-server -d --content-base ../public/ --progress --color --hot --inline --history-api-fallback",
     "prod": "webpack -p --config webpack.prod.config.js --progress --colors"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "action-cable-react": "^0.1.1",
+    "axios": "^0.11.1",
+    "bluebird": "^3.4.0",
     "cookie": "^0.2.3",
     "lodash": "^4.12.0",
     "material-ui": "^0.15.0",
-    "react": "^15.0.2",
+    "react": "^15.1.0",
     "react-css-modules": "^3.7.6",
     "react-dom": "^15.0.2",
     "react-grid-layout": "^0.12.3",
+    "react-redux": "^4.4.5",
     "react-router": "^2.4.0",
-    "react-tap-event-plugin": "^1.0.0",
-    "superagent": "^1.8.3"
+    "react-tap-event-plugin": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.8.0",
@@ -32,6 +34,7 @@
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "node-sass": "^3.7.0",
+    "redux-devtools": "^3.3.1",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.0",

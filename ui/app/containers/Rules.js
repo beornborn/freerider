@@ -61,11 +61,11 @@ let Rules = React.createClass({
   }
 })
 
-var mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {open: state.rulesOpen}
 }
 
-var mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     closeDialog: () => { dispatch(actions.toggle(false)) },
     openDialog: () => { dispatch(actions.toggle(true)) }

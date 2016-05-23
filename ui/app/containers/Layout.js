@@ -2,7 +2,7 @@ import React, { PropTypes as ptypes } from 'react'
 import { AppBar, Snackbar, FlatButton, Drawer, MenuItem } from 'material-ui'
 import CSSModules from 'react-css-modules'
 import styles from './Layout.css'
-import Username from '~/app/pages/Username'
+import Username from '~/app/containers/Username'
 import Rules from '~/app/containers/Rules'
 import { connect } from 'react-redux'
 import actions from '~/app/actions'
@@ -11,6 +11,7 @@ var Layout = React.createClass({
   propTypes: {
     getCurrentUser: ptypes.func.isRequired,
     toggleDrower: ptypes.func.isRequired,
+    hideSnackbar: ptypes.func.isRequired,
     drowerOpen: ptypes.bool.isRequired,
     snackbarOpen: ptypes.bool.isRequired,
     snackbarMessage: ptypes.string
@@ -26,7 +27,7 @@ var Layout = React.createClass({
         <AppBar
           styleName='app-bar'
           title="Freerider"
-          // iconElementRight={<Username styleName="username" cbUpdateCurrentUser={() =>{}}/>}
+          iconElementRight={<Username styleName="username"/>}
           onLeftIconButtonTouchTap={this.props.toggleDrower}>
         </AppBar>
         <div styleName='content'>
@@ -43,7 +44,8 @@ var Layout = React.createClass({
         </Drawer>
         <Snackbar ref="snackbar"
           open={this.props.snackbarOpen}
-          message=''
+          message={this.props.snackbarMessage}
+          onRequestClose={this.props.hideSnackbar}
           autoHideDuration={4000}/>
       </div>
     )
@@ -60,7 +62,8 @@ var mapDispatchToProps = (dispatch) => {
   return {
     getCurrentUser: () => { return actions.getCurrentUser(dispatch) },
     connectCable: () => { dispatch(actions.connectCable()) },
-    toggleDrower: () => { dispatch(actions.toggleDrower()) }
+    toggleDrower: () => { dispatch(actions.toggleDrower()) },
+    hideSnackbar: () => { dispatch(actions.hideSnackbar()) }
   }
 }
 

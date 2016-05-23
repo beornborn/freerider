@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
-    render json: @user
+    render json: { user: User.serializer.new(@user).as_json }
   end
 
   private

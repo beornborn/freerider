@@ -20,11 +20,48 @@ module.exports = {
     }
   },
 
+  toggleEditUsernameDialog() {
+    return {
+      type: 'TOGGLE_EDIT_USERNAME_DIALOG'
+    }
+  },
+
+  submitEditUsernameForm() {
+    return {
+      type: 'SUBMIT_EDIT_USERNAME_FORM'
+    }
+  },
+
+  showSnackbar(message) {
+    return {
+      type: 'SHOW_SNACKBAR',
+      message
+    }
+  },
+
+  hideSnackbar() {
+    return {
+      type: 'HIDE_SNACKBAR'
+    }
+  },
+
+  handleChangeName(name) {
+    return {
+      type: 'HANDLE_CHANGE_NAME',
+      name
+    }
+  },
+
   getCurrentUser(dispatch) {
     return api.getCurrentUser().then(currentUser => {
-      console.log(currentUser)
       dispatch(updateCurrentUser(currentUser))
       return new Promise((resolve) => {resolve()})
+    })
+  },
+
+  updateUsername(dispatch, userId, name) {
+    api.updateUsername(userId, name).then(currentUser => {
+      dispatch(updateCurrentUser(currentUser))
     })
   },
 

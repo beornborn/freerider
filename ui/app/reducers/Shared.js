@@ -27,7 +27,6 @@ export default function reducer(state = initialState, action) {
     case TOGGLE_SNACKBAR:
       return update(state, {snackbar: {open: {$set: !state.snackbar.open}, message: {$set: action.payload.message}}})
     case UPDATE_CURRENT_USER:
-
       return update(state, {currentUser: {$set: action.payload.currentUser}})
     case CONNECT_CABLE:
       let actionCable = ActionCable.createConsumer('/cable')

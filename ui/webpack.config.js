@@ -3,7 +3,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin")
 var validate = require('webpack-validator')
 
 module.exports = validate({
-  entry: "./app/Routes",
+  entry: ["whatwg-fetch", "./app/Routes"],
   output: {
     path: path.join(__dirname, '../public'),
     filename: "bundle.js"

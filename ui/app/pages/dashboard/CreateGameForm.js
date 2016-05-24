@@ -2,7 +2,6 @@ import React from 'react'
 import CSSModules from 'react-css-modules'
 import styles from './CreateGameForm.css'
 import _ from 'lodash'
-import axios from 'axios'
 
 import { FloatingActionButton, FlatButton, Dialog, TextField, SelectField, MenuItem } from 'material-ui'
 import ContentAdd from 'material-ui/svg-icons/content/add'

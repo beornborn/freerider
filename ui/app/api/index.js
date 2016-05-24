@@ -1,23 +1,39 @@
 import 'whatwg-fetch'
 import cookie from 'cookie'
 
-module.exports = {
-  getCurrentUser() {
-    return fetch('/authenticate')
-      .then((response) => { return response.json() })
-      .then((response) => {
-        console.log(response)
-        var aYearLater = Date(Date.now() + 60*60*24*265)
-        document.cookie = cookie.serialize('user_id', response.token, {path: '/', expired: aYearLater})
-        return new Promise((resolve) => {resolve(response.current_user)})
-      })
-  },
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response
+  } else {
+    var error = new Error(response.statusText)
+    error.response = response
+    throw error
+  }
+}
 
-  updateUsername(userId, name) {
-    return fetch
-      .put('/users/' + userId, { name: name })
-      .then((response) => {
-        return new Promise((resolve) => {resolve(response.data.user)})
-      })
-  },
+function parseJSON(response) {
+  return response.json()
+}
+
+export function getCurrentUser() {
+  return fetch('/authenticate', { credentials: 'same-origin' })
+    .then(checkStatus)
+    .then(parseJSON)
+    .then((response) => {
+      var aYearLater = Date(Date.now() + 60*60*24*265)
+      document.cookie = cookie.serialize('user_id', response.token, {path: '/', expired: aYearLater})
+      return response.current_user
+    })
+}
+
+export function updateUsername(userId, name) {
+  return fetch('/users/' + userId, {
+      method: 'PUT',
+      credentials: 'same-origin',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({user: { name: name }})
+    })
+    .then(checkStatus)
+    .then(parseJSON)
+    .then((response) => { return response.user })
 }

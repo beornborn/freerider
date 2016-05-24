@@ -1,6 +1,6 @@
 import update from 'react-addons-update'
 import { ActionCable, Cable } from 'action-cable-react'
-import api from '~/app/api'
+import * as api from '~/app/api'
 import { createAction } from 'redux-actions'
 import { CHANGE_NAME } from '~/app/reducers/Username'
 

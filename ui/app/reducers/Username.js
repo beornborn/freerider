@@ -1,5 +1,5 @@
 import update from 'react-addons-update'
-import api from '~/app/api'
+import * as api from '~/app/api'
 import { createAction } from 'redux-actions'
 import { UPDATE_CURRENT_USER } from '~/app/reducers/Shared'
 

@@ -6,8 +6,9 @@ import Theme from '~/app/FreeriderTheme'
 import { FlatButton, Dialog, TextField } from 'material-ui'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import { updateUsername, CHANGE_NAME, TOGGLE_DIALOG, FORM_ALREADY_WAS_SUBMITTED } from '~/app/reducers/Username'
-import { TOGGLE_SNACKBAR } from '~/app/reducers/Shared'
+import { CHANGE_NAME, TOGGLE_DIALOG, FORM_ALREADY_WAS_SUBMITTED } from '~/app/reducers/Username'
+import { UPDATE_CURRENT_USER, TOGGLE_SNACKBAR } from '~/app/reducers/Shared'
+import * as api from '~/app/api'
 import { createAction } from 'redux-actions'
 
 let Username = React.createClass({
@@ -89,7 +90,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateUsername: (userId, name) => { updateUsername(dispatch, userId, name) },
+    updateUsername: async (userId, name) => {
+      const currentUser = await api.updateUsername(userId, name)
+      dispatch(createAction(UPDATE_CURRENT_USER)({currentUser}))
+    },
     submitForm: () => { dispatch(createAction(FORM_ALREADY_WAS_SUBMITTED)()) },
     toggleSnackbar: (message) => { dispatch(createAction(TOGGLE_SNACKBAR)({message})) },
     toggleDialog: () => { dispatch(createAction(TOGGLE_DIALOG)()) },

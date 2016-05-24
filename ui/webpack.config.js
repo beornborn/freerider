@@ -3,7 +3,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin")
 var validate = require('webpack-validator')
 
 module.exports = validate({
-  entry: ["whatwg-fetch", "./app/Routes"],
+  entry: ["babel-polyfill", "whatwg-fetch", "./app/Routes"],
   output: {
     path: path.join(__dirname, '../public'),
     filename: "bundle.js"
@@ -15,7 +15,7 @@ module.exports = validate({
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          presets: ['react', 'es2015'],
+          presets: ['react', 'es2015', 'stage-0'],
           plugins: ['babel-root-import']
         }
       },

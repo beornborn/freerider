@@ -1,8 +1,6 @@
 import update from 'react-addons-update'
 import { ActionCable, Cable } from 'action-cable-react'
-import * as api from '~/app/api'
 import { createAction } from 'redux-actions'
-import { CHANGE_NAME } from '~/app/reducers/Username'
 
 export const CONNECT_CABLE = 'freerider/shared/CONNECT_CABLE'
 export const TOGGLE_DROWER = 'freerider/shared/TOGGLE_DROWER'
@@ -40,10 +38,3 @@ export default function reducer(state = initialState, action) {
   }
 }
 
-export function getCurrentUser(dispatch) {
-  return api.getCurrentUser().then(currentUser => {
-    dispatch(createAction(CHANGE_NAME)({name: currentUser.name}))
-    dispatch(createAction(UPDATE_CURRENT_USER)({currentUser}))
-    return new Promise((resolve) => {resolve()})
-  })
-}

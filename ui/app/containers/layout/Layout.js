@@ -5,8 +5,10 @@ import styles from './Layout.css'
 import Username from '~/app/containers/layout/Username'
 import Rules from '~/app/containers/layout/Rules'
 import { connect } from 'react-redux'
-import { getCurrentUser, CONNECT_CABLE, TOGGLE_DROWER, TOGGLE_SNACKBAR, TOGGLE_RULES } from '~/app/reducers/Shared'
+import { UPDATE_CURRENT_USER, CONNECT_CABLE, TOGGLE_DROWER, TOGGLE_SNACKBAR, TOGGLE_RULES } from '~/app/reducers/Shared'
+import { CHANGE_NAME } from '~/app/reducers/Username'
 import { createAction } from 'redux-actions'
+import * as api from '~/app/api'
 
 var Layout = React.createClass({
   componentDidMount() {
@@ -52,7 +54,11 @@ var mapStateToProps = (state) => {return {
 
 var mapDispatchToProps = (dispatch) => {
   return {
-    getCurrentUser: () => { return getCurrentUser(dispatch) },
+    getCurrentUser: async () => {
+      const currentUser = await api.getCurrentUser()
+      dispatch(createAction(CHANGE_NAME)({name: currentUser.name}))
+      dispatch(createAction(UPDATE_CURRENT_USER)({currentUser}))
+    },
     connectCable: () => { dispatch(createAction(CONNECT_CABLE)()) },
     toggleDrower: () => { dispatch(createAction(TOGGLE_DROWER)()) },
     toggleSnackbar: () => { dispatch(createAction(TOGGLE_SNACKBAR)({message: ''})) },

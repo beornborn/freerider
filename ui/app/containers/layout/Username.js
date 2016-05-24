@@ -7,28 +7,17 @@ import { FlatButton, Dialog, TextField } from 'material-ui'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import actions from '~/app/actions'
+import { updateUsername, CHANGE_NAME, TOGGLE_DIALOG, FORM_ALREADY_WAS_SUBMITTED } from '~/app/reducers/Username'
+import { TOGGLE_SNACKBAR } from '~/app/reducers/Shared'
+import { createAction } from 'redux-actions'
 
 let Username = React.createClass({
-  PropTypes: {
-    dialogOpen: React.PropTypes.bool.isRequired,
-    formNeverWasSubmitted: React.PropTypes.bool.isRequired,
-    name: React.PropTypes.string.isRequired,
-    currentUser: React.PropTypes.object.isRequired,
-
-    updateUsername: React.PropTypes.func.isRequired,
-    toggleDialog: React.PropTypes.func.isRequired,
-    handleChangeName: React.PropTypes.func.isRequired,
-    submitForm: React.PropTypes.func.isRequired,
-    showSnackbar: React.PropTypes.func.isRequired
-  },
-
   handleSubmitForm() {
     this.props.submitForm()
     if (this.formValid()) {
       this.props.updateUsername(this.props.currentUser.id, this.props.name)
       this.props.toggleDialog()
-      this.props.showSnackbar('Username Updated')
+      this.props.toggleSnackbar('Username Updated')
     }
   },
 
@@ -94,18 +83,18 @@ const mapStateToProps = (state) => {
   return {
     dialogOpen: state.username.editDialog.open,
     formNeverWasSubmitted: state.username.editDialog.formNeverWasSubmitted,
-    name: state.username.editDialog.name,
-    currentUser: state.currentUser
+    name: state.username.name,
+    currentUser: state.shared.currentUser
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateUsername: (userId, name) => { actions.updateUsername(dispatch, userId, name) },
-    submitForm: () => { dispatch(actions.submitEditUsernameForm()) },
-    showSnackbar: (message) => { dispatch(actions.showSnackbar(message)) },
-    toggleDialog: () => { dispatch(actions.toggleEditUsernameDialog()) },
-    handleChangeName: (e) => { dispatch(actions.handleChangeName(e.target.value)) }
+    updateUsername: (userId, name) => { updateUsername(dispatch, userId, name) },
+    submitForm: () => { dispatch(createAction(FORM_ALREADY_WAS_SUBMITTED)()) },
+    toggleSnackbar: (message) => { dispatch(createAction(TOGGLE_SNACKBAR)({message})) },
+    toggleDialog: () => { dispatch(createAction(TOGGLE_DIALOG)()) },
+    handleChangeName: (e) => { dispatch(createAction(CHANGE_NAME)({name: e.target.value})) }
   }
 }
 

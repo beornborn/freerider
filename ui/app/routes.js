@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { browserHistory, Router, Route, Link, withRouter, IndexRoute } from 'react-router'
 import merge from 'lodash.merge'
-import Layout from '~/app/containers/Layout'
+import Layout from '~/app/containers/layout/Layout'
 import Dashboard from '~/app/pages/dashboard/Dashboard'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
@@ -17,7 +17,7 @@ import 'styles/shared'
 
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import reducer from '~/app/reducers/all'
+import reducer from '~/app/reducers'
 const store = createStore(reducer, undefined,
   window.devToolsExtension ? window.devToolsExtension() : undefined
 )

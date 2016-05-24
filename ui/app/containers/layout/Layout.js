@@ -2,21 +2,13 @@ import React, { PropTypes as ptypes } from 'react'
 import { AppBar, Snackbar, FlatButton, Drawer, MenuItem } from 'material-ui'
 import CSSModules from 'react-css-modules'
 import styles from './Layout.css'
-import Username from '~/app/containers/Username'
-import Rules from '~/app/containers/Rules'
+import Username from '~/app/containers/layout/Username'
+import Rules from '~/app/containers/layout/Rules'
 import { connect } from 'react-redux'
-import actions from '~/app/actions'
+import { getCurrentUser, CONNECT_CABLE, TOGGLE_DROWER, TOGGLE_SNACKBAR, TOGGLE_RULES } from '~/app/reducers/Shared'
+import { createAction } from 'redux-actions'
 
 var Layout = React.createClass({
-  propTypes: {
-    getCurrentUser: ptypes.func.isRequired,
-    toggleDrower: ptypes.func.isRequired,
-    hideSnackbar: ptypes.func.isRequired,
-    drowerOpen: ptypes.bool.isRequired,
-    snackbarOpen: ptypes.bool.isRequired,
-    snackbarMessage: ptypes.string
-  },
-
   componentDidMount() {
     this.props.getCurrentUser().then(this.props.connectCable)
   },
@@ -39,13 +31,13 @@ var Layout = React.createClass({
           open={this.props.drowerOpen}
           onRequestChange={this.props.toggleDrower}>
           <Rules ref="rules">
-            <MenuItem onTouchTap={() => { this.refs.rules.dispatchProps.openDialog()} }>Rules</MenuItem>
+            <MenuItem onTouchTap={this.props.toggleRules}>Rules</MenuItem>
           </Rules>
         </Drawer>
         <Snackbar ref="snackbar"
           open={this.props.snackbarOpen}
           message={this.props.snackbarMessage}
-          onRequestClose={this.props.hideSnackbar}
+          onRequestClose={this.props.toggleSnackbar}
           autoHideDuration={4000}/>
       </div>
     )
@@ -53,17 +45,18 @@ var Layout = React.createClass({
 })
 
 var mapStateToProps = (state) => {return {
-  drowerOpen: state.drower.open,
-  snackbarOpen: state.snackbar.open,
-  snackbarMessage: state.snackbar.message
+  drowerOpen: state.shared.drower.open,
+  snackbarOpen: state.shared.snackbar.open,
+  snackbarMessage: state.shared.snackbar.message
 }}
 
 var mapDispatchToProps = (dispatch) => {
   return {
-    getCurrentUser: () => { return actions.getCurrentUser(dispatch) },
-    connectCable: () => { dispatch(actions.connectCable()) },
-    toggleDrower: () => { dispatch(actions.toggleDrower()) },
-    hideSnackbar: () => { dispatch(actions.hideSnackbar()) }
+    getCurrentUser: () => { return getCurrentUser(dispatch) },
+    connectCable: () => { dispatch(createAction(CONNECT_CABLE)()) },
+    toggleDrower: () => { dispatch(createAction(TOGGLE_DROWER)()) },
+    toggleSnackbar: () => { dispatch(createAction(TOGGLE_SNACKBAR)({message: ''})) },
+    toggleRules: () => { dispatch(createAction(TOGGLE_RULES)()) }
   }
 }
 

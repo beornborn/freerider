@@ -1,0 +1,15 @@
+.games-card {
+  min-height: 550px;
+  height: initial!important;
+  float: left;
+  width: 30%;
+  margin-left: 19%;
+  margin-right: 2%;
+}
+
+.users-online-card {
+  min-height: 550px;
+  height: initial!important;
+  float: left;
+  width: 30%;
+}

@@ -4,18 +4,16 @@ import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'mate
 import CSSModules from 'react-css-modules'
 import styles from './GamesList.css'
 import GameItem from './GameItem'
+import { connect } from 'react-redux'
+import { createAction } from 'redux-actions'
+import { REFRESH } from '~/app/reducers/GamesList'
 
 var channelName = 'GamesListChannel'
-
 let GamesList = React.createClass({
   mixins: [CableMixin(React), ChannelMixin(channelName)],
 
-  getInitialState: function() {
-    return {games: [], changedGamesIds: []}
-  },
-
   componentDidUpdate(prevProps, prevState, prevContext) {
-    if (this.context.cable.channels !== prevContext.cable.chanels) {
+    if (this.props.cable.channels !== prevProps.cable.chanels) {
       ChannelMixin(channelName).componentDidMount.apply(this)
     }
   },
@@ -33,7 +31,7 @@ let GamesList = React.createClass({
     console.log(data)
     switch (data.msg) {
       case 'refresh':
-        return this.setState({games: data.games, changedGamesIds: data.changed_games_ids})
+        return this.props.refreshGames({games: data.games, changedGamesIds: data.changed_games_ids})
     }
   },
 
@@ -49,8 +47,8 @@ let GamesList = React.createClass({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {this.state.games.map(game => {
-            return <GameItem game={game} key={game.id} updated={this.state.changedGamesIds.includes(game.id)} />
+          {this.props.games.map(game => {
+            return <GameItem game={game} key={game.id} updated={this.props.changedGamesIds.includes(game.id)} />
           })}
         </TableBody>
       </Table>
@@ -59,4 +57,18 @@ let GamesList = React.createClass({
   }
 })
 
-export default CSSModules(GamesList, styles)
+const mapStateToProps = (state) => {
+  return {
+    cable: state.shared.cable,
+    games: state.gamesList.games,
+    changedGamesIds: state.gamesList.changedGamesIds
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    refreshGames: (data) => { dispatch(createAction(REFRESH)(data)) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(GamesList, styles))

@@ -1,10 +1,4 @@
 :global {
-  .dashboard-card {
-    min-height: 550px;
-    height: initial!important;
-  }
-
-
   #rules-modal .modal-header {
     background-color: #428bca;
     .modal-title {

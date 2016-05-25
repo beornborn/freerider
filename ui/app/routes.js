@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { browserHistory, Router, Route, Link, withRouter, IndexRoute } from 'react-router'
 import merge from 'lodash.merge'
-import Layout from '~/app/containers/layout/Layout'
+import Layout from '~/app/pages/layout/Layout'
 import Dashboard from '~/app/pages/dashboard/Dashboard'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'

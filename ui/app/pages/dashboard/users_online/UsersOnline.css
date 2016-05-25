@@ -1,7 +1,9 @@
 @import 'app/styles/theme';
 
 .header {
-  margin: 20px;
+  padding: 16px;
+  line-height: 36px;
+  font-size: 24px;
 }
 
 .status {

@@ -1,9 +1,9 @@
 @import 'app/styles/theme';
 
 .new-game-button {
-  position: fixed;
-  top: -20px;
-  right: -15px;
+  position: relative;
+  top: -90px;
+  right: -350px;
 }
 
 .form {
@@ -13,4 +13,9 @@
 .title {
   background-color: $primary1Color;
   color: $alternateTextColor!important;
+}
+
+.button-container {
+  float: left;
+  height: 0px;
 }

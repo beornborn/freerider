@@ -37,3 +37,18 @@ export function updateUsername(userId, name) {
     .then(parseJSON)
     .then((response) => { return response.user })
 }
+
+export function createGame(name, players, rounds, time) {
+  return fetch('/games', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      credentials: 'same-origin',
+      body: JSON.stringify({game: {
+        name: name,
+        players_amount: players,
+        rounds: rounds,
+        time_to_think: time
+      }})
+    })
+    .then(checkStatus)
+}

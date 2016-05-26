@@ -1,6 +1,5 @@
 import update from 'react-addons-update'
 import { ActionCable, Cable } from 'action-cable-react'
-import { createAction } from 'redux-actions'
 
 export const CONNECT_CABLE = 'freerider/shared/CONNECT_CABLE'
 export const TOGGLE_DROWER = 'freerider/shared/TOGGLE_DROWER'

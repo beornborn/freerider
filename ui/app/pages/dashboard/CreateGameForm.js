@@ -2,53 +2,30 @@ import React from 'react'
 import CSSModules from 'react-css-modules'
 import styles from './CreateGameForm.css'
 import _ from 'lodash'
-
+import { connect } from 'react-redux'
+import { createAction } from 'redux-actions'
+import { TOGGLE_SNACKBAR } from '~/app/reducers/Shared'
+import { TOGGLE_FORM, CHANGE_NAME, CHANGE_PLAYERS, CHANGE_ROUNDS, CHANGE_TIME, FORM_ALREADY_WAS_SUBMITTED } from '~/app/reducers/CreateGameForm'
+import * as api from '~/app/api'
 import { FloatingActionButton, FlatButton, Dialog, TextField, SelectField, MenuItem } from 'material-ui'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 
+
 let CreateGameForm = React.createClass({
-  contextTypes: {
-    snackbarCallback: React.PropTypes.func
-  },
-
-  getInitialState() {
-    return {
-      open: false,
-      name: '',
-      players: undefined,
-      rounds: undefined,
-      time: undefined,
-      neverWasSubmitted: true
-    }
-  },
-
-  handleOpen() { this.setState({open: true}) },
-  handleClose() { this.setState({open: false}) },
-
   handleCreate() {
-    this.setState({neverWasSubmitted: false})
+    this.props.submitForm()
     if (this.formValid()) {
-      axios
-        .post('/games')
-        .send({
-          name: this.state.name,
-          players_amount: this.state.players,
-          rounds: this.state.rounds,
-          time_to_think: this.state.time
-        })
-        .set('Accept', 'application/json')
-        .set('ContentType', 'application/json')
-        .end((err, res) => {})
-      this.handleClose()
-      this.context.snackbarCallback('Game created')
+      api.createGame(this.props.name, this.props.players, this.props.rounds, this.props.time)
+      this.props.toggleForm()
+      this.props.toggleSnackbar('Game created')
     }
   },
 
   formValid() {
-    return this.valuePresent(this.state.name).valid &&
-      this.valuePresent(this.state.players).valid &&
-      this.valuePresent(this.state.rounds).valid &&
-      this.valuePresent(this.state.time).valid
+    return this.valuePresent(this.props.name).valid &&
+      this.valuePresent(this.props.players).valid &&
+      this.valuePresent(this.props.rounds).valid &&
+      this.valuePresent(this.props.time).valid
   },
 
   valuePresent(val) {
@@ -59,11 +36,6 @@ let CreateGameForm = React.createClass({
     return result
   },
 
-  handleChangeName(e) { this.setState({name: e.target.value}) },
-  handleChangePlayers(_, __, value) { this.setState({players: value}) },
-  handleChangeRounds(_, __, value) { this.setState({rounds: value}) },
-  handleChangeTime(_, __, value) { this.setState({time: value}) },
-
   render() {
     const playersAmounts = _.range(2, 10).map((i) => <MenuItem value={i} key={i} primaryText={i} />)
     const roundsAmounts = _.range(3, 10).map((i) => <MenuItem value={i} key={i} primaryText={i} />)
@@ -71,18 +43,18 @@ let CreateGameForm = React.createClass({
 
     let errorStyle = {color: '#FF3D00'}
     let errorNameMessage, errorPlayersMessage, errorRoundsMessage, errorTimeMessage
-    if (!this.state.neverWasSubmitted) {
-      errorNameMessage = this.valuePresent(this.state.name).message
-      errorPlayersMessage = this.valuePresent(this.state.players).message
-      errorRoundsMessage = this.valuePresent(this.state.rounds).message
-      errorTimeMessage = this.valuePresent(this.state.time).message
+    if (!this.props.formNeverWasSubmitted) {
+      errorNameMessage = this.valuePresent(this.props.name).message
+      errorPlayersMessage = this.valuePresent(this.props.players).message
+      errorRoundsMessage = this.valuePresent(this.props.rounds).message
+      errorTimeMessage = this.valuePresent(this.props.time).message
     }
 
     const actions = [
       <FlatButton
         label="Cancel"
         primary={true}
-        onTouchTap={this.handleClose}
+        onTouchTap={this.props.toggleForm}
       />,
       <FlatButton
         label="Create"
@@ -92,45 +64,45 @@ let CreateGameForm = React.createClass({
     ]
 
     return (
-      <div>
-        <FloatingActionButton secondary={true} styleName="new-game-button" onTouchTap={this.handleOpen}>
+      <div styleName="button-container">
+        <FloatingActionButton secondary={true} styleName="new-game-button" onTouchTap={this.props.toggleForm}>
           <ContentAdd />
         </FloatingActionButton>
         <Dialog
           title="New Game"
-          open={this.state.open}
+          open={this.props.open}
           actions={actions}
-          onRequestClose={this.handleClose}
+          onRequestClose={this.props.toggleForm}
           contentClassName={styles.form}
           titleClassName={styles.title}>
           <div>
             <TextField
-              defaultValue={this.state.name}
-              onChange={this.handleChangeName}
+              defaultValue={this.props.name}
+              onChange={this.props.changeName}
               hintText="Name"
               floatingLabelText="Name of your game"
               errorText={errorNameMessage}
               errorStyle={errorStyle}
               autoFocus/>
             <SelectField
-              value={this.state.players}
-              onChange={this.handleChangePlayers}
+              value={this.props.players}
+              onChange={this.props.changePlayers}
               errorText={errorPlayersMessage}
               errorStyle={errorStyle}
               hintText="Players amount">
               {playersAmounts}
             </SelectField>
             <SelectField
-              value={this.state.rounds}
-              onChange={this.handleChangeRounds}
+              value={this.props.rounds}
+              onChange={this.props.changeRounds}
               errorText={errorRoundsMessage}
               errorStyle={errorStyle}
               hintText="Rounds amount">
               {roundsAmounts}
             </SelectField>
             <SelectField
-              value={this.state.time}
-              onChange={this.handleChangeTime}
+              value={this.props.time}
+              onChange={this.props.changeTime}
               errorText={errorTimeMessage}
               errorStyle={errorStyle}
               hintText="Time to think">
@@ -143,4 +115,18 @@ let CreateGameForm = React.createClass({
   }
 })
 
-export default CSSModules(CreateGameForm, styles)
+const mapStateToProps = (state) => { return state.createGameForm }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleSnackbar: (message) => { dispatch(createAction(TOGGLE_SNACKBAR)({message})) },
+    toggleForm: () => { dispatch(createAction(TOGGLE_FORM)()) },
+    changeName: (e) => { dispatch(createAction(CHANGE_NAME)({name: e.target.value}))},
+    changePlayers: (_, __, players) => { dispatch(createAction(CHANGE_PLAYERS)({players}))},
+    changeRounds: (_, __, rounds) => { dispatch(createAction(CHANGE_ROUNDS)({rounds}))},
+    changeTime: (_, __, time) => { dispatch(createAction(CHANGE_TIME)({time}))},
+    submitForm: ()  => { dispatch(createAction(FORM_ALREADY_WAS_SUBMITTED)())}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(CreateGameForm, styles))

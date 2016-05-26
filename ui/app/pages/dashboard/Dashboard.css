@@ -2,14 +2,21 @@
   min-height: 550px;
   height: initial!important;
   float: left;
-  width: 30%;
-  margin-left: 19%;
-  margin-right: 2%;
+  width: 48.5%;
+  min-width: 300px;
+  margin-right: 3%;
 }
 
 .users-online-card {
   min-height: 550px;
   height: initial!important;
   float: left;
-  width: 30%;
+  min-width: 300px;
+  width: 48.5%;
+}
+
+.content {
+  margin: 0 auto;
+  width: 800px;
+  min-width: 400px;
 }

@@ -10,10 +10,10 @@ var Dashboard = React.createClass({
   render() {
     let a = (<div styleName="status">Players<span styleName="status"> Online</span></div>)
     return (
-      <div>
+      <div styleName="content">
         <Card styleName="games-card">
           <CardTitle title="Games" />
-         {/*    <CreateGameForm />*/}
+          <CreateGameForm />
           <GamesList />
         </Card>
         <Card styleName="users-online-card">

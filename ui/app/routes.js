@@ -1,7 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { browserHistory, Router, Route, Link, withRouter, IndexRoute } from 'react-router'
-import merge from 'lodash.merge'
 import Layout from '~/app/pages/layout/Layout'
 import Dashboard from '~/app/pages/dashboard/Dashboard'
 import Game from '~/app/pages/game/Game'
@@ -12,8 +11,8 @@ injectTapEventPlugin()
 import FreeriderTheme from '~/app/FreeriderTheme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import merge from 'lodash.merge'
 const muiTheme = merge(getMuiTheme(FreeriderTheme.commonSettings), FreeriderTheme.componentSettings)
-import 'styles/theme'
 import 'styles/shared'
 
 import { Provider } from 'react-redux'

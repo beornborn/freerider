@@ -1,6 +1,7 @@
 import React, { PropTypes as ptypes } from 'react'
 import { AppBar, Snackbar, FlatButton, Drawer, MenuItem } from 'material-ui'
 import CSSModules from 'react-css-modules'
+import { Link } from 'react-router'
 import styles from './Layout.css'
 import Username from '~/app/pages/layout/Username'
 import Rules from '~/app/pages/layout/Rules'
@@ -16,11 +17,12 @@ var Layout = React.createClass({
   },
 
   render() {
+    const title = <Link to="/" className={styles.logoName}>Freerider</Link>
     return (
       <div>
         <AppBar
           styleName='app-bar'
-          title="Freerider"
+          title={title}
           iconElementRight={<Username styleName="username"/>}
           onLeftIconButtonTouchTap={this.props.toggleDrower}>
         </AppBar>
@@ -49,7 +51,8 @@ var Layout = React.createClass({
 var mapStateToProps = (state) => {return {
   drowerOpen: state.shared.drower.open,
   snackbarOpen: state.shared.snackbar.open,
-  snackbarMessage: state.shared.snackbar.message
+  snackbarMessage: state.shared.snackbar.message,
+  currentUserLoaded: state.shared.currentUserLoaded
 }}
 
 var mapDispatchToProps = (dispatch) => {

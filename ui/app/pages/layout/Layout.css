@@ -9,3 +9,8 @@
   z-index: 1200;
   position: relative;
 }
+
+.logoName {
+  color: $alternateTextColor;
+  text-decoration: none;
+}

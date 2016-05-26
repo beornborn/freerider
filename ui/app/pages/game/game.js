@@ -1,9 +1,9 @@
-var update = React.addons.update
-
+import React from 'react'
+import AnimationMixin from '~/app/mixins/AnimationMixin'
 let Game = React.createClass({
   mixins: [AnimationMixin],
   componentWillMount() {
-    this.gameChannel = App.cable.subscriptions.create("GameChannel", App.createGameChannel(this))
+    // this.gameChannel = App.cable.subscriptions.create("GameChannel", App.createGameChannel(this))
   },
 
   getInitialState() {
@@ -17,7 +17,8 @@ let Game = React.createClass({
     let winner_players = this.state.players.filter(p => winner_ids.includes(p.id))
     return (
       <div className="game-container">
-        <GameInfo ref="gameInfo"
+        {this.props.params.gameId}
+        {/*<GameInfo ref="gameInfo"
           players={this.state.players}
           game={this.state.game}
           stopwatch={this.stopwatch}
@@ -30,7 +31,7 @@ let Game = React.createClass({
           ref={'playerSpot' + me.id} />
         {withoutMeUsers.map(player => {
           return <OtherPlayerSpot player={player} key={player.id} ref={'playerSpot' + player.id}/>
-        })}
+        })}*/}
       </div>
     );
   },
@@ -69,4 +70,6 @@ let Game = React.createClass({
     this.setState({players: updatedPlayers})
     this.gameChannel.decide({freerider: freerider, round: this.state.game.current_round})
   }
-});
+})
+
+export default Game

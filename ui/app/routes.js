@@ -4,6 +4,7 @@ import { browserHistory, Router, Route, Link, withRouter, IndexRoute } from 'rea
 import merge from 'lodash.merge'
 import Layout from '~/app/pages/layout/Layout'
 import Dashboard from '~/app/pages/dashboard/Dashboard'
+import Game from '~/app/pages/game/Game'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin()
@@ -16,14 +17,7 @@ import 'styles/theme'
 import 'styles/shared'
 
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose } from 'redux'
-import PromiseMiddleware from 'redux-promise'
-import reducer from '~/app/reducers'
-const store = createStore(reducer, undefined, compose(
-    applyMiddleware(PromiseMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : undefined
-  )
-)
+import store from '~/app/Store'
 
 render((
   <Provider store={store}>
@@ -31,6 +25,7 @@ render((
       <Router history={browserHistory}>
         <Route path="/" component={Layout}>
           <IndexRoute component={Dashboard}/>
+          <Route path="/games/:gameId" component={Game} />
         </Route>
       </Router>
     </MuiThemeProvider>

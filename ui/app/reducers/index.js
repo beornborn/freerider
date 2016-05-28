@@ -4,13 +4,15 @@ import username from '~/app/reducers/Username'
 import usersOnline from '~/app/reducers/UsersOnline'
 import gamesList from '~/app/reducers/GamesList'
 import createGameForm from '~/app/reducers/CreateGameForm'
+import game from '~/app/reducers/Game'
 
 const RootReducer = combineReducers({
   shared,
   username,
   usersOnline,
   gamesList,
-  createGameForm
+  createGameForm,
+  game
 })
 
 export default RootReducer

@@ -1,0 +1,33 @@
+@import 'app/styles/theme';
+
+.player {
+  padding: 10px;
+  font-size: 13px;
+  display: flex;
+
+  .name {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+  }
+
+  .status {
+    display: flex;
+    flex-grow: 100;
+    text-align: right;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20%;
+    font-style: italic;
+    color: $primary1Color;
+  }
+
+  .points {
+    display: flex;
+    flex-grow: 1;
+    padding-right: 10px;
+    font-size: 20px;
+    align-items: center;
+    color: $accent1Color;
+  }
+}

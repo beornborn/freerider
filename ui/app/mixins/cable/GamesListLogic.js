@@ -1,3 +1,5 @@
+import { CreateMixin } from '~/app/mixins/cable/CableCommon'
+
 function cableLogic(component) {
   return {
     connected() { console.log('connected games_list channel') },
@@ -15,29 +17,4 @@ function cableLogic(component) {
   }
 }
 
-const CHANNEL_NAME = "GamesListChannel"
-
-const CableMixin = {
-  componentDidMount() {
-    if (this.props.cable.connected) {
-      this.createSubscription()
-    }
-  },
-
-  componentDidUpdate(prevProps) {
-    if (!prevProps.cable.connected && this.props.cable.connected) {
-      this.createSubscription()
-    }
-  },
-
-  componentWillUnmount() {
-    this.props.removeSubscription(CHANNEL_NAME)
-  },
-
-  createSubscription() {
-    const subscription = this.props.cable.consumer.subscriptions.create(CHANNEL_NAME, cableLogic(this))
-    this.props.addSubscription(CHANNEL_NAME, subscription)
-  }
-}
-
-export default CableMixin
+export default CreateMixin("GamesListChannel", cableLogic)

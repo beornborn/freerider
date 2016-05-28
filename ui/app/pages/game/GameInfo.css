@@ -1,0 +1,43 @@
+@import 'app/styles/theme';
+
+.info {
+  height: 70px;
+  background-color: $primary2Color;
+  color: $alternateTextColor;
+  display: flex;
+  flex-direction: row;
+
+  .rounds {
+    display: flex;
+    padding: 0px 10px 0px 15px;
+    margin: 0;
+    font-size: 24px;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  .status {
+    display: flex;
+    padding: 10px;
+    margin: 0;
+    font-size: 12px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex-grow: 100;
+  }
+
+  .timer {
+    display: flex;
+    padding: 0px 15px 0px 10px;
+    margin: 0;
+    font-size: 24px;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    .alarm-icon {
+      margin-right: 5px;
+    }
+  }
+}

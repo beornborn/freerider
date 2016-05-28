@@ -36,7 +36,7 @@ let GameItem = React.createClass({
     )
   },
 
-  enterGame() { browserHistory.push(`/games/${this.props.game.id}`) }
+  enterGame() { browserHistory.push('/game') }
 })
 
 export default CSSModules(GameItem, styles)

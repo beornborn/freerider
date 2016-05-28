@@ -1,3 +1,5 @@
+import React from 'react'
+
 var Stopwatch = React.createClass({
   propTypes: {
     time: React.PropTypes.number,
@@ -25,7 +27,7 @@ var Stopwatch = React.createClass({
       } else {
         this.setState({remainingTime: this.state.remainingTime - 1 })
       }
-    }.bind(this), 1000)
+    }, 1000)
     this.setState({intervalId: intervalId})
 
     if (this.props.cbTimeout) { this.setState({timeoutId: setTimeout(this.props.cbTimeout, time * 1000)}) }
@@ -48,3 +50,5 @@ var Stopwatch = React.createClass({
     return minutes +":" + seconds
   }
 })
+
+export default Stopwatch

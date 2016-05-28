@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { browserHistory, Router, Route, Link, withRouter, IndexRoute } from 'react-router'
 import Layout from '~/app/pages/layout/Layout'
 import Dashboard from '~/app/pages/dashboard/Dashboard'
-import Game from '~/app/pages/game/Game'
+import Game from '~/app/containers/Game'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin()
@@ -24,7 +24,7 @@ render((
       <Router history={browserHistory}>
         <Route path="/" component={Layout}>
           <IndexRoute component={Dashboard}/>
-          <Route path="/games/:gameId" component={Game} />
+          <Route path="/game" component={Game} />
         </Route>
       </Router>
     </MuiThemeProvider>

@@ -2,9 +2,9 @@
   min-height: 550px;
   height: initial!important;
   float: left;
-  width: 48.5%;
+  width: 400px;
   min-width: 300px;
-  margin-right: 3%;
+  margin-right: 30px;
 }
 
 .users-online-card {
@@ -12,11 +12,11 @@
   height: initial!important;
   float: left;
   min-width: 300px;
-  width: 48.5%;
+  width: 400px;
 }
 
 .content {
   margin: 0 auto;
-  width: 800px;
+  width: 830px;
   min-width: 400px;
 }

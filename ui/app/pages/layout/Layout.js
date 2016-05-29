@@ -8,10 +8,14 @@ import Rules from '~/app/pages/layout/Rules'
 import { connect } from 'react-redux'
 import { UPDATE_CURRENT_USER, CONNECT_CABLE, TOGGLE_DROWER, TOGGLE_SNACKBAR, TOGGLE_RULES } from '~/app/reducers/Shared'
 import { CHANGE_NAME } from '~/app/reducers/Username'
+import { ADD_CHANNEL_SUBSCRIPTION, REMOVE_CHANNEL_SUBSCRIPTION } from '~/app/reducers/Shared'
 import { createAction } from 'redux-actions'
+import CableMixin from '~/app/mixins/cable/PersonalLogic'
 import * as api from '~/app/api'
 
 var Layout = React.createClass({
+  mixins: [CableMixin],
+
   componentDidMount() {
     this.props.getCurrentUser().then(this.props.connectCable)
   },
@@ -52,7 +56,8 @@ var mapStateToProps = (state) => {return {
   drowerOpen: state.shared.drower.open,
   snackbarOpen: state.shared.snackbar.open,
   snackbarMessage: state.shared.snackbar.message,
-  currentUserLoaded: state.shared.currentUserLoaded
+  currentUserLoaded: state.shared.currentUserLoaded,
+  cable: state.shared.cable
 }}
 
 var mapDispatchToProps = (dispatch) => {
@@ -65,7 +70,12 @@ var mapDispatchToProps = (dispatch) => {
     connectCable: () => { dispatch(createAction(CONNECT_CABLE)()) },
     toggleDrower: () => { dispatch(createAction(TOGGLE_DROWER)()) },
     toggleSnackbar: () => { dispatch(createAction(TOGGLE_SNACKBAR)({message: ''})) },
-    toggleRules: () => { dispatch(createAction(TOGGLE_RULES)()) }
+    toggleRules: () => { dispatch(createAction(TOGGLE_RULES)()) },
+    updateCurrentUser: (currentUser) => { dispatch(createAction(UPDATE_CURRENT_USER)({currentUser}))},
+    addSubscription: (channel, subscription) => {
+      dispatch(createAction(ADD_CHANNEL_SUBSCRIPTION)({channel, subscription}))
+    },
+    removeSubscription: (channel) => { dispatch(createAction(REMOVE_CHANNEL_SUBSCRIPTION)({channel})) }
   }
 }
 

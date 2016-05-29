@@ -11,22 +11,28 @@ injectTapEventPlugin()
 import FreeriderTheme from '~/app/FreeriderTheme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import merge from 'lodash.merge'
-const muiTheme = merge(getMuiTheme(FreeriderTheme.commonSettings), FreeriderTheme.componentSettings)
+import _ from 'lodash'
+const muiTheme = _.merge(getMuiTheme(FreeriderTheme.commonSettings), FreeriderTheme.componentSettings)
 import 'styles/shared'
 
 import { Provider } from 'react-redux'
 import store from '~/app/Store'
 
+import DevTools from '~/app/DevTools'
+const devtools = process.env.NODE_ENV === 'prod' ? undefined : <DevTools />
+
 render((
   <Provider store={store}>
-    <MuiThemeProvider muiTheme={muiTheme}>
-      <Router history={browserHistory}>
-        <Route path="/" component={Layout}>
-          <IndexRoute component={Dashboard}/>
-          <Route path="/game" component={Game} />
-        </Route>
-      </Router>
-    </MuiThemeProvider>
+    <div>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <Router history={browserHistory}>
+          <Route path="/" component={Layout}>
+            <IndexRoute component={Dashboard}/>
+            <Route path="/game" component={Game} />
+          </Route>
+        </Router>
+      </MuiThemeProvider>
+      {devtools}
+    </div>
   </Provider>
 ), document.getElementById('app'))

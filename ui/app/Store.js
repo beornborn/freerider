@@ -1,11 +1,19 @@
-import { createStore, applyMiddleware, compose } from 'redux'
-import PromiseMiddleware from 'redux-promise'
-import reducer from '~/app/reducers'
+if (process.env.NODE_ENV === 'prod') {
+  module.exports = require('./Store.prod.js')
+} else {
+  module.exports = require('./Store.dev.js')
+}
 
-const store = createStore(reducer, undefined, compose(
-    applyMiddleware(PromiseMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : undefined
-  )
-)
 
-export default store
+// когда зашел но не стартануло еще:
+// - не может никуда войти
+// - не может создать
+// - может вернутся, может покинуть
+
+// если стартануло:
+// - не может никуда войти
+// - не может создать
+// - может вернутся, может покинуть
+
+// если пропустил 2 хода подряд - кикается
+// если пропускает ход, то как будто считерил, но очки не прибавляются

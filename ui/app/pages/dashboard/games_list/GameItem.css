@@ -1,9 +1,2 @@
 @import 'app/styles/theme';
-
-.game-row {
-  cursor: pointer;
-}
-
-.name-column {
-  width: 40%;
-}
+@import './GamesList';

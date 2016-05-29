@@ -8,7 +8,8 @@ const mapStateToProps = (state) => {
   return {
     cable: state.shared.cable,
     games: state.gamesList.games,
-    changedGamesIds: state.gamesList.changedGamesIds
+    changedGamesIds: state.gamesList.changedGamesIds,
+    currentUser: state.shared.currentUser
   }
 }
 

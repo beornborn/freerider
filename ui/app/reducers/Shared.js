@@ -11,7 +11,7 @@ export const REMOVE_CHANNEL_SUBSCRIPTION = 'freerider/shared/REMOVE_CHANNEL_SUBS
 
 const initialState = {
   rules: {open: false},
-  currentUser: {},
+  currentUser: {connected_player: {}},
   cable: {consumer: {}, connected: false},
   drower: {open: false},
   snackbar: {open: false, message: ''}

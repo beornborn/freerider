@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506135040) do
+ActiveRecord::Schema.define(version: 20160529152158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160506135040) do
     t.boolean "decided",                  default: false
     t.boolean "winner"
     t.boolean "previous_round_freerider"
+    t.boolean "connected",                default: true
   end
 
   add_index "players", ["game_id"], name: "index_players_on_game_id", using: :btree

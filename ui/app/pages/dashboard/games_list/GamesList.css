@@ -1,10 +1,46 @@
 @import 'app/styles/theme';
 
+.game-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 400px;
+  &:not(.header) {
+    border-bottom: 1px solid #eee;
+    &:hover:not(.currentPresent), &.current:hover {
+      background-color: $accent2Color;
+      cursor: pointer;
+    }
+  }
+}
+
 .header {
   background-color: $primary2Color;
   color: $alternateTextColor;
 }
 
-.name-column {
-  width: 40%;
+.column {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding-left: 15px;
+  font-size: 14px;
+  flex-grow: 1;
+  .column-content {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.actions {
+  width: 145px;
+}
+
+.name {
+  width: 145px;
+}
+
+.players, .rounds, .time {
+  width: 65px;
 }

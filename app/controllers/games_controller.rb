@@ -12,11 +12,16 @@ class GamesController < ApplicationController
   end
 
   def connect
-    redirect_to @game and return if @game.users.exists?(current_user)
-    redirect_to root_path, alert: 'Game is full' and return if @game.players_amount == @game.players.count
+    unless @game.users.exists?(current_user) || @game.players_amount == @game.players.count
+      @game.users << current_user
+    end
+    render json: {}
+  end
 
-    @game.users << current_user
-    redirect_to @game
+  def leave
+    active_game = current_user.games.last
+    current_user.games.destroy(active_game)
+    render json: {}
   end
 
   private

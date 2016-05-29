@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router'
 import CSSModules from 'react-css-modules'
 import styles from './GameItem.css'
 import AnimationMixin from '~/app/mixins/AnimationMixin'
+import * as api from '~/app/api'
 
 let GameItem = React.createClass({
   mixins: [AnimationMixin],
@@ -36,7 +37,10 @@ let GameItem = React.createClass({
     )
   },
 
-  enterGame() { browserHistory.push('/game') }
+  enterGame() {
+    api.enterGame(this.props.game.id)
+    browserHistory.push('/game')
+  }
 })
 
 export default CSSModules(GameItem, styles)

@@ -1,9 +1,10 @@
 @import 'app/styles/theme';
 
 .player {
-  padding: 10px;
+  padding: 0px 20px;
   font-size: 13px;
   display: flex;
+  height: 40px;
 
   .name {
     display: flex;

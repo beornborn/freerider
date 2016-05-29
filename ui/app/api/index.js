@@ -52,3 +52,21 @@ export function createGame(name, players, rounds, time) {
     })
     .then(checkStatus)
 }
+
+export function leaveGame() {
+  return fetch('/games/leave', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      credentials: 'same-origin'
+    })
+  .then(checkStatus)
+}
+
+export function enterGame(gameId) {
+  return fetch('/games/' + gameId + '/connect', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      credentials: 'same-origin'
+    })
+  .then(checkStatus)
+}

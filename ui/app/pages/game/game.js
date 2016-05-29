@@ -6,10 +6,11 @@ import styles from './Game.css'
 import { Card, CardTitle } from 'material-ui/Card'
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward'
-import { RaisedButton } from 'material-ui'
+import { RaisedButton, FloatingActionButton } from 'material-ui'
 import GameInfo from '~/app/pages/game/GameInfo'
 import UsersOnline from '~/app/containers/UsersOnline'
 import Player from '~/app/pages/game/Player'
+import LeaveGame from 'material-ui/svg-icons/action/exit-to-app'
 
 let Game = React.createClass({
   mixins: [AnimationMixin, CableMixin],
@@ -21,6 +22,9 @@ let Game = React.createClass({
     return (
       <div styleName="content">
         <Card styleName="game-card">
+          <FloatingActionButton secondary={true} styleName="leave-game-button" onTouchTap={this.props.leaveGame}>
+            <LeaveGame />
+          </FloatingActionButton>
           <GameInfo ref="gameInfo"
             players={this.props.players}
             game={this.props.game}
@@ -38,9 +42,7 @@ let Game = React.createClass({
             <RaisedButton label="Ride Free" primary={true} styleName='action' />
           </div>
           <div>
-            {this.props.players.map(player => {
-              return <Player player={player} key={player.id} ref={'player' + player.id}/>
-            })}
+            {this.playersElements()}
           </div>
         </Card>
         <Card styleName="users-online-card">
@@ -48,6 +50,16 @@ let Game = React.createClass({
         </Card>
       </div>
     );
+  },
+
+  playersElements() {
+    let players = []
+    for (let i=0; i<this.props.game.players_amount; i++) {
+      let player = this.props.players[i]
+      let id = (player && player.id) || Math.random()
+      players.push(<Player key={id} ref={'player' + id} player={player} gameState={this.props.game.state} />)
+    }
+    return players
   },
 
   newRound() {

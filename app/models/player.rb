@@ -11,6 +11,7 @@ class Player < ApplicationRecord
   scope :winners, -> { where(winner: true) }
 
   after_create :refresh_games, :refresh_player_game
+  after_destroy :refresh_games, :refresh_player_game
 
   def decide!(data)
     self.freerider = data['freerider']

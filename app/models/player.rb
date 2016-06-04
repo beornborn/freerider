@@ -34,7 +34,7 @@ class Player < ApplicationRecord
   end
 
   def refresh_me
-    manager = PersonalManager.new(self)
+    manager = PersonalManager.new(self.user)
     manager.refresh_me
   end
 end

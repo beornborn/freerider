@@ -20,7 +20,7 @@ class GamesController < ApplicationController
 
   def leave
     active_game = current_user.games.last
-    current_user.games.destroy(active_game)
+    current_user.games.destroy(active_game) if active_game.waiting_for_start?
     render json: {}
   end
 

@@ -6,13 +6,24 @@ export const CHANGE_ROUNDS = 'freerider/create_game_form/CHANGE_ROUNDS'
 export const CHANGE_TIME = 'freerider/create_game_form/CHANGE_TIME'
 export const FORM_ALREADY_WAS_SUBMITTED = 'freerider/create_game_form/FORM_ALREADY_WAS_SUBMITTED'
 
-const initialState = {
+let initialState = {
   open: false,
   formNeverWasSubmitted: true,
   name: '',
   players: undefined,
   rounds: undefined,
   time: undefined
+}
+
+if (process.env.NODE_ENV === 'dev') {
+  initialState = {
+    open: false,
+    formNeverWasSubmitted: true,
+    name: Math.round(Math.random() * 1000),
+    players: 2,
+    rounds: 3,
+    time: 15
+  }
 }
 
 export default function reducer(state = initialState, action) {

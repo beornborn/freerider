@@ -9,7 +9,7 @@ import { TOGGLE_FORM, CHANGE_NAME, CHANGE_PLAYERS, CHANGE_ROUNDS, CHANGE_TIME, F
 import * as api from '~/app/api'
 import { FloatingActionButton, FlatButton, Dialog, TextField, SelectField, MenuItem } from 'material-ui'
 import ContentAdd from 'material-ui/svg-icons/content/add'
-
+import { browserHistory } from 'react-router'
 
 let CreateGameForm = React.createClass({
   handleCreate() {
@@ -18,6 +18,7 @@ let CreateGameForm = React.createClass({
       api.createGame(this.props.name, this.props.players, this.props.rounds, this.props.time)
       this.props.toggleForm()
       this.props.toggleSnackbar('Game created')
+      browserHistory.push('/game')
     }
   },
 
@@ -85,7 +86,7 @@ let CreateGameForm = React.createClass({
               errorStyle={errorStyle}
               autoFocus/>
             <SelectField
-              value={this.props.players}
+              value={this.props.players || 2}
               onChange={this.props.changePlayers}
               errorText={errorPlayersMessage}
               errorStyle={errorStyle}
@@ -93,7 +94,7 @@ let CreateGameForm = React.createClass({
               {playersAmounts}
             </SelectField>
             <SelectField
-              value={this.props.rounds}
+              value={this.props.rounds || 3}
               onChange={this.props.changeRounds}
               errorText={errorRoundsMessage}
               errorStyle={errorStyle}
@@ -101,7 +102,7 @@ let CreateGameForm = React.createClass({
               {roundsAmounts}
             </SelectField>
             <SelectField
-              value={this.props.time}
+              value={this.props.time || 15}
               onChange={this.props.changeTime}
               errorText={errorTimeMessage}
               errorStyle={errorStyle}

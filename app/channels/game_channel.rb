@@ -5,7 +5,6 @@ class GameChannel < ApplicationCable::Channel
   def subscribed
     stream_from manager.common_game_channel
     stream_from manager.personal_game_channel(player)
-    manager.player_connected_to_game(player)
   end
 
   def unsubscribed

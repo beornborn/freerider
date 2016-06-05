@@ -6,11 +6,11 @@ import styles from './Game.css'
 import { Card, CardTitle } from 'material-ui/Card'
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward'
-import { RaisedButton, FloatingActionButton } from 'material-ui'
+import { RaisedButton } from 'material-ui'
 import GameInfo from '~/app/pages/game/GameInfo'
 import UsersOnline from '~/app/containers/UsersOnline'
 import Player from '~/app/pages/game/Player'
-import LeaveGame from 'material-ui/svg-icons/action/exit-to-app'
+import LeaveGameButton from '~/app/containers/LeaveGameButton'
 
 let Game = React.createClass({
   mixins: [AnimationMixin, CableMixin],
@@ -22,9 +22,7 @@ let Game = React.createClass({
     return (
       <div styleName="content">
         <Card styleName="game-card">
-          <FloatingActionButton secondary={true} styleName="leave-game-button" onTouchTap={this.props.leaveGame}>
-            <LeaveGame />
-          </FloatingActionButton>
+          <LeaveGameButton />
           <GameInfo ref="gameInfo"
             players={this.props.players}
             game={this.props.game}

@@ -19,10 +19,7 @@ var GameInfo = React.createClass({
       <div styleName='info'>
         <div styleName='rounds'>{rounds}</div>
         <div styleName='status'>{status}</div>
-        <div styleName='timer'>
-          <AlarmIcon styleName='alarm-icon' color={Theme.commonSettings.palette.alternateTextColor}/>
-          {time}
-        </div>
+        <div styleName='timer'>{time}</div>
       </div>
     )
   },
@@ -40,20 +37,26 @@ var GameInfo = React.createClass({
             left={0}
             size={55} />,
           status: 'waiting for players',
-          time: this.props.game.time_to_think
+          time: <div>
+            <AlarmIcon styleName='alarm-icon' color={Theme.commonSettings.palette.alternateTextColor}/>
+            {this.props.game.time_to_think}
+          </div>
         }
       case 'waiting_for_round':
         return {
           rounds: this.props.game.current_round,
           status: 'choose your move',
-          time: this.props.stopwatch.time
+          time: <div>
+            <AlarmIcon styleName='alarm-icon' color={Theme.commonSettings.palette.alternateTextColor}/>
+            {this.props.stopwatch.time}
+          </div>
         }
       case 'finished':
         if (this.props.winners.length === 0) {
-          return <div className="text-danger text-center">Bus Company has bankrupted.. Shame on you! </div>
+          return {status: 'Bus Company has bankrupted.. Everyone looses'}
         } else {
           let winners_view = this.props.winners.map(w => w.name).join(', ')
-          return <div className="text-success text-center">Bus company survived! Winners are: {winners_view}</div>
+          return {status: `Bus company survived! Winners are: ${winners_view}`}
         }
       default:
         return {rounds: undefined, status: undefined, time: undefined}

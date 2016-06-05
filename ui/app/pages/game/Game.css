@@ -5,13 +5,7 @@
   width: 400px;
   min-width: 300px;
   margin-right: 30px;
-  .leave-game-button {
-    position: relative;
-    top: -40px;
-    right: -365px;
-    float: left;
-    height: 0px;
-  }
+
   .actions {
     display: flex;
     .divider {

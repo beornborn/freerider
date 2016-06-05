@@ -22,7 +22,6 @@ var Player = React.createClass({
 
   content() {
     const player = this.props.player
-    console.log(player, this.props.gameState)
     if (player === undefined) {
       const name = <RefreshIndicator
         status='loading'

@@ -1,18 +1,21 @@
 import { connect } from 'react-redux'
 import { createAction } from 'redux-actions'
 import { ADD_CHANNEL_SUBSCRIPTION, REMOVE_CHANNEL_SUBSCRIPTION } from '~/app/reducers/Shared'
-import { UPDATE_KEY, LEAVE_GAME } from '~/app/reducers/Game'
+import { UPDATE_KEY, LEAVE_GAME, START_STOPWATCH } from '~/app/reducers/Game'
 import { browserHistory } from 'react-router'
 import Game from '~/app/pages/game/Game'
 import * as api from '~/app/api'
 
-const mapStateToProps = (state) => { return {
-  players: state.game.players,
-  me: state.game.me,
-  game: state.game.game,
-  winners: state.game.winners,
-  cable: state.shared.cable
-} }
+const mapStateToProps = (state) => {
+  return {
+    players: state.game.players,
+    me: state.game.me,
+    game: state.game.game,
+    winners: state.game.winners,
+    cable: state.shared.cable,
+    stopwatch: state.game.stopwatch
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -25,7 +28,8 @@ const mapDispatchToProps = (dispatch) => {
       api.leaveGame()
       dispatch(createAction(LEAVE_GAME)())
       browserHistory.push('/')
-    }
+    },
+    startStopwatch: (remainingTime) => { dispatch(createAction(START_STOPWATCH)({remainingTime})) }
   }
 }
 

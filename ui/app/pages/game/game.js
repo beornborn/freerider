@@ -28,16 +28,14 @@ let Game = React.createClass({
           <GameInfo ref="gameInfo"
             players={this.props.players}
             game={this.props.game}
-            stopwatch={this.stopwatch}
             winners={winner_players}
-            cbStopwatchTimeout={this.cbStopwatchTimeout} />
+            stopwatch={this.props.stopwatch} />
           <div styleName='actions'>
             <RaisedButton label="Buy Ticket" primary={true} styleName='action' />
 
             <div styleName='divider'>
               <ArrowBack styleName='arrow-back'/>or<ArrowForward styleName='arrow-forward'/>
             </div>
-
 
             <RaisedButton label="Ride Free" primary={true} styleName='action' />
           </div>
@@ -63,31 +61,31 @@ let Game = React.createClass({
   },
 
   newRound() {
-    this.refs.gameInfo.refs.stopwatch.reset(this.props.game.time_to_think)
+    this.props.startStopwatch(this.props.game.time_to_think)
     if (this.props.game.current_round == 1) { return }
 
-    var freerider = this.props.players.find((p) => { return p.previous_round_freerider })
-    this.props.players.forEach((p) => {
-      var spot = ReactDOM.findDOMNode(this.refs['player' +  p.id])
-      if (!freerider) {
-        this.animateNeutral(spot)
-      } else if (p.previous_round_freerider) {
-        this.animateSuccess(spot)
-      } else {
-        this.animateFailure(spot)
-      }
-    })
+    // var freerider = this.props.players.find((p) => { return p.previous_round_freerider })
+    // this.props.players.forEach((p) => {
+    //   var spot = ReactDOM.findDOMNode(this.refs['player' +  p.id])
+    //   if (!freerider) {
+    //     this.animateNeutral(spot)
+    //   } else if (p.previous_round_freerider) {
+    //     this.animateSuccess(spot)
+    //   } else {
+    //     this.animateFailure(spot)
+    //   }
+    // })
   },
   gameFinished() { },
   continueAfterRefresh() {
     if (this.props.game.state === 'waiting_for_round') {
       var goneTime = Math.floor((Date.now() - Date.parse(this.props.game.last_round_on)) / 1000)
       var remainingTime = this.props.game.time_to_think - goneTime
-      this.refs.gameInfo.refs.stopwatch.reset(remainingTime)
+
+      this.props.startStopwatch(remainingTime)
     }
   },
 
-  cbStopwatchTimeout() { this.gameChannel.maybeNextRound(this.props.game.current_round) },
   cbFreeriderButton(freerider) {
     var index = this.props.players.findIndex(p => p.id === this.props.me.id)
     updateCommand = {}

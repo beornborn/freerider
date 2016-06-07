@@ -21,7 +21,6 @@ function cableLogic(game) {
           return game.newRound()
         case 'game_finished':
           this.updateGamePlayersWinners(data)
-          return game.gameFinished()
         case 'refresh_all':
           this.updateGamePlayersWinners(data)
           return game.continueAfterRefresh()

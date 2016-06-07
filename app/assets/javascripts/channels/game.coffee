@@ -20,7 +20,6 @@ App.createGameChannel = (react) ->
           react.newRound()
         when 'game_finished'
           @setAllData(data)
-          react.gameFinished()
         when 'refresh_all'
           @setAllData(data)
           react.continueAfterRefresh()

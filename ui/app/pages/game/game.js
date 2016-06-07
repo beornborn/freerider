@@ -4,12 +4,10 @@ import CableMixin from '~/app/mixins/cable/GameLogic'
 import CSSModules from 'react-css-modules'
 import styles from './Game.css'
 import { Card, CardTitle } from 'material-ui/Card'
-import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
-import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward'
-import { RaisedButton } from 'material-ui'
 import GameInfo from '~/app/pages/game/GameInfo'
 import UsersOnline from '~/app/containers/UsersOnline'
 import Player from '~/app/pages/game/Player'
+import GameActions from '~/app/pages/game/GameActions'
 import LeaveGameButton from '~/app/containers/LeaveGameButton'
 
 let Game = React.createClass({
@@ -19,6 +17,11 @@ let Game = React.createClass({
     let me = this.props.players.filter(p => p.id === this.props.me.id)[0] || {}
     let winner_ids = this.props.winners.map(w => w.id)
     let winner_players = this.props.players.filter(p => winner_ids.includes(p.id))
+
+    let actions = undefined
+    if (this.props.game.state === 'waiting_for_round') {
+      actions = <GameActions decide={this.props.decide} me={this.props.me} />
+    }
     return (
       <div styleName="content">
         <Card styleName="game-card">
@@ -28,15 +31,7 @@ let Game = React.createClass({
             game={this.props.game}
             winners={winner_players}
             stopwatch={this.props.stopwatch} />
-          <div styleName='actions'>
-            <RaisedButton label="Buy Ticket" primary={true} styleName='action' />
-
-            <div styleName='divider'>
-              <ArrowBack styleName='arrow-back'/>or<ArrowForward styleName='arrow-forward'/>
-            </div>
-
-            <RaisedButton label="Ride Free" primary={true} styleName='action' />
-          </div>
+          {actions}
           <div>
             {this.playersElements()}
           </div>
@@ -74,22 +69,16 @@ let Game = React.createClass({
     //   }
     // })
   },
-  gameFinished() { },
+
   continueAfterRefresh() {
     if (this.props.game.state === 'waiting_for_round') {
       var goneTime = Math.floor((Date.now() - Date.parse(this.props.game.last_round_on)) / 1000)
       var remainingTime = this.props.game.time_to_think - goneTime
-
       this.props.startStopwatch(remainingTime)
     }
   },
 
   cbFreeriderButton(freerider) {
-    var index = this.props.players.findIndex(p => p.id === this.props.me.id)
-    updateCommand = {}
-    updateCommand[index] = {decided: {$set: true}}
-    var updatedPlayers = update(this.props.players, updateCommand)
-    this.setState({players: updatedPlayers})
     this.gameChannel.decide({freerider: freerider, round: this.props.game.current_round})
   }
 })

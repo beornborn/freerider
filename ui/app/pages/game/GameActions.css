@@ -1,0 +1,33 @@
+@import 'app/styles/theme';
+
+.actions {
+  display: flex;
+  .divider {
+    display: flex;
+    flex-grow: 100;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    .arrow-back { margin-right: 10px; }
+    .arrow-forward { margin-left: 10px; }
+  }
+  .action {
+    display: flex;
+    flex-grow: 1;
+    margin: 10px 20px;
+  }
+}
+
+.info {
+  height: 56px;
+  display: flex;
+  margin: 0;
+  font-size: 14px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-grow: 100;
+  border-bottom: 1px dashed $primary2Color;
+
+  .response { color: $primary2Color; }
+}

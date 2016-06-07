@@ -1,4 +1,7 @@
 :global {
+  body {
+    margin: 0;
+  }
   #rules-modal .modal-header {
     background-color: #428bca;
     .modal-title {

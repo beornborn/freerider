@@ -1,6 +1,6 @@
 import { takeEvery, takeLatest, delay } from 'redux-saga'
 import { call, put, take, select } from 'redux-saga/effects'
-import { START_STOPWATCH, TICK_STOPWATCH, STOP_STOPWATCH } from '~/app/reducers/Game'
+import { START_STOPWATCH, TICK_STOPWATCH, DECIDE } from '~/app/reducers/Game'
 import { createAction } from 'redux-actions'
 
 function* startStopwatch() {
@@ -16,6 +16,22 @@ function* startStopwatch() {
   }
 }
 
-export default function* watchStartStopwatch() {
+function* watchStartStopwatch() {
   yield* takeLatest(START_STOPWATCH, startStopwatch)
+}
+
+function* sendDecision(action) {
+  let state = yield select()
+  state.shared.cable.GameChannel.decide({freerider: action.payload.decision})
+}
+
+function* watchDecide() {
+  yield* takeEvery(DECIDE, sendDecision)
+}
+
+export default function* rootSaga() {
+  yield [
+    watchStartStopwatch(),
+    watchDecide()
+  ]
 }

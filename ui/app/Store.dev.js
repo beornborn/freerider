@@ -6,8 +6,11 @@ import createSagaMiddleware from 'redux-saga'
 const sagaMiddleware = createSagaMiddleware()
 import stopwatchSaga from '~/app/sagas'
 
+import createLogger from 'redux-logger'
+const logger = createLogger({collapsed: true})
+
 const store = createStore(reducer, undefined, compose(
-    applyMiddleware(PromiseMiddleware, sagaMiddleware),
+    applyMiddleware(PromiseMiddleware, sagaMiddleware, logger),
     DevTools.instrument()
   )
 )

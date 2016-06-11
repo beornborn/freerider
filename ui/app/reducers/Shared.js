@@ -33,9 +33,6 @@ export default function reducer(state = initialState, action) {
     case ADD_CHANNEL_SUBSCRIPTION:
       return update(state, {cable: {[action.payload.channel]: {$set: action.payload.subscription}}})
     case REMOVE_CHANNEL_SUBSCRIPTION:
-      console.log('--------------')
-      console.log(state.cable[action.payload.channel].unsubscribe())
-      console.log('--------------')
       return update(state, {cable: {[action.payload.channel]: {$set: undefined}}})
     default:
       return state

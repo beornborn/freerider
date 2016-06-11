@@ -2,15 +2,11 @@ import { CreateMixin } from '~/app/mixins/cable/CableCommon'
 
 function cableLogic(game) {
   return {
-    connected() {
-      console.log('connected game channel')
-    },
-    disconnected() { console.log('disconnected game channel') },
+    connected() { },
+    disconnected() { },
 
     received(data) {
       if (data === undefined) { return }
-      console.log('game got ' + data.msg)
-      console.log(data)
       switch (data.msg) {
         case 'me':
           return game.props.updateKey('me', data.me)
@@ -38,7 +34,6 @@ function cableLogic(game) {
     },
 
     maybeNextRound(currentRound) {
-      console.log('send maybe_next_round ' + currentRound)
       this.perform('maybe_next_round?', { current_round: currentRound })
     }
   }

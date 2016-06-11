@@ -2,12 +2,10 @@ import { CreateMixin } from '~/app/mixins/cable/CableCommon'
 
 function cableLogic(component) {
   return {
-    connected() { console.log('connected users_online channel') },
-    disconnected() { console.log('disconnected users_online channel') },
+    connected() { },
+    disconnected() { },
     received(data) {
       if (data === undefined) { return }
-      console.log('users online got ' + data.msg)
-      console.log(data)
       switch (data.msg) {
         case 'connected':
           return this.perform("refresh", {})

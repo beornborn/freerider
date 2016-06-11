@@ -1,7 +1,7 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 import styles from './UsersOnline.css'
-import UsersItem from '~/app/pages/dashboard/users_online/UsersItem'
+import UsersItem from '~/app/components/dashboard/users_online/UsersItem'
 import CableMixin from '~/app/mixins/cable/UsersOnlineLogic'
 
 var UsersOnline = React.createClass({

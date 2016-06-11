@@ -3,7 +3,7 @@ import { createAction } from 'redux-actions'
 import { browserHistory } from 'react-router'
 import { LEAVE_GAME } from '~/app/reducers/Game'
 
-import LeaveGameButton from '~/app/pages/game/LeaveGameButton'
+import LeaveGameButton from '~/app/components/game/LeaveGameButton'
 import * as api from '~/app/api'
 
 const mapStateToProps = (state) => {

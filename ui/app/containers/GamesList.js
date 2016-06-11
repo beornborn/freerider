@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { createAction } from 'redux-actions'
 import { REFRESH } from '~/app/reducers/GamesList'
 import { ADD_CHANNEL_SUBSCRIPTION, REMOVE_CHANNEL_SUBSCRIPTION } from '~/app/reducers/Shared'
-import GamesList from '~/app/pages/dashboard/games_list/GamesList'
+import GamesList from '~/app/components/dashboard/games_list/GamesList'
 
 const mapStateToProps = (state) => {
   return {

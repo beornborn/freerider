@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { createAction } from 'redux-actions'
 import { REFRESH } from '~/app/reducers/UsersOnline'
 import { ADD_CHANNEL_SUBSCRIPTION, REMOVE_CHANNEL_SUBSCRIPTION } from '~/app/reducers/Shared'
-import UsersOnline from '~/app/pages/dashboard/users_online/UsersOnline'
+import UsersOnline from '~/app/components/dashboard/users_online/UsersOnline'
 
 const mapStateToProps = (state) => {
   return {

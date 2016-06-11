@@ -4,10 +4,10 @@ import CableMixin from '~/app/mixins/cable/GameLogic'
 import CSSModules from 'react-css-modules'
 import styles from './Game.css'
 import { Card, CardTitle } from 'material-ui/Card'
-import GameInfo from '~/app/pages/game/GameInfo'
+import GameInfo from '~/app/components/game/GameInfo'
 import UsersOnline from '~/app/containers/UsersOnline'
-import Player from '~/app/pages/game/Player'
-import GameActions from '~/app/pages/game/GameActions'
+import Player from '~/app/components/game/Player'
+import GameActions from '~/app/components/game/GameActions'
 import LeaveGameButton from '~/app/containers/LeaveGameButton'
 
 let Game = React.createClass({

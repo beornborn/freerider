@@ -4,7 +4,7 @@ import { ADD_CHANNEL_SUBSCRIPTION, REMOVE_CHANNEL_SUBSCRIPTION } from '~/app/red
 import { UPDATE_KEY, START_STOPWATCH, DECIDE } from '~/app/reducers/Game'
 
 import { browserHistory } from 'react-router'
-import Game from '~/app/pages/game/Game'
+import Game from '~/app/components/game/Game'
 import * as api from '~/app/api'
 
 const mapStateToProps = (state) => {

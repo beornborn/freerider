@@ -6,10 +6,9 @@ import styles from './Layout.css'
 import Username from '~/app/components/layout/Username'
 import Rules from '~/app/components/layout/Rules'
 import PersonalChannel from '~/app/mixins/cable/PersonalLogic'
-import UsersOnlineChannel from '~/app/mixins/cable/UsersOnlineLogic'
 
 var Layout = React.createClass({
-  mixins: [PersonalChannel, UsersOnlineChannel],
+  mixins: [PersonalChannel],
 
   render() {
     const title = <Link to="/" className={styles.logoName}>Freerider</Link>

@@ -9,6 +9,8 @@ function cableLogic(component) {
       switch (data.msg) {
         case 'refresh_me':
           return component.props.updateCurrentUser(data.current_user)
+        case 'refresh_users_online':
+          return component.props.updateCurrentUser(data.current_user)
       }
     }
   }

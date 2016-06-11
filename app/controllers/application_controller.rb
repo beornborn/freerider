@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   def authenticate
     current_user
-    render json: {token: cookies[:user_id], current_user: User.serializer.new(current_user).as_json}
+    render json: {token: cookies[:user_id]}
   end
 
   def current_user

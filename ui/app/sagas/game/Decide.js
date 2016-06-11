@@ -10,3 +10,5 @@ function* sendDecision(action) {
 function* watchDecide() {
   yield* takeEvery(DECIDE, sendDecision)
 }
+
+export default watchDecide

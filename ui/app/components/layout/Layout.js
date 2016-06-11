@@ -5,14 +5,11 @@ import { Link } from 'react-router'
 import styles from './Layout.css'
 import Username from '~/app/components/layout/Username'
 import Rules from '~/app/components/layout/Rules'
-import CableMixin from '~/app/mixins/cable/PersonalLogic'
+import PersonalChannel from '~/app/mixins/cable/PersonalLogic'
+import UsersOnlineChannel from '~/app/mixins/cable/UsersOnlineLogic'
 
 var Layout = React.createClass({
-  mixins: [CableMixin],
-
-  componentDidMount() {
-    this.props.getCurrentUser().then(this.props.connectCable)
-  },
+  mixins: [PersonalChannel, UsersOnlineChannel],
 
   render() {
     const title = <Link to="/" className={styles.logoName}>Freerider</Link>

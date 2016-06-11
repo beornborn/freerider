@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { createAction } from 'redux-actions'
-import { ADD_CHANNEL_SUBSCRIPTION, REMOVE_CHANNEL_SUBSCRIPTION } from '~/app/reducers/Shared'
+import { ADD_CHANNEL_SUBSCRIPTION_WHEN_READY, REMOVE_CHANNEL_SUBSCRIPTION } from '~/app/reducers/Shared'
 import { UPDATE_KEY, START_STOPWATCH, DECIDE } from '~/app/reducers/Game'
 
 import { browserHistory } from 'react-router'
@@ -20,8 +20,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addSubscription: (channel, subscription) => {
-      dispatch(createAction(ADD_CHANNEL_SUBSCRIPTION)({channel, subscription}))
+    addSubscription: (channel, settings) => {
+      dispatch(createAction(ADD_CHANNEL_SUBSCRIPTION_WHEN_READY)({channel, settings}))
     },
     removeSubscription: (channel) => { dispatch(createAction(REMOVE_CHANNEL_SUBSCRIPTION)({channel})) },
     updateKey: (key, value) => { dispatch(createAction(UPDATE_KEY)({key, value}))},

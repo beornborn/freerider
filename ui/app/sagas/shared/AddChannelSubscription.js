@@ -1,0 +1,24 @@
+import { takeEvery } from 'redux-saga'
+import { put, select, call, take } from 'redux-saga/effects'
+import { ADD_CHANNEL_SUBSCRIPTION_WHEN_READY, ADD_CHANNEL_SUBSCRIPTION, SET_CABLE } from '~/app/reducers/Shared'
+import { createAction } from 'redux-actions'
+import { init } from '~/app/sagas/shared/Init'
+import * as api from '~/app/api'
+
+function* addChannelSubscription(action) {
+  let consumer = yield select(state => state.shared.cable.consumer)
+  if (!consumer.url) {
+    yield take(SET_CABLE)
+    consumer = yield select(state => state.shared.cable.consumer)
+  }
+
+  const { channel, settings } = action.payload
+  const subscription = consumer.subscriptions.create(channel, settings)
+  yield put(createAction(ADD_CHANNEL_SUBSCRIPTION)({channel, subscription}))
+}
+
+function* watchAddChannelSubscription() {
+  yield* takeEvery(ADD_CHANNEL_SUBSCRIPTION_WHEN_READY, addChannelSubscription)
+}
+
+export default watchAddChannelSubscription

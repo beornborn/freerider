@@ -17,6 +17,9 @@ import 'styles/shared'
 
 import { Provider } from 'react-redux'
 import store from '~/app/Store'
+import { INIT } from '~/app/reducers/Shared'
+import { createAction } from 'redux-actions'
+store.dispatch(createAction(INIT)())
 
 import DevTools from '~/app/DevTools'
 const devtools = process.env.NODE_ENV === 'prod' ? undefined : <DevTools />

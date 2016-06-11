@@ -1,5 +1,4 @@
 import 'whatwg-fetch'
-import cookie from 'cookie'
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
@@ -15,15 +14,11 @@ function parseJSON(response) {
   return response.json()
 }
 
-export function getCurrentUser() {
+export function authenticate() {
   return fetch('/authenticate', { credentials: 'same-origin' })
     .then(checkStatus)
     .then(parseJSON)
-    .then((response) => {
-      var aYearLater = Date(Date.now() + 60*60*24*265)
-      document.cookie = cookie.serialize('user_id', response.token, {path: '/', expired: aYearLater})
-      return response.current_user
-    })
+    .then((response) => { return response.token })
 }
 
 export function updateUsername(userId, name) {

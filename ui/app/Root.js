@@ -1,9 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { browserHistory, Router, Route, Link, IndexRoute } from 'react-router'
-import Layout from '~/app/containers/Layout'
-import Dashboard from '~/app/containers/Dashboard'
-import Game from '~/app/containers/Game'
+import Layout from '~/app/containers/layout/Layout'
+import Dashboard from '~/app/containers/dashboard/Dashboard'
+import Game from '~/app/containers/game/Game'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin()

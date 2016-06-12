@@ -3,7 +3,7 @@ import { AppBar, Snackbar, Drawer, MenuItem } from 'material-ui'
 import CSSModules from 'react-css-modules'
 import { Link } from 'react-router'
 import styles from './Layout.css'
-import Username from '~/app/containers/Username'
+import Username from '~/app/containers/layout/Username'
 import Rules from '~/app/components/layout/Rules'
 import PersonalChannel from '~/app/mixins/cable/PersonalLogic'
 

@@ -5,10 +5,10 @@ import CSSModules from 'react-css-modules'
 import styles from './Game.css'
 import { Card, CardTitle } from 'material-ui/Card'
 import GameInfo from '~/app/components/game/GameInfo'
-import UsersOnline from '~/app/containers/UsersOnline'
+import UsersOnline from '~/app/containers/dashboard/users_online/UsersOnline'
 import Player from '~/app/components/game/Player'
 import GameActions from '~/app/components/game/GameActions'
-import LeaveGameButton from '~/app/containers/LeaveGameButton'
+import LeaveGameButton from '~/app/containers/game/LeaveGameButton'
 
 let Game = React.createClass({
   mixins: [AnimationMixin, CableMixin],

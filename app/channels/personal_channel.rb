@@ -3,6 +3,7 @@ class PersonalChannel < ApplicationCable::Channel
     stream_from manager.personal_channel
     current_user.update_attribute(:online, true)
     refresh_users_online
+    manager.refresh_me
   end
 
   def unsubscribed
@@ -11,6 +12,10 @@ class PersonalChannel < ApplicationCable::Channel
 
   def refresh_users_online
     manager.refresh_users_online
+  end
+
+  def update_name(data)
+    manager.update_name(data['name'])
   end
 
   private

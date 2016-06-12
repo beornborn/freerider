@@ -2,7 +2,7 @@ import { takeEvery, delay } from 'redux-saga'
 import { put, select, call, take } from 'redux-saga/effects'
 import { ADD_CHANNEL_SUBSCRIPTION_WHEN_READY, ADD_CHANNEL_SUBSCRIPTION, SET_CABLE } from '~/app/reducers/Shared'
 import { createAction } from 'redux-actions'
-import { init } from '~/app/sagas/shared/Init'
+import { init } from '~/app/sagas/common/Init'
 import * as api from '~/app/api'
 
 function* addChannelSubscription(action) {

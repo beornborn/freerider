@@ -16,6 +16,10 @@ function cableLogic(component) {
 
     pollUsersOnline() {
       this.perform('refresh_users_online')
+    },
+
+    updateName(name) {
+      this.perform('update_name', {name})
     }
   }
 }

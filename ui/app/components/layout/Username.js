@@ -4,42 +4,16 @@ import styles from './Username.css'
 import CreateIcon from 'material-ui/svg-icons/content/create'
 import Theme from '~/app/FreeriderTheme'
 import { FlatButton, Dialog, TextField } from 'material-ui'
-import { connect } from 'react-redux'
-import _ from 'lodash'
-import { CHANGE_NAME, TOGGLE_DIALOG, FORM_ALREADY_WAS_SUBMITTED } from '~/app/reducers/Username'
-import { UPDATE_CURRENT_USER, TOGGLE_SNACKBAR } from '~/app/reducers/Shared'
-import * as api from '~/app/api'
-import { createAction } from 'redux-actions'
 
 let Username = React.createClass({
-  handleSubmitForm() {
-    this.props.submitForm()
-    if (this.formValid()) {
-      this.props.updateUsername(this.props.currentUser.id, this.props.name)
-      this.props.toggleDialog()
-      this.props.toggleSnackbar('Username Updated')
-    }
-  },
-
-  formValid() {
-    return this.valuePresent(this.props.name).valid
-  },
-
-  valuePresent(val) {
-    let result = {valid: !!_.trim(val)}
-    if (!result.valid) {
-      result.message = 'This field is required'
-    }
-    return result
+  onSubmit(formData) {
+    this.props.updateUsername(formData.name)
+    this.props.toggleDialog()
+    this.props.toggleSnackbar('Username Updated')
   },
 
   render() {
-    let errorStyle = {color: '#FF3D00'}
-    let errorNameMessage
-    if (!this.props.formNeverWasSubmitted) {
-      errorNameMessage = this.valuePresent(this.props.name).message
-    }
-    let displayName = _.truncate(this.props.currentUser.name, {length: 10})
+    const {fields: {name}, handleSubmit} = this.props
 
     const actions = [
       <FlatButton
@@ -50,14 +24,15 @@ let Username = React.createClass({
       <FlatButton
         label="Update"
         secondary={true}
-        onTouchTap={this.handleSubmitForm}
+        type='submit'
+        form='username-form'
       />
     ]
 
     return (
       <div styleName="username-container">
         <CreateIcon color={Theme.commonSettings.palette.accent4Color} onTouchTap={this.props.toggleDialog}/>
-        <span styleName="username" onTouchTap={this.props.toggleDialog}>{displayName}</span>
+        <span styleName="username" onTouchTap={this.props.toggleDialog}>{this.props.currentUser.name}</span>
         <Dialog
           title="Edit Username"
           open={this.props.dialogOpen}
@@ -65,40 +40,18 @@ let Username = React.createClass({
           onRequestClose={this.props.toggleDialog}
           contentClassName={styles.form}
           titleClassName={styles.formTitle}>
-          <TextField
-            defaultValue={this.props.currentUser.name}
-            onChange={this.props.handleChangeName}
-            hintText="John Dow"
-            floatingLabelText="Your Name"
-            errorText={errorNameMessage}
-            errorStyle={errorStyle}
-            autoFocus/>
+          <form id='username-form' onSubmit={handleSubmit(this.onSubmit)}>
+            <TextField {...name}
+              hintText="John Dow"
+              floatingLabelText="Your Name"
+              errorText={name.touched && name.error ? name.error : ''}
+              errorStyle={{color: '#FF3D00'}}
+              autoFocus/>
+          </form>
         </Dialog>
       </div>
     )
   }
 })
 
-const mapStateToProps = (state) => {
-  return {
-    dialogOpen: state.username.editDialog.open,
-    formNeverWasSubmitted: state.username.editDialog.formNeverWasSubmitted,
-    name: state.username.name,
-    currentUser: state.shared.currentUser
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateUsername: async (userId, name) => {
-      const currentUser = await api.updateUsername(userId, name)
-      dispatch(createAction(UPDATE_CURRENT_USER)({currentUser}))
-    },
-    submitForm: () => { dispatch(createAction(FORM_ALREADY_WAS_SUBMITTED)()) },
-    toggleSnackbar: (message) => { dispatch(createAction(TOGGLE_SNACKBAR)({message})) },
-    toggleDialog: () => { dispatch(createAction(TOGGLE_DIALOG)()) },
-    handleChangeName: (e) => { dispatch(createAction(CHANGE_NAME)({name: e.target.value})) }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(Username, styles))
+export default CSSModules(Username, styles)

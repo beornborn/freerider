@@ -17,11 +17,6 @@ var mapStateToProps = (state) => {return {
 
 var mapDispatchToProps = (dispatch) => {
   return {
-    getCurrentUser: async () => {
-      const currentUser = await api.getCurrentUser()
-      dispatch(createAction(CHANGE_NAME)({name: currentUser.name}))
-      dispatch(createAction(UPDATE_CURRENT_USER)({currentUser}))
-    },
     toggleDrower: () => { dispatch(createAction(TOGGLE_DROWER)()) },
     toggleSnackbar: () => { dispatch(createAction(TOGGLE_SNACKBAR)({message: ''})) },
     toggleRules: () => { dispatch(createAction(TOGGLE_RULES)()) },

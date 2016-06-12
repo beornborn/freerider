@@ -17,6 +17,11 @@ class PersonalManager < ApplicationManager
     }
   end
 
+  def update_name(name)
+    @current_user.update(name: name)
+    refresh_me
+  end
+
   def personal_channel
     "personal_#{@current_user.id}"
   end

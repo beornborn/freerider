@@ -21,18 +21,6 @@ export function authenticate() {
     .then((response) => { return response.token })
 }
 
-export function updateUsername(userId, name) {
-  return fetch('/users/' + userId, {
-      method: 'PUT',
-      credentials: 'same-origin',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({user: { name: name }})
-    })
-    .then(checkStatus)
-    .then(parseJSON)
-    .then((response) => { return response.user })
-}
-
 export function createGame(name, players, rounds, time) {
   return fetch('/games', {
       method: 'POST',

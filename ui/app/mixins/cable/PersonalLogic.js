@@ -10,8 +10,12 @@ function cableLogic(component) {
         case 'refresh_me':
           return component.props.updateCurrentUser(data.current_user)
         case 'refresh_users_online':
-          return component.props.updateCurrentUser(data.current_user)
+          return component.props.updateUsersOnline(data.users)
       }
+    },
+
+    pollUsersOnline() {
+      this.perform('refresh_users_online')
     }
   }
 }

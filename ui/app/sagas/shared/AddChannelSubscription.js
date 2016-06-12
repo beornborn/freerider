@@ -1,4 +1,4 @@
-import { takeEvery } from 'redux-saga'
+import { takeEvery, delay } from 'redux-saga'
 import { put, select, call, take } from 'redux-saga/effects'
 import { ADD_CHANNEL_SUBSCRIPTION_WHEN_READY, ADD_CHANNEL_SUBSCRIPTION, SET_CABLE } from '~/app/reducers/Shared'
 import { createAction } from 'redux-actions'
@@ -13,7 +13,7 @@ function* addChannelSubscription(action) {
   }
 
   const { channel, settings } = action.payload
-  const subscription = consumer.subscriptions.create(channel, settings)
+  const subscription = yield call(consumer.subscriptions.create.bind(consumer.subscriptions), channel, settings)
   yield put(createAction(ADD_CHANNEL_SUBSCRIPTION)({channel, subscription}))
 }
 

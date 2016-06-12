@@ -10,9 +10,9 @@ class PersonalManager < ApplicationManager
     }
   end
 
-  def refresh_users_online(options = {})
+  def refresh_users_online
     ActionCable.server.broadcast personal_channel, {
-      msg: 'refresh',
+      msg: 'refresh_users_online',
       users: User.serializer.new(User.online.order(name: :asc)).as_json
     }
   end

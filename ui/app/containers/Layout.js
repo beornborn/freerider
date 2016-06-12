@@ -30,7 +30,7 @@ var mapDispatchToProps = (dispatch) => {
       dispatch(createAction(ADD_CHANNEL_SUBSCRIPTION_WHEN_READY)({channel, settings}))
     },
     removeSubscription: (channel) => { dispatch(createAction(REMOVE_CHANNEL_SUBSCRIPTION)({channel})) },
-    refreshUsers: (data) => { dispatch(createAction(REFRESH)(data)) }
+    updateUsersOnline: (users) => { dispatch(createAction(REFRESH)({users, changedUsersIds: []})) }
   }
 }
 

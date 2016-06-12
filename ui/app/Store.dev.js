@@ -5,9 +5,25 @@ import DevTools from '~/app/DevTools'
 import createSagaMiddleware from 'redux-saga'
 const sagaMiddleware = createSagaMiddleware()
 import stopwatchSaga from '~/app/sagas'
+import { REFRESH } from '~/app/reducers/UsersOnline'
 
 import createLogger from 'redux-logger'
-const logger = createLogger({collapsed: true})
+let counter = {
+  UsersOnline: 0
+}
+const logger = createLogger({
+  collapsed: true,
+  actionTransformer: (action) => {
+    return {type: action.type, ...action.payload}
+  },
+  predicate: (getState, action) => {
+    if (action.type === REFRESH) {
+      counter['UsersOnline'] += 1
+      return counter['UsersOnline'] === 1
+    } else {return true}
+  }
+
+})
 
 const store = createStore(reducer, undefined, compose(
     applyMiddleware(PromiseMiddleware, sagaMiddleware, logger),

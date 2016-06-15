@@ -2,7 +2,7 @@ import { CreateMixin } from '~/app/mixins/cable/CableCommon'
 
 function cableLogic(game) {
   return {
-    connected() { },
+    connected() { this.perform('connected') },
     disconnected() { },
 
     received(data) {

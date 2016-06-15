@@ -4,6 +4,7 @@ import styles from './Username.css'
 import CreateIcon from 'material-ui/svg-icons/content/create'
 import Theme from '~/app/FreeriderTheme'
 import { FlatButton, Dialog, TextField } from 'material-ui'
+import { Field } from 'redux-form'
 
 let Username = React.createClass({
   onSubmit(formData) {
@@ -13,7 +14,7 @@ let Username = React.createClass({
   },
 
   render() {
-    const {fields: {name}, handleSubmit} = this.props
+    const {handleSubmit} = this.props
 
     const actions = [
       <FlatButton
@@ -41,12 +42,14 @@ let Username = React.createClass({
           contentClassName={styles.form}
           titleClassName={styles.formTitle}>
           <form id='username-form' onSubmit={handleSubmit(this.onSubmit)}>
-            <TextField {...name}
-              hintText="John Dow"
-              floatingLabelText="Your Name"
-              errorText={name.touched && name.error ? name.error : ''}
-              errorStyle={{color: '#FF3D00'}}
-              autoFocus/>
+            <Field name='name' component={props =>
+              <TextField {...props}
+                hintText="John Dow"
+                floatingLabelText="Your Name"
+                errorText={props.touched && props.error}
+                errorStyle={{color: '#FF3D00'}}
+                autoFocus/>
+            }/>
           </form>
         </Dialog>
       </div>

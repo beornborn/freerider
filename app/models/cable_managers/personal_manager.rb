@@ -10,6 +10,11 @@ class PersonalManager < ApplicationManager
     }
   end
 
+  def create_game(params)
+    game = Game.create(params)
+    game.users << @current_user
+  end
+
   def refresh_users_online
     ActionCable.server.broadcast personal_channel, {
       msg: 'refresh_users_online',

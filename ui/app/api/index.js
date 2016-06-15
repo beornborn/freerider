@@ -21,21 +21,6 @@ export function authenticate() {
     .then((response) => { return response.token })
 }
 
-export function createGame(name, players, rounds, time) {
-  return fetch('/games', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      credentials: 'same-origin',
-      body: JSON.stringify({game: {
-        name: name,
-        players_amount: players,
-        rounds: rounds,
-        time_to_think: time
-      }})
-    })
-    .then(checkStatus)
-}
-
 export function leaveGame() {
   return fetch('/games/leave', {
       method: 'POST',

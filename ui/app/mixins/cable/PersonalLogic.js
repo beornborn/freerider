@@ -20,6 +20,10 @@ function cableLogic(component) {
 
     updateName(name) {
       this.perform('update_name', {name})
+    },
+
+    createGame(formData) {
+      this.perform('create_game', {game: formData})
     }
   }
 }

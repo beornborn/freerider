@@ -18,6 +18,10 @@ class PersonalChannel < ApplicationCable::Channel
     manager.update_name(data['name'])
   end
 
+  def create_game(data)
+    manager.create_game(data['game'])
+  end
+
   private
 
   def manager

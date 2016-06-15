@@ -32,6 +32,5 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'username',
-  fields: ['name'],
   validate
 })(Username))

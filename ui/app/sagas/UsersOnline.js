@@ -14,7 +14,7 @@ export function* pollUsersOnline() {
 
   while(true) {
     yield call(personalChannel.pollUsersOnline.bind(personalChannel))
-    yield delay(5000)
+    yield delay(15000)
   }
 }
 

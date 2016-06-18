@@ -15,6 +15,13 @@ class PersonalManager < ApplicationManager
     game.users << @current_user
   end
 
+  def enter_game(game_id)
+    game = Game.find(game_id)
+    unless game.users.exists?(@current_user.id) || game.players_amount == game.players.count
+      game.users << @current_user
+    end
+  end
+
   def refresh_users_online
     ActionCable.server.broadcast personal_channel, {
       msg: 'refresh_users_online',

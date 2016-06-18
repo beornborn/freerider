@@ -1,15 +1,8 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :connect]
+  before_action :set_game, only: [:show]
 
   def show
     redirect_to root_path, alert: 'You are not a player of this game' unless @game.users.exists?(current_user)
-  end
-
-  def connect
-    unless @game.users.exists?(current_user) || @game.players_amount == @game.players.count
-      @game.users << current_user
-    end
-    render json: {}
   end
 
   def leave

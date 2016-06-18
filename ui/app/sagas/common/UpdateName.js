@@ -7,8 +7,8 @@ export function* updateName(action) {
   yield call(personalChannel.updateName.bind(personalChannel), action.payload.name)
 }
 
-function* watchUpdateName() {
+function* watch() {
   yield* takeEvery(UPDATE_NAME, updateName)
 }
 
-export default watchUpdateName
+export default watch

@@ -1,5 +1,6 @@
 import update from 'react-addons-update'
 
+export const ENTER_GAME = 'freerider/game/ENTER_GAME'
 export const UPDATE_KEY = 'freerider/game/UPDATE_KEY'
 export const LEAVE_GAME = 'freerider/game/LEAVE_GAME'
 export const START_STOPWATCH = 'freerider/game/START_STOPWATCH'
@@ -16,6 +17,8 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case ENTER_GAME:
+      return state
     case UPDATE_KEY:
       return update(state, {[action.payload.key]: {$set: action.payload.value}})
     case LEAVE_GAME:

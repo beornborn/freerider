@@ -34,6 +34,7 @@ export default function reducer(state = initialState, action) {
     case ADD_CHANNEL_SUBSCRIPTION:
       return update(state, {cable: {[action.payload.channel]: {$set: action.payload.subscription}}})
     case REMOVE_CHANNEL_SUBSCRIPTION:
+      state.cable[action.payload.channel].unsubscribe()
       return update(state, {cable: {[action.payload.channel]: {$set: undefined}}})
     case INIT, ADD_CHANNEL_SUBSCRIPTION_WHEN_READY, UPDATE_NAME:
       return state

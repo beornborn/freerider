@@ -29,12 +29,3 @@ export function leaveGame() {
     })
   .then(checkStatus)
 }
-
-export function enterGame(gameId) {
-  return fetch('/games/' + gameId + '/connect', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      credentials: 'same-origin'
-    })
-  .then(checkStatus)
-}

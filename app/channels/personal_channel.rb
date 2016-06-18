@@ -22,6 +22,10 @@ class PersonalChannel < ApplicationCable::Channel
     manager.create_game(data['game'])
   end
 
+  def enter_game(data)
+    manager.enter_game(data['game_id'])
+  end
+
   private
 
   def manager

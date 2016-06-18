@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   get 'authenticate', to: 'application#authenticate'
 
   resources :games do
-    post :connect, on: :member
     post :leave, on: :collection
   end
 

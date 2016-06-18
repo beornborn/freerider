@@ -5,7 +5,7 @@ import { createAction } from 'redux-actions'
 import { init } from '~/app/sagas/common/Init'
 import * as api from '~/app/api'
 
-function* addChannelSubscription(action) {
+function* perform(action) {
   let consumer = yield select(state => state.shared.cable.consumer)
   if (!consumer.url) {
     yield take(SET_CABLE)
@@ -17,8 +17,8 @@ function* addChannelSubscription(action) {
   yield put(createAction(ADD_CHANNEL_SUBSCRIPTION)({channel, subscription}))
 }
 
-function* watchAddChannelSubscription() {
-  yield* takeEvery(ADD_CHANNEL_SUBSCRIPTION_WHEN_READY, addChannelSubscription)
+function* watch() {
+  yield* takeEvery(ADD_CHANNEL_SUBSCRIPTION_WHEN_READY, perform)
 }
 
-export default watchAddChannelSubscription
+export default watch

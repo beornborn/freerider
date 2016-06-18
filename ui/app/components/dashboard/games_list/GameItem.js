@@ -8,7 +8,7 @@ import AnimationMixin from '~/app/mixins/AnimationMixin'
 import * as api from '~/app/api'
 import classNames from 'classnames'
 
-let cx = classNames.bind(styles)
+classNames.bind(styles)
 
 let GameItem = React.createClass({
   mixins: [AnimationMixin],
@@ -37,7 +37,7 @@ let GameItem = React.createClass({
       currentPresent: this.props.currentPresent
     })
     return (
-      <div styleName={gameRowStyle} ref='row' onClick={this.enterGame}>
+      <div styleName={gameRowStyle} ref='row' onClick={()=>this.props.enterGame(this.props.game.id)}>
         <div styleName="column">
           <div>
             <div styleName='column-content name'>
@@ -51,11 +51,6 @@ let GameItem = React.createClass({
         {actions}
       </div>
     )
-  },
-
-  enterGame() {
-    api.enterGame(this.props.game.id)
-    browserHistory.push('/game')
   },
 
   content() {

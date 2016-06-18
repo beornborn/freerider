@@ -3,7 +3,7 @@ import { put, select } from 'redux-saga/effects'
 import { START_STOPWATCH, TICK_STOPWATCH } from '~/app/reducers/Game'
 import { createAction } from 'redux-actions'
 
-function* startStopwatch() {
+function* perform() {
   while(true) {
     yield delay(1000)
     let state = yield select()
@@ -16,8 +16,8 @@ function* startStopwatch() {
   }
 }
 
-function* watchStartStopwatch() {
-  yield* takeLatest(START_STOPWATCH, startStopwatch)
+function* watch() {
+  yield* takeLatest(START_STOPWATCH, perform)
 }
 
-export default watchStartStopwatch
+export default watch

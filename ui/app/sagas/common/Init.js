@@ -16,8 +16,8 @@ export function* init() {
   yield put(createAction(SET_CABLE)({consumer}))
 }
 
-function* watchInit() {
+function* watch() {
   yield* takeEvery(INIT, init)
 }
 
-export default watchInit
+export default watch

@@ -22,7 +22,8 @@ let GamesList = React.createClass({
             key={game.id}
             updated={this.props.changedGamesIds.includes(game.id)}
             current={this.props.currentUser.connected_player.game_id === game.id}
-            currentPresent={this.props.currentUser.connected_player.game_id !== undefined} />
+            currentPresent={this.props.currentUser.connected_player.game_id !== undefined}
+            enterGame={this.props.enterGame} />
         })}
       </div>
     )

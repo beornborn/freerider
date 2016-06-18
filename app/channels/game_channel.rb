@@ -5,15 +5,12 @@ class GameChannel < ApplicationCable::Channel
   def subscribed
     stream_from manager.common_game_channel
     stream_from manager.personal_game_channel(player)
+    manager.send_me(player)
+    manager.send_refresh_all
   end
 
   def unsubscribed
     manager.send_players
-  end
-
-  def connected
-    manager.send_me(player)
-    manager.send_refresh_all
   end
 
   def decided(data)

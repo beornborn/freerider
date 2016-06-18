@@ -24,6 +24,10 @@ function cableLogic(component) {
 
     createGame(formData) {
       this.perform('create_game', {game: formData})
+    },
+
+    enterGame(gameId) {
+      this.perform('enter_game', {game_id: gameId})
     }
   }
 }

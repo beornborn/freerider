@@ -2,13 +2,16 @@ import { CreateMixin } from '~/app/mixins/cable/CableCommon'
 
 function cableLogic(game) {
   return {
-    connected() { this.perform('connected') },
+    connected() { console.log('connected');console.log(Date.now())},
     disconnected() { },
 
     received(data) {
+      console.log(data)
       if (data === undefined) { return }
       switch (data.msg) {
         case 'me':
+          console.log('me')
+          console.log(Date.now())
           return game.props.updateKey('me', data.me)
         case 'players':
           return game.props.updateKey('players', data.players)
@@ -16,8 +19,10 @@ function cableLogic(game) {
           this.updateGamePlayersWinners(data)
           return game.newRound()
         case 'game_finished':
-          this.updateGamePlayersWinners(data)
+          return this.updateGamePlayersWinners(data)
         case 'refresh_all':
+          console.log('all')
+          console.log(Date.now())
           this.updateGamePlayersWinners(data)
           return game.continueAfterRefresh()
       }

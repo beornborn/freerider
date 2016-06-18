@@ -43,6 +43,10 @@ class GameManager < ApplicationManager
     "game_#{@game.id}_#{player.id}"
   end
 
+  def send_connected(player)
+    ActionCable.server.broadcast personal_game_channel(player), { msg: 'connected' }
+  end
+
   def send_me(player)
     ActionCable.server.broadcast personal_game_channel(player), {
       msg: 'me',

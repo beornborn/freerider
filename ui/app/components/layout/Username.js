@@ -13,6 +13,8 @@ let Username = React.createClass({
     this.props.toggleSnackbar('Username Updated')
   },
 
+  handleTouchTap() { this.props.toggleDialog(this.props.currentUser.name) },
+
   render() {
     const {handleSubmit} = this.props
 
@@ -32,8 +34,8 @@ let Username = React.createClass({
 
     return (
       <div styleName="username-container">
-        <CreateIcon color={Theme.commonSettings.palette.accent4Color} onTouchTap={this.props.toggleDialog}/>
-        <span styleName="username" onTouchTap={this.props.toggleDialog}>{this.props.currentUser.name}</span>
+        <CreateIcon color={Theme.commonSettings.palette.accent4Color} onTouchTap={this.handleTouchTap}/>
+        <span styleName="username" onTouchTap={this.handleTouchTap}>{this.props.currentUser.name}</span>
         <Dialog
           title="Edit Username"
           open={this.props.dialogOpen}

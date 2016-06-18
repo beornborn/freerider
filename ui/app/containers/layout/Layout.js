@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import { UPDATE_CURRENT_USER, TOGGLE_DROWER, TOGGLE_SNACKBAR, TOGGLE_RULES,
   ADD_CHANNEL_SUBSCRIPTION_WHEN_READY, REMOVE_CHANNEL_SUBSCRIPTION } from '~/app/reducers/Shared'
-import { CHANGE_NAME } from '~/app/reducers/Username'
 import { REFRESH } from '~/app/reducers/UsersOnline'
 import { createAction } from 'redux-actions'
 import * as api from '~/app/api'

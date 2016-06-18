@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
 import Username from '~/app/components/layout/Username'
 import { reduxForm } from 'redux-form'
-import { TOGGLE_DIALOG } from '~/app/reducers/Username'
+import { USERNAME_EDIT_TOGGLE_DIALOG } from '~/app/reducers/Dashboard'
 import { TOGGLE_SNACKBAR, UPDATE_NAME } from '~/app/reducers/Shared'
 import * as api from '~/app/api'
 import { createAction } from 'redux-actions'
+import { change } from 'redux-form'
 
 const validate = (values) => {
   const errors = {}
@@ -16,9 +17,8 @@ const validate = (values) => {
 
 const mapStateToProps = (state) => {
   return {
-    dialogOpen: state.username.editDialog.open,
-    currentUser: state.shared.currentUser,
-    initialValues: {name: state.shared.currentUser.name}
+    dialogOpen: state.dashboard.usernameEdit.open,
+    currentUser: state.shared.currentUser
   }
 }
 
@@ -26,7 +26,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updateUsername: (name) => { dispatch(createAction(UPDATE_NAME)({name})) },
     toggleSnackbar: (message) => { dispatch(createAction(TOGGLE_SNACKBAR)({message})) },
-    toggleDialog: () => { dispatch(createAction(TOGGLE_DIALOG)()) }
+    toggleDialog: (name,q,w) => {
+      dispatch(createAction(USERNAME_EDIT_TOGGLE_DIALOG)())
+      dispatch(change('username', 'name', name))
+    }
   }
 }
 

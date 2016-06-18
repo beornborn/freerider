@@ -12,11 +12,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    leaveGame: () => {
-      api.leaveGame()
-      dispatch(createAction(LEAVE_GAME)())
-      browserHistory.push('/')
-    }
+    leaveGame: () => { dispatch(createAction(LEAVE_GAME)()) }
   }
 }
 

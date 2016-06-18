@@ -20,12 +20,3 @@ export function authenticate() {
     .then(parseJSON)
     .then((response) => { return response.token })
 }
-
-export function leaveGame() {
-  return fetch('/games/leave', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      credentials: 'same-origin'
-    })
-  .then(checkStatus)
-}

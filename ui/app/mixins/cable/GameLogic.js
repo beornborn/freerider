@@ -34,6 +34,10 @@ function cableLogic(game) {
       game.props.updateKey('winners', data.winners)
     },
 
+    leave_game() {
+      this.perform('leave_game')
+    },
+
     decide(decision) {
       this.perform('decided', decision)
     },

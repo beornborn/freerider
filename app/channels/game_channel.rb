@@ -13,6 +13,10 @@ class GameChannel < ApplicationCable::Channel
     manager.send_players
   end
 
+  def leave_game
+    manager.leave_game(player)
+  end
+
   def decided(data)
     manager.player_made_decision(player, data)
   end

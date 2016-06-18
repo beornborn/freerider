@@ -4,6 +4,10 @@ class GameManager < ApplicationManager
     @games_list_manager = GamesListManager.new
   end
 
+  def leave_game(player)
+    player.destroy
+  end
+
   def player_connected_to_game(player)
     send_me(player)
     send_refresh_all(personal_game_channel(player))

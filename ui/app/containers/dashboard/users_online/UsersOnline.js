@@ -4,8 +4,8 @@ import UsersOnline from '~/app/components/dashboard/users_online/UsersOnline'
 
 const mapStateToProps = (state) => {
   return {
-    users: state.usersOnline.users,
-    changedUsersIds: state.usersOnline.changedUsersIds
+    users: state.dashboard.usersOnline.users,
+    changedUsersIds: state.dashboard.usersOnline.changedUsersIds
   }
 }
 

@@ -7,12 +7,6 @@ import { FlatButton, Dialog, TextField } from 'material-ui'
 import { Field } from 'redux-form'
 
 let Username = React.createClass({
-  onSubmit(formData) {
-    this.props.updateUsername(formData.name)
-    this.props.toggleDialog()
-    this.props.toggleSnackbar('Username Updated')
-  },
-
   handleTouchTap() { this.props.toggleDialog(this.props.currentUser.name) },
 
   render() {
@@ -43,7 +37,7 @@ let Username = React.createClass({
           onRequestClose={this.props.toggleDialog}
           contentClassName={styles.form}
           titleClassName={styles.formTitle}>
-          <form id='username-form' onSubmit={handleSubmit(this.onSubmit)}>
+          <form id='username-form' onSubmit={handleSubmit(this.props.updateUsername)}>
             <Field name='name' component={props =>
               <TextField {...props}
                 hintText="John Dow"

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { createAction } from 'redux-actions'
 import { TOGGLE_SNACKBAR } from '~/app/reducers/Shared'
-import { TOGGLE_FORM, CREATE_GAME } from '~/app/reducers/CreateGameForm'
+import { CREATE_GAME_FORM_TOGGLE, CREATE_GAME_FORM_SUBMIT } from '~/app/reducers/Dashboard'
 import * as api from '~/app/api'
 import CreateGameForm from '~/app/components/dashboard/CreateGameForm'
 import { reduxForm } from 'redux-form'
@@ -15,13 +15,17 @@ const validate = (values) => {
   return errors
 }
 
-const mapStateToProps = (state) => { return state.createGameForm }
+const mapStateToProps = (state) => {
+  return {
+    open: state.dashboard.createGameForm.open
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleSnackbar: (message) => { dispatch(createAction(TOGGLE_SNACKBAR)({message})) },
-    toggleForm: () => { dispatch(createAction(TOGGLE_FORM)()) },
-    onSubmit(formData) { dispatch(createAction(CREATE_GAME)({formData})) }
+    toggleForm: () => { dispatch(createAction(CREATE_GAME_FORM_TOGGLE)()) },
+    onSubmit(formData) { dispatch(createAction(CREATE_GAME_FORM_SUBMIT)({formData})) }
   }
 }
 

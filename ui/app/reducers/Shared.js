@@ -9,7 +9,6 @@ export const UPDATE_CURRENT_USER = 'freerider/shared/UPDATE_CURRENT_USER'
 export const ADD_CHANNEL_SUBSCRIPTION_WHEN_READY = 'freerider/shared/ADD_CHANNEL_SUBSCRIPTION_WHEN_READY'
 export const ADD_CHANNEL_SUBSCRIPTION = 'freerider/shared/ADD_CHANNEL_SUBSCRIPTION'
 export const REMOVE_CHANNEL_SUBSCRIPTION = 'freerider/shared/REMOVE_CHANNEL_SUBSCRIPTION'
-export const UPDATE_NAME = 'freerider/shared/UPDATE_NAME'
 
 const initialState = {
   rules: {open: false},
@@ -36,7 +35,7 @@ export default function reducer(state = initialState, action) {
     case REMOVE_CHANNEL_SUBSCRIPTION:
       state.cable[action.payload.channel].unsubscribe()
       return update(state, {cable: {[action.payload.channel]: {$set: undefined}}})
-    case INIT, ADD_CHANNEL_SUBSCRIPTION_WHEN_READY, UPDATE_NAME:
+    case INIT, ADD_CHANNEL_SUBSCRIPTION_WHEN_READY:
       return state
     default:
       return state

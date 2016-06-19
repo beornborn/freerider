@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { UPDATE_CURRENT_USER, TOGGLE_DROWER, TOGGLE_SNACKBAR, TOGGLE_RULES,
   ADD_CHANNEL_SUBSCRIPTION_WHEN_READY, REMOVE_CHANNEL_SUBSCRIPTION } from '~/app/reducers/Shared'
-import { REFRESH } from '~/app/reducers/UsersOnline'
+import { REFRESH_USERS_ONLINE } from '~/app/reducers/Dashboard'
 import { createAction } from 'redux-actions'
 import * as api from '~/app/api'
 import Layout from '~/app/components/layout/Layout'
@@ -24,7 +24,7 @@ var mapDispatchToProps = (dispatch) => {
       dispatch(createAction(ADD_CHANNEL_SUBSCRIPTION_WHEN_READY)({channel, settings}))
     },
     removeSubscription: (channel) => { dispatch(createAction(REMOVE_CHANNEL_SUBSCRIPTION)({channel})) },
-    updateUsersOnline: (users) => { dispatch(createAction(REFRESH)({users, changedUsersIds: []})) }
+    updateUsersOnline: (users) => { dispatch(createAction(REFRESH_USERS_ONLINE)({users, changedUsersIds: []})) }
   }
 }
 

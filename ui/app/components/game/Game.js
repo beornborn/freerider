@@ -14,7 +14,6 @@ let Game = React.createClass({
   mixins: [AnimationMixin, CableMixin],
 
   render() {
-    let me = this.props.players.filter(p => p.id === this.props.me.id)[0] || {}
     let winner_ids = this.props.winners.map(w => w.id)
     let winner_players = this.props.players.filter(p => winner_ids.includes(p.id))
 

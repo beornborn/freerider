@@ -9,8 +9,7 @@ class GameManager < ApplicationManager
   end
 
   def player_connected_to_game(player)
-    send_me(player)
-    send_refresh_all(personal_game_channel(player))
+    send_refresh(personal_game_channel(player))
     if @game.ready_to_start?
       @game.start!
       send_new_round
@@ -31,7 +30,7 @@ class GameManager < ApplicationManager
   def player_made_decision(player, data)
     return if player.decided?
     player.decide!(data) if @game.reload.current_round == data['round']
-    send_players
+    send_refresh
     if @game.ready_to_finish_round?
       @game.finish_round!
       send_game_finished if @game.finished?
@@ -47,22 +46,8 @@ class GameManager < ApplicationManager
     "game_#{@game.id}_#{player.id}"
   end
 
-  def send_connected(player)
-    ActionCable.server.broadcast personal_game_channel(player), { msg: 'connected' }
-  end
-
-  def send_me(player)
-    ActionCable.server.broadcast personal_game_channel(player), {
-      msg: 'me',
-      me: player.serial_as_json
-    }
-  end
-
-  def send_players
-    ActionCable.server.broadcast common_game_channel, {
-      msg: 'players',
-      players: Player.serializer.new(@game.players).as_json
-    }
+  def send_refresh(channel = common_game_channel)
+    ActionCable.server.broadcast channel, { msg: 'refresh' }.merge(all_data)
   end
 
   def send_new_round
@@ -71,10 +56,6 @@ class GameManager < ApplicationManager
 
   def send_game_finished
     ActionCable.server.broadcast common_game_channel, { msg: 'game_finished' }.merge(all_data)
-  end
-
-  def send_refresh_all(channel = common_game_channel)
-    ActionCable.server.broadcast channel, { msg: 'refresh_all' }.merge(all_data)
   end
 
   private

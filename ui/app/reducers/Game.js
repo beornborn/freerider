@@ -1,26 +1,28 @@
 import update from 'react-addons-update'
 
 export const ENTER_GAME = 'freerider/game/ENTER_GAME'
-export const UPDATE_KEY = 'freerider/game/UPDATE_KEY'
+export const REFRESH_GAME = 'freerider/game/REFRESH_GAME'
 export const LEAVE_GAME = 'freerider/game/LEAVE_GAME'
 export const START_STOPWATCH = 'freerider/game/START_STOPWATCH'
 export const TICK_STOPWATCH = 'freerider/game/TICK_STOPWATCH'
 export const DECIDE = 'freerider/game/DECIDE'
 
 const initialState = {
-  players: [],
-  game: {},
-  me: {},
-  winners: [],
+  external: {
+    players: [],
+    game: {},
+    winners: []
+  },
   stopwatch: {state: 'STOPPED', time: 0}
 }
 
 export default function reducer(state = initialState, action) {
+  const p = action.payload
   switch (action.type) {
     case ENTER_GAME:
       return state
-    case UPDATE_KEY:
-      return update(state, {[action.payload.key]: {$set: action.payload.value}})
+    case REFRESH_GAME:
+      return update(state, {external: {$set: p.data}})
     case LEAVE_GAME:
       return initialState
     case START_STOPWATCH:

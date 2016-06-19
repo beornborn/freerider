@@ -9,29 +9,15 @@ function cableLogic(game) {
       console.log(data)
       if (data === undefined) { return }
       switch (data.msg) {
-        case 'me':
-          console.log('me')
-          console.log(Date.now())
-          return game.props.updateKey('me', data.me)
-        case 'players':
-          return game.props.updateKey('players', data.players)
         case 'new_round':
-          this.updateGamePlayersWinners(data)
+          game.props.refresh(data)
           return game.newRound()
         case 'game_finished':
-          return this.updateGamePlayersWinners(data)
-        case 'refresh_all':
-          console.log('all')
-          console.log(Date.now())
-          this.updateGamePlayersWinners(data)
+          return game.props.refresh(data)
+        case 'refresh':
+          game.props.refresh(data)
           return game.continueAfterRefresh()
       }
-    },
-
-    updateGamePlayersWinners(data) {
-      game.props.updateKey('game', data.game)
-      game.props.updateKey('players', data.players)
-      game.props.updateKey('winners', data.winners)
     },
 
     leave_game() {

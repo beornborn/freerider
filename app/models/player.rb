@@ -30,12 +30,12 @@ class Player < ApplicationRecord
 
   def refresh_player_game
     manager = GameManager.new(game)
-    manager.send_players
+    manager.send_refresh
     manager.player_connected_to_game(self)
   end
 
   def refresh_me
     manager = PersonalManager.new(self.user)
-    manager.refresh_me
+    manager.send_refresh
   end
 end

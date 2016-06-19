@@ -6,11 +6,6 @@ class GamesListChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-
-  end
-
-  def refresh
-    manager.refresh(personal_channel)
   end
 
   private

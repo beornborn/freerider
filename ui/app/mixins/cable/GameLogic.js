@@ -12,16 +12,10 @@ function cableLogic(game) {
         case 'new_round':
           game.props.refresh(data)
           return game.newRound()
-        case 'game_finished':
-          return game.props.refresh(data)
         case 'refresh':
           game.props.refresh(data)
           return game.continueAfterRefresh()
       }
-    },
-
-    leave_game() {
-      this.perform('leave_game')
     },
 
     decide(decision) {

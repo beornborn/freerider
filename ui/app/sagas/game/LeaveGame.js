@@ -6,8 +6,8 @@ import { browserHistory } from 'react-router'
 import { createAction } from 'redux-actions'
 
 function* perform(action) {
-  const gameChannel = yield select(state => state.shared.cable.GameChannel)
-  yield call(gameChannel.leave_game.bind(gameChannel))
+  const personalChannel = yield select(state => state.shared.cable.PersonalChannel)
+  yield call(personalChannel.leave_game.bind(personalChannel))
   yield put(createAction(TOGGLE_SNACKBAR)({message: 'Left the game'}))
   yield call(browserHistory.push, '/')
 }

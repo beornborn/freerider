@@ -28,6 +28,10 @@ function cableLogic(component) {
 
     enterGame(gameId) {
       this.perform('enter_game', {game_id: gameId})
+    },
+
+    leave_game() {
+      this.perform('leave_game')
     }
   }
 }

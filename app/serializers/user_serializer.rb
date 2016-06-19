@@ -1,3 +1,5 @@
+require_relative 'player_serializer'
+
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :name, :online
 

@@ -26,6 +26,10 @@ class PersonalChannel < ApplicationCable::Channel
     manager.enter_game(data['game_id'])
   end
 
+  def leave_game
+    manager.leave_game
+  end
+
   private
 
   def manager

@@ -1,12 +1,12 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import PromiseMiddleware from 'redux-promise'
 import reducer from '~/app/reducers'
-import DevTools from '~/app/DevTools'
 import createSagaMiddleware from 'redux-saga'
 const sagaMiddleware = createSagaMiddleware()
-import stopwatchSaga from '~/app/sagas'
-import { REFRESH_USERS_ONLINE } from '~/app/reducers/Dashboard'
+import sagas from '~/app/sagas'
 
+import DevTools from '~/app/DevTools'
+import { REFRESH_USERS_ONLINE } from '~/app/reducers/Dashboard'
 import createLogger from 'redux-logger'
 let counter = {
   UsersOnline: 0
@@ -31,6 +31,6 @@ const store = createStore(reducer, undefined, compose(
   )
 )
 
-sagaMiddleware.run(stopwatchSaga)
+sagaMiddleware.run(sagas)
 
 export default store

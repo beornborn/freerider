@@ -1,9 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { browserHistory, Router, Route, Link, IndexRoute } from 'react-router'
-import Layout from '~/app/containers/layout/Layout'
-import Dashboard from '~/app/containers/dashboard/Dashboard'
-import Game from '~/app/containers/game/Game'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin()
@@ -23,6 +20,10 @@ store.dispatch(createAction(INIT)())
 
 import DevTools from '~/app/DevTools'
 const devtools = process.env.NODE_ENV === 'prod' ? undefined : <DevTools />
+
+import Layout from '~/app/containers/layout/Layout'
+import Dashboard from '~/app/containers/dashboard/Dashboard'
+import Game from '~/app/containers/game/Game'
 
 render((
   <Provider store={store}>

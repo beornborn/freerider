@@ -37,14 +37,7 @@ const commonSettings = {
 }
 
 function componentSettings(common) {
-  return {
-    tableHeaderColumn: {
-      textColor: common.palette.alternateTextColor
-    },
-    tableRow: {
-      hoverColor: common.palette.accent2Color
-    }
-  }
+  return {}
 }
 
 const FreeriderTheme = {

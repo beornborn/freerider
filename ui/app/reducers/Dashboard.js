@@ -8,8 +8,6 @@ export const REFRESH_USERS_ONLINE = 'freerider/dashboard/REFRESH_USERS_ONLINE'
 export const CREATE_GAME_FORM_TOGGLE = 'freerider/dashboard/CREATE_GAME_FORM_TOGGLE'
 export const CREATE_GAME_FORM_SUBMIT = 'freerider/dashboard/CREATE_GAME_FORM_SUBMIT'
 
-
-
 const initialState = {
   usernameEdit: {open: false},
   gamesList: {games: [], changedGamesIds: []},

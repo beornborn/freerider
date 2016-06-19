@@ -31,8 +31,7 @@ export default function reducer(state = initialState, action) {
       return update(state, {stopwatch: {time: {$set: state.stopwatch.time - 1}}})
     case DECIDE:
       var index = state.players.findIndex(p => p.id === state.me.id)
-      return update(state, {players: {[index]: {decided: {$set: true}}},
-        me: {decided: {$set: true}, freerider: {$set: action.payload.decision}}})
+      return update(state, {players: {[index]: {decided: {$set: true}, freerider: {$set: p.decision}}}})
     default:
       return state
   }

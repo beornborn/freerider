@@ -37,19 +37,13 @@ var GameInfo = React.createClass({
             left={0}
             size={55} />,
           status: 'waiting for players',
-          time: <div>
-            <AlarmIcon styleName='alarm-icon' color={Theme.commonSettings.palette.alternateTextColor}/>
-            {this.props.game.time_to_think}
-          </div>
+          time: this.alarmArea(this.props.game.time_to_think)
         }
       case 'waiting_for_round':
         return {
           rounds: this.props.game.current_round,
           status: 'choose your move',
-          time: <div>
-            <AlarmIcon styleName='alarm-icon' color={Theme.commonSettings.palette.alternateTextColor}/>
-            {this.props.stopwatch.time}
-          </div>
+          time: this.alarmArea(this.props.stopwatch.time)
         }
       case 'finished':
         if (this.props.winners.length === 0) {
@@ -61,6 +55,13 @@ var GameInfo = React.createClass({
       default:
         return {rounds: undefined, status: undefined, time: undefined}
     }
+  },
+
+  alarmArea(time) {
+    return <div>
+      <AlarmIcon styleName='alarm-icon' color={Theme.commonSettings.palette.alternateTextColor}/>
+      {time}
+    </div>
   }
 })
 

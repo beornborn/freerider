@@ -23,8 +23,8 @@ class PersonalManager < ApplicationManager
   end
 
   def leave_game
-    game = current_user.player.game
-    current_user.player.destroy
+    game = @current_user.player.game
+    @current_user.player.destroy
 
     refresh_me
     GamesListManager.new.refresh(changed_games_ids: [game.id])

@@ -9,12 +9,27 @@ import { Field } from 'redux-form'
 import * as api from '~/app/api'
 
 let CreateGameForm = React.createClass({
+  selectField(props) {
+    return <SelectField {...props}
+      value={props.value}
+      errorStyle={{color: '#FF3D00'}}
+      hintText={props.hintText}
+      errorText = {props.touched && props.error}
+      onChange = {(event, index, value) => props.onChange(value)}>
+      {props.content}
+    </SelectField>
+  },
+
+  getSelectValues(array) {
+    return array.map((i) => <MenuItem value={i} key={i} primaryText={i} />)
+  },
+
   render() {
     const {handleSubmit} = this.props
 
-    const playersAmounts = _.range(2, 10).map((i) => <MenuItem value={i} key={i} primaryText={i} />)
-    const roundsAmounts = _.range(3, 10).map((i) => <MenuItem value={i} key={i} primaryText={i} />)
-    const timeAmounts = [15,30,45].map((i) => <MenuItem value={i} key={i} primaryText={i} />)
+    const playersAmounts = this.getSelectValues(_.range(2, 10))
+    const roundsAmounts = this.getSelectValues(_.range(3, 10))
+    const timeAmounts = this.getSelectValues([15,30,45])
 
     const actions = [
       <FlatButton
@@ -51,42 +66,9 @@ let CreateGameForm = React.createClass({
                   errorText={props.touched && props.error}
                   autoFocus/>
               }/>
-              <Field name="players_amount" component={props =>
-                <div>
-                  <SelectField {...props}
-                    value={props.value}
-                    errorStyle={{color: '#FF3D00'}}
-                    hintText="Players"
-                    errorText = {props.touched && props.error}
-                    onChange = {(event, index, value) => props.onChange(value)}>
-                    {playersAmounts}
-                  </SelectField>
-                </div>
-              }/>
-              <Field name="rounds" component={props =>
-                <div>
-                  <SelectField {...props}
-                    value={props.value}
-                    errorStyle={{color: '#FF3D00'}}
-                    hintText="Rounds"
-                    errorText = {props.touched && props.error}
-                    onChange = {(event, index, value) => props.onChange(value)}>
-                    {roundsAmounts}
-                  </SelectField>
-                </div>
-              }/>
-              <Field name="time_to_think" component={props =>
-                <div>
-                  <SelectField {...props}
-                    value={props.value}
-                    errorStyle={{color: '#FF3D00'}}
-                    hintText="Time to think"
-                    errorText = {props.touched && props.error}
-                    onChange = {(event, index, value) => props.onChange(value)}>
-                    {timeAmounts}
-                  </SelectField>
-                </div>
-              }/>
+              <Field name="players_amount" hintText='Players' content={playersAmounts} component={this.selectField}/>
+              <Field name="rounds" hintText='Rounds' content={roundsAmounts} component={this.selectField}/>
+              <Field name="time_to_think" hintText='Time to think' content={timeAmounts} component={this.selectField}/>
             </form>
           </div>
         </Dialog>

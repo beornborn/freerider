@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/repos/57670e2ee00c21413d000c35/badges/5652dabfd4913cb44fa5/gpa.svg)](https://codeclimate.com/repos/57670e2ee00c21413d000c35/feed)
+
 # Freerider
 
 Freerider is online real-time multiplayer game devoted to well-known [Free Rider Problem][1]

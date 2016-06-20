@@ -6,6 +6,8 @@ engines:
     enabled: false
   csslint:
     enabled: true
+    exclude_fingerprints:
+      - 69dd686908415e322ddaeaa12ab7df0e
   coffeelint:
     enabled: false
   duplication:
@@ -14,8 +16,22 @@ engines:
       languages:
       - ruby
       - javascript
+    exclude_fingerprints:
+      - e197be9a97f36962483ca37b67dad445
+      - 7be313d961b91f6d8235ef782bdaf1c0
+      - a5d0ed98b55b0f41dd6b3a4a43f5c28a
+      - b86a2fc52fa3d4c07b4fbe5b96354476
+      - 928549bc7e0da6042ee2ad7725fb9b62
+      - f7db26082697de40ebe998e162b15491
+      - 28042599f21d659fa8e323377b886c87
+      - 35b1fb8ff6fee04ba401b419cd1475d1
   eslint:
     enabled: true
+    checks:
+      no-case-declarations:
+        enabled: false
+      no-fallthrough:
+        enabled: false
   fixme:
     enabled: true
   rubocop:

@@ -1,14 +1,14 @@
 import update from 'react-addons-update'
 
+export const INIT = 'freerider/shared/INIT'
 export const TOGGLE_RULES = 'freerider/shared/TOGGLE_RULES'
 export const TOGGLE_DROWER = 'freerider/shared/TOGGLE_DROWER'
 export const TOGGLE_SNACKBAR = 'freerider/shared/TOGGLE_SNACKBAR'
-export const UPDATE_CURRENT_USER = 'freerider/shared/UPDATE_CURRENT_USER'
 export const SET_CABLE = 'freerider/shared/SET_CABLE'
 export const ADD_CHANNEL_SUBSCRIPTION = 'freerider/shared/ADD_CHANNEL_SUBSCRIPTION'
-export const REMOVE_CHANNEL_SUBSCRIPTION = 'freerider/shared/REMOVE_CHANNEL_SUBSCRIPTION'
-export const INIT = 'freerider/shared/INIT'
 export const ADD_CHANNEL_SUBSCRIPTION_WHEN_READY = 'freerider/shared/ADD_CHANNEL_SUBSCRIPTION_WHEN_READY'
+export const REMOVE_CHANNEL_SUBSCRIPTION = 'freerider/shared/REMOVE_CHANNEL_SUBSCRIPTION'
+export const UPDATE_CURRENT_USER = 'freerider/shared/UPDATE_CURRENT_USER'
 
 const initialState = {
   rules: {open: false},

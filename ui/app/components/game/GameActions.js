@@ -8,20 +8,20 @@ import { RaisedButton } from 'material-ui'
 var GameActions = React.createClass({
   render() { return this.content() },
 
-  beFreerider() { this.props.decide(true) },
-  notBeFreerider() { this.props.decide(false) },
+  beFreerider() { console.log(this.props.me);this.props.decide(true, this.props.me) },
+  notBeFreerider() { console.log(this.props.me);this.props.decide(false, this.props.me) },
 
   content() {
     if (!this.props.me.decided) {
       return (
         <div styleName='actions'>
-          <RaisedButton label="Buy Ticket" primary={true} styleName='action' onTouchTap={this.beFreerider} />
+          <RaisedButton label="Buy Ticket" primary={true} styleName='action' onTouchTap={this.notBeFreerider} />
 
           <div styleName='divider'>
             <ArrowBack styleName='arrow-back'/>or<ArrowForward styleName='arrow-forward'/>
           </div>
 
-          <RaisedButton label="Ride Free" primary={true} styleName='action' onTouchTap={this.notBeFreerider} />
+          <RaisedButton label="Ride Free" primary={true} styleName='action' onTouchTap={this.beFreerider} />
         </div>
       )
     } else {

@@ -1,20 +1,10 @@
 @import 'app/styles/theme';
 
-.game-row {
+.header {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 400px;
-  &:not(.header) {
-    border-bottom: 1px solid #eee;
-    &:hover:not(.currentPresent), &.current:hover {
-      background-color: $accent2Color;
-      cursor: pointer;
-    }
-  }
-}
-
-.header {
   background-color: $primary2Color;
   color: $alternateTextColor;
 }
@@ -26,21 +16,39 @@
   padding-left: 15px;
   font-size: 14px;
   flex-grow: 1;
-  .column-content {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+
+  &.name {
+    width: 145px;
+  }
+
+  &.players, &.rounds, &.time {
+    width: 65px;
   }
 }
 
-.actions {
-  width: 145px;
+.example-appear {
+  opacity: 0.01;
 }
 
-.name {
-  width: 145px;
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity 5000ms ease-in;
 }
 
-.players, .rounds, .time {
-  width: 65px;
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 5000ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 3000ms ease-in;
 }

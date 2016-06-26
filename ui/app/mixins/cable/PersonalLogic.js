@@ -7,6 +7,8 @@ function cableLogic(component) {
     received(data) {
       if (data === undefined) { return }
       switch (data.msg) {
+        case 'connected_to_game':
+          return component.props.connectedToGame()
         case 'refresh_me':
           return component.props.updateCurrentUser(data.current_user)
         case 'refresh_users_online':

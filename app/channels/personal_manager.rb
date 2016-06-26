@@ -7,7 +7,7 @@ class PersonalManager < ApplicationManager
     game = Game.create(params)
     game.users << @current_user
 
-    GamesListManager.new.refresh(changed_games_ids: [game.id])
+    game_list_manager.refresh(game_list_manager.common_channel, changed_games_ids: [game.id])
     refresh_me
   end
 
@@ -17,18 +17,26 @@ class PersonalManager < ApplicationManager
       game.users << @current_user
     end
 
-    GamesListManager.new.refresh(changed_games_ids: [game.id])
+    connected_to_game
+    game_list_manager.refresh(game_list_manager.common_channel, changed_games_ids: [game.id])
     GameManager.new(game).player_connected_to_game
     refresh_me
   end
 
   def leave_game
     game = @current_user.player.game
-    @current_user.player.destroy
 
-    refresh_me
-    GamesListManager.new.refresh(changed_games_ids: [game.id])
-    GameManager.new(game).send_refresh
+    case game.current_state
+    when :waiting_for_start
+      @current_user.player.destroy
+      refresh_me
+      game_list_manager.refresh(game_list_manager.common_channel, changed_games_ids: [game.id])
+      GameManager.new(game).send_refresh
+    when :waiting_for_round, :handling_round, :finished
+      @current_user.player.update_attribute :connected, false
+      refresh_me
+      game_list_manager.refresh(game_list_manager.personal_channel)
+    end
   end
 
   def update_name(name)
@@ -50,7 +58,17 @@ class PersonalManager < ApplicationManager
     }
   end
 
+  def connected_to_game
+    ActionCable.server.broadcast personal_channel, { msg: 'connected_to_game' }
+  end
+
   def personal_channel
     "personal_#{@current_user.id}"
+  end
+
+  private
+
+  def game_list_manager
+    @game_list_manager ||= GamesListManager.new
   end
 end

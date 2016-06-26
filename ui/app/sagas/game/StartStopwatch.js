@@ -10,7 +10,8 @@ function* perform() {
     if (state.game.stopwatch.time > 0) {
       yield put(createAction(TICK_STOPWATCH)())
     } else {
-      state.shared.cable.GameChannel.maybeNextRound(state.game.game.current_round)
+      if (!state.shared.cable.GameChannel) break
+      state.shared.cable.GameChannel.maybeNextRound(state.game.external.game.current_round)
       break
     }
   }

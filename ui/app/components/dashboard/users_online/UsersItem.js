@@ -6,10 +6,6 @@ import AnimationMixin from '~/app/mixins/AnimationMixin'
 
 let UsersItem = React.createClass({
   mixins: [AnimationMixin],
-  propTypes: {
-    user: React.PropTypes.object.isRequired,
-    updated: React.PropTypes.bool
-  },
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.updated) {

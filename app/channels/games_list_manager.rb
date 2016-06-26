@@ -18,10 +18,6 @@ class GamesListManager < ApplicationManager
   private
 
   def games
-    @games ||= Game.waiting_for_start.includes(players: :user).order(id: :desc)
-  end
-
-  def manager
-    @manager ||= GamesListManager.new
+    Game.includes(players: :user).order(id: :desc)
   end
 end

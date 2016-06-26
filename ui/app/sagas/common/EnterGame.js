@@ -8,8 +8,6 @@ import { browserHistory } from 'react-router'
 function* perform(action) {
   const personalChannel = yield select(state => state.shared.cable.PersonalChannel)
   yield call(personalChannel.enterGame.bind(personalChannel), action.payload.gameId)
-  yield put(createAction(TOGGLE_SNACKBAR)({message: 'Connected to the game'}))
-  yield call(browserHistory.push, '/game')
 }
 
 function* watch() {

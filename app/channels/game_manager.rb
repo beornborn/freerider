@@ -26,11 +26,11 @@ class GameManager < ApplicationManager
 
   def player_made_decision(player, data)
     return if player.decided?
-    player.decide!(data) if @game.reload.current_round == data['round']
+    player.decide!(data['freerider']) if @game.reload.current_round == data['current_round']
 
     if @game.ready_to_finish_round?
       @game.finish_round!
-      send_new_round if @game.waiting_for_round?
+      @game.waiting_for_round? ? send_new_round : send_refresh
     else
       send_refresh
     end

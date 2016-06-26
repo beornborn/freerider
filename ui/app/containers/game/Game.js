@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
     removeSubscription: (channel) => { dispatch(createAction(REMOVE_CHANNEL_SUBSCRIPTION)({channel})) },
     refresh: (data) => { dispatch(createAction(REFRESH_GAME)({data}))},
     startStopwatch: (remainingTime) => { dispatch(createAction(START_STOPWATCH)({remainingTime})) },
-    decide: (decision) => { dispatch(createAction(DECIDE)({decision})) }
+    decide: (decision, me) => { dispatch(createAction(DECIDE)({decision, me})) }
   }
 }
 

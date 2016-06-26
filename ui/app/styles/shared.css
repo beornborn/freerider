@@ -1,34 +1,39 @@
 :global {
-  .animated-state-update {
+  .state-update {
     background-color: rgba(66, 177, 202, 0.51)!important;
   }
-  .animated-state-success {
-    background-color: rgba(60, 118, 61, 0.5)!important;
+  .state-nothing {}
+  .state-decided {
+    -moz-transition: all 1s;
+    -webkit-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+    background-color: #64B5F6;
+    color: #fff;
   }
-  .animated-state-failure {
-    background-color: rgba(169, 68, 66, 0.6)!important;
-  }
-  .animated-state-neutral {
-    background-color: rgba(66, 139, 202, 0.25)!important;
-  }
-  .animated-state-change-fast {
+
+  .state-change-fast {
     -moz-transition: all 0.2s cubic-bezier(0.82,-0.06, 0.32, 1.08);
     -webkit-transition: all 0.2s cubic-bezier(0.82,-0.06, 0.32, 1.08);
     -o-transition: all 0.2s cubic-bezier(0.82,-0.06, 0.32, 1.08);
     transition: all 0.2s cubic-bezier(0.82,-0.06, 0.32, 1.08);
   }
-  .animated-state-change-slow {
+  .state-change-slow {
     -moz-transition: all 1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
     -webkit-transition: all 1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
     -o-transition: all 1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
     transition: all 1s cubic-bezier(0.25, 0.25, 0.75, 0.75);
   }
 
-  .animated-state-appear {
+  .appear-target {
     -moz-transition: all 1s;
     -webkit-transition: all 1s;
     -o-transition: all 1s;
     transition: all 1s;
-    opacity: 1!important;
+    opacity: 1;
+  }
+
+  .appear-enter {
+    opacity: 0;
   }
 }

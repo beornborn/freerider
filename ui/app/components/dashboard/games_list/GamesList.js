@@ -10,7 +10,7 @@ let GamesList = React.createClass({
   render() {
     return (
       <div>
-        <div styleName='game-row header'>
+        <div styleName='header'>
           <div styleName='column name'>Name</div>
           <div styleName='column players'>Players</div>
           <div styleName='column rounds'>Rounds</div>

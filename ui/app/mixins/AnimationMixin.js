@@ -1,19 +1,20 @@
 var AnimationMixin = {
-  animateAppear(row) {
-    row.style.opacity = 0
-    row.addEventListener('transitionend', ()=>{
-      setTimeout(() => {
-        row.style.opacity = 1
-        row.classList.remove("animated-state-appear")
-      }, 10)
-    })
-    setTimeout(() => { row.className += " animated-state-appear" }, 10)
-  },
+  animateAppear(el) { this.animate(el, 'appear-enter', 'appear-target')},
+  animateDecision(el) { this.animate(el, 'nothing', 'state-decided')},
+  removeAnimateDecision(el) { el.classList.remove('state-decided') },
 
-  animateUpdate(row) { this.animateAndDisanimate(row, 'animated-state-update', 'animated-state-change-fast', 'animated-state-change-slow') },
-  animateSuccess(el) { this.animateAndDisanimate(el, 'animated-state-success', 'animated-state-change-fast', 'animated-state-change-slow') },
-  animateFailure(el) { this.animateAndDisanimate(el, 'animated-state-failure', 'animated-state-change-fast', 'animated-state-change-slow') },
-  animateNeutral(el) { this.animateAndDisanimate(el, 'animated-state-neutral', 'animated-state-change-fast', 'animated-state-change-slow') },
+  animateUpdate(el) { this.animateAndDisanimate(el, 'state-update', 'state-change-fast', 'state-change-slow') },
+  animateSuccess(el) { this.animateAndDisanimate(el, 'state-success', 'state-change-fast', 'state-change-slow') },
+  animateFailure(el) { this.animateAndDisanimate(el, 'state-failure', 'state-change-fast', 'state-change-slow') },
+  animateNeutral(el) { this.animateAndDisanimate(el, 'state-neutral', 'state-change-fast', 'state-change-slow') },
+
+  animate(el, klassAnimationEnter, klassAnimationTarget) {
+    el.classList.add(klassAnimationEnter)
+    setTimeout(() => {
+      el.classList.remove(klassAnimationEnter)
+      el.classList.add(klassAnimationTarget)
+    }, 10)
+  },
 
   animateAndDisanimate(el, klassAnimation, klassAnimationTypeIn, klassAnimationTypeOut) {
     var cbOut = () => {

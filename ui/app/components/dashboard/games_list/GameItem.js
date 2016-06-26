@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import { TableRow, TableRowColumn } from 'material-ui/Table'
+import { RaisedButton } from 'material-ui'
 import { browserHistory } from 'react-router'
 import CSSModules from 'react-css-modules'
 import styles from './GameItem.css'
@@ -12,12 +12,6 @@ classNames.bind(styles)
 
 let GameItem = React.createClass({
   mixins: [AnimationMixin],
-  propTypes: {
-    game: React.PropTypes.object.isRequired,
-    updated: React.PropTypes.bool,
-    current: React.PropTypes.bool,
-    currentPresent: React.PropTypes.bool
-  },
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.updated) {
@@ -29,21 +23,23 @@ let GameItem = React.createClass({
     this.animateAppear(ReactDom.findDOMNode(this.refs.row))
   },
 
+  handleRowTap() {
+    if (!this.props.currentPresent) {
+      this.props.enterGame(this.props.game.id)
+    }
+  },
+
   render() {
     const { rounds, time, actions } = this.content()
     const gameRowStyle = classNames({
       'game-row': true,
-      current: this.props.current,
       currentPresent: this.props.currentPresent
     })
+
     return (
-      <div styleName={gameRowStyle} ref='row' onClick={()=>this.props.enterGame(this.props.game.id)}>
-        <div styleName="column">
-          <div>
-            <div styleName='column-content name'>
-              {this.props.game.name}
-            </div>
-          </div>
+      <div styleName={gameRowStyle} ref='row' onTouchTap={this.handleRowTap}>
+        <div styleName="column name">
+          {this.props.game.name}
         </div>
         <div styleName="column players">{this.props.game.players.length + '/' + this.props.game.players_amount}</div>
         {rounds}
@@ -59,7 +55,9 @@ let GameItem = React.createClass({
       const time = <div styleName="column time">{this.props.game.time_to_think}</div>
       return {rounds, time}
     } else {
-      const actions = <div styleName="column actions">ololo</div>
+      const actions = <div styleName="column actions">
+        <RaisedButton label="Back To Game" primary={true} onTouchTap={()=>this.props.enterGame(this.props.game.id)} />
+      </div>
       return {actions}
     }
   }

@@ -29,7 +29,7 @@ let CreateGameForm = React.createClass({
 
     const playersAmounts = this.getSelectValues(_.range(2, 10))
     const roundsAmounts = this.getSelectValues(_.range(3, 10))
-    const timeAmounts = this.getSelectValues([15,30,45])
+    const timeAmounts = this.getSelectValues([1115,30,45])
 
     const actions = [
       <FlatButton

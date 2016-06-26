@@ -11,9 +11,9 @@ class Player < ApplicationRecord
   scope :winners, -> { where(winner: true) }
   scope :connected, -> { where(connected: true) }
 
-  def decide!(data)
-    self.freerider = data['freerider']
-    self.previous_round_freerider = data['freerider']
+  def decide!(freerider)
+    self.freerider = freerider
+    self.previous_round_freerider = freerider
     self.decided = true
     self.save!
   end

@@ -19,7 +19,7 @@ class Game < ApplicationRecord
       transitions from: :handling_round, to: :waiting_for_round
     end
 
-    event :finish, success: [:set_winners, :disconnect_players] do
+    event :finish, success: [:users_before_round_refresh, :set_winners] do
       transitions from: :handling_round, to: :finished
     end
   end
@@ -56,10 +56,6 @@ class Game < ApplicationRecord
       self.players.where(points: win_points).update_all(winner: true)
       self.players.where.not(points: win_points).update_all(winner: false)
     end
-  end
-
-  def disconnect_players
-    self.players.update_all(connected: false)
   end
 
   def increment_round

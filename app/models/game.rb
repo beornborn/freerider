@@ -33,11 +33,11 @@ class Game < ApplicationRecord
   end
 
   def ready_to_finish_round?
-    self.players.decided.count == self.players_amount && self.reload.can_finish_round?
+    self.players.connected.decided.count == self.players.connected.count && self.reload.can_finish_round?
   end
 
   def ready_to_finish_game?
-    (self.current_round > self.rounds || self.players.cool.count.zero?) && self.reload.can_finish?
+    (self.current_round > self.rounds || self.players.connected.cool.count.zero?) && self.reload.can_finish?
   end
 
   def handle_round
@@ -49,11 +49,11 @@ class Game < ApplicationRecord
   end
 
   def set_winners
-    if self.players.cool.count.zero?
+    if self.players.connected.cool.count.zero?
       self.players.update_all(winner: false)
     else
-      win_points = self.players.order(points: :desc).first.points
-      self.players.where(points: win_points).update_all(winner: true)
+      win_points = self.players.connected.order(points: :desc).first.points
+      self.players.connected.where(points: win_points).update_all(winner: true)
       self.players.where.not(points: win_points).update_all(winner: false)
     end
   end

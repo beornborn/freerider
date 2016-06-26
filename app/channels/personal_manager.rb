@@ -24,19 +24,13 @@ class PersonalManager < ApplicationManager
   end
 
   def leave_game
-    game = @current_user.player.game
+    player = @current_user.player
+    game = player.game
 
-    case game.current_state
-    when :waiting_for_start
-      @current_user.player.destroy
-      refresh_me
-      game_list_manager.refresh(game_list_manager.common_channel, changed_games_ids: [game.id])
-      GameManager.new(game).send_refresh
-    when :waiting_for_round, :handling_round, :finished
-      @current_user.player.update_attribute :connected, false
-      refresh_me
-      game_list_manager.refresh(game_list_manager.personal_channel)
-    end
+    game.waiting_for_start? ? player.destroy : player.update_attribute(:connected, false)
+    refresh_me
+    game_list_manager.refresh(game_list_manager.common_channel, changed_games_ids: [game.id])
+    GameManager.new(game).send_refresh
   end
 
   def update_name(name)

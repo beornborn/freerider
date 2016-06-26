@@ -6,6 +6,12 @@
   display: flex;
   height: 40px;
 
+  &.disconnected {
+    background-color: #B71212;
+    color: #fff;
+    .status { color: #fff; }
+  }
+
   .name {
     display: flex;
     flex-grow: 1;

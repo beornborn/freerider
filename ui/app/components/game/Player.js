@@ -18,9 +18,9 @@ var Player = React.createClass({
   },
 
   render() {
-    var { name, status, points } = this.content()
+    const { name, status, points, playerClass } = this.content()
     return (
-      <div styleName='player' ref='row'>
+      <div styleName={`player ${playerClass}`} ref='row'>
         <div styleName="name">{name}</div>
         <div styleName="status">{status}</div>
         <div styleName="points">{points}</div>
@@ -37,11 +37,13 @@ var Player = React.createClass({
         top={0}
         left={0}
         size={40} />
-      return { name: name, status: 'waiting for connect', points: undefined }
+      return { name: name, status: 'waiting for connect', points: undefined, playerClass: '' }
     } else {
-      return { name: player.name, status: undefined, points: player.points }
+      const playerClass = player.connected ? '' : 'disconnected'
+      const status = player.connected ? '' : 'disconnected'
+      return { name: player.name, status, points: player.points, playerClass }
     }
   }
 })
 
-export default CSSModules(Player, styles)
+export default CSSModules(Player, styles, {allowMultiple: true})

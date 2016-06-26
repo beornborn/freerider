@@ -19,7 +19,7 @@ import { createAction } from 'redux-actions'
 store.dispatch(createAction(INIT)())
 
 import DevTools from '~/app/DevTools'
-const devtools = process.env.NODE_ENV === 'prod' ? undefined : <DevTools />
+const devtools = process.env.NODE_ENV === 'production' ? undefined : <DevTools />
 
 import Layout from '~/app/containers/layout/Layout'
 import Dashboard from '~/app/containers/dashboard/Dashboard'

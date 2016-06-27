@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { createAction } from 'redux-actions'
 import { ADD_CHANNEL_SUBSCRIPTION_WHEN_READY, REMOVE_CHANNEL_SUBSCRIPTION } from '~/app/reducers/Shared'
-import { REFRESH_GAME, START_STOPWATCH, DECIDE } from '~/app/reducers/Game'
+import { REFRESH_GAME, DECIDE, MAYBE_NEXT_ROUND } from '~/app/reducers/Game'
 
 import { browserHistory } from 'react-router'
 import Game from '~/app/components/game/Game'
@@ -25,8 +25,8 @@ const mapDispatchToProps = (dispatch) => {
     },
     removeSubscription: (channel) => { dispatch(createAction(REMOVE_CHANNEL_SUBSCRIPTION)({channel})) },
     refresh: (data) => { dispatch(createAction(REFRESH_GAME)({data}))},
-    startStopwatch: (remainingTime) => { dispatch(createAction(START_STOPWATCH)({remainingTime})) },
-    decide: (decision, me) => { dispatch(createAction(DECIDE)({decision, me})) }
+    decide: (decision, me) => { dispatch(createAction(DECIDE)({decision, me})) },
+    maybeNextRound: () => { dispatch(createAction(MAYBE_NEXT_ROUND)()) }
   }
 }
 

@@ -19,7 +19,7 @@ class Game < ApplicationRecord
       transitions from: :handling_round, to: :waiting_for_round
     end
 
-    event :finish, success: [:users_before_round_refresh, :set_winners] do
+    event :finish, success: [:set_winners] do
       transitions from: :handling_round, to: :finished
     end
   end

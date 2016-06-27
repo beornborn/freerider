@@ -4,6 +4,7 @@ import styles from './GameInfo.css'
 import AlarmIcon from 'material-ui/svg-icons/action/alarm'
 import Theme from '~/app/FreeriderTheme'
 import RefreshIndicator from 'material-ui/RefreshIndicator'
+import Stopwatch from '~/app/components/game/Stopwatch'
 
 var GameInfo = React.createClass({
   propTypes: {
@@ -43,7 +44,7 @@ var GameInfo = React.createClass({
         return {
           rounds: this.props.game.current_round,
           status: 'choose your move',
-          time: this.alarmArea(this.props.stopwatch.time)
+          time: this.alarmArea(this.props.game.time_to_think)
         }
       case 'finished':
         if (this.props.winners.length === 0) {
@@ -60,7 +61,7 @@ var GameInfo = React.createClass({
   alarmArea(time) {
     return <div>
       <AlarmIcon styleName='alarm-icon' color={Theme.commonSettings.palette.alternateTextColor}/>
-      {time}
+      <Stopwatch time={time} ref="stopwatch" cbTimeout={this.props.maybeNextRound}/>
     </div>
   }
 })

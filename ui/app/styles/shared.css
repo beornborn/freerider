@@ -2,15 +2,6 @@
   .state-update {
     background-color: rgba(66, 177, 202, 0.51)!important;
   }
-  .state-nothing {}
-  .state-decided {
-    -moz-transition: all 1s;
-    -webkit-transition: all 1s;
-    -o-transition: all 1s;
-    transition: all 1s;
-    background-color: #64B5F6;
-    color: #fff;
-  }
 
   .state-change-fast {
     -moz-transition: all 0.2s cubic-bezier(0.82,-0.06, 0.32, 1.08);

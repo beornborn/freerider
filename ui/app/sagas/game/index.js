@@ -1,9 +1,9 @@
 import watchDecide from '~/app/sagas/game/Decide'
-import watchStartStopwatch from '~/app/sagas/game/StartStopwatch'
+import watchMaybeNextRound from '~/app/sagas/game/maybeNextRound'
 
 const gameSagas = [
   watchDecide(),
-  watchStartStopwatch()
+  watchMaybeNextRound()
 ]
 
 export default gameSagas

@@ -8,8 +8,8 @@ import { RaisedButton } from 'material-ui'
 var GameActions = React.createClass({
   render() { return this.content() },
 
-  beFreerider() { console.log(this.props.me);this.props.decide(true, this.props.me) },
-  notBeFreerider() { console.log(this.props.me);this.props.decide(false, this.props.me) },
+  beFreerider() { this.props.decide(true, this.props.me) },
+  notBeFreerider() { this.props.decide(false, this.props.me) },
 
   content() {
     if (!this.props.me.decided) {

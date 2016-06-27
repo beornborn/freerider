@@ -1,7 +1,5 @@
 var AnimationMixin = {
   animateAppear(el) { this.animate(el, 'appear-enter', 'appear-target')},
-  animateDecision(el) { this.animate(el, 'nothing', 'state-decided')},
-  removeAnimateDecision(el) { el.classList.remove('state-decided') },
 
   animateUpdate(el) { this.animateAndDisanimate(el, 'state-update', 'state-change-fast', 'state-change-slow') },
   animateSuccess(el) { this.animateAndDisanimate(el, 'state-success', 'state-change-fast', 'state-change-slow') },

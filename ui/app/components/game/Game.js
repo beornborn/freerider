@@ -29,7 +29,8 @@ let Game = React.createClass({
             players={this.props.players}
             game={this.props.game}
             winners={winner_players}
-            stopwatch={this.props.stopwatch} />
+            stopwatch={this.props.stopwatch}
+            maybeNextRound={this.props.maybeNextRound} />
           {actions}
           <div>
             {this.playersElements()}
@@ -53,32 +54,15 @@ let Game = React.createClass({
   },
 
   newRound() {
-    this.props.startStopwatch(this.props.game.time_to_think)
-    if (this.props.game.current_round == 1) { return }
-
-    // var freerider = this.props.players.find((p) => { return p.previous_round_freerider })
-    // this.props.players.forEach((p) => {
-    //   var spot = ReactDOM.findDOMNode(this.refs['player' +  p.id])
-    //   if (!freerider) {
-    //     this.animateNeutral(spot)
-    //   } else if (p.previous_round_freerider) {
-    //     this.animateSuccess(spot)
-    //   } else {
-    //     this.animateFailure(spot)
-    //   }
-    // })
+    this.refs.gameInfo.refs.stopwatch.run(this.props.game.time_to_think)
   },
 
   continueAfterRefresh() {
     if (this.props.game.state === 'waiting_for_round') {
       var goneTime = Math.floor((Date.now() - Date.parse(this.props.game.last_round_on)) / 1000)
       var remainingTime = this.props.game.time_to_think - goneTime
-      this.props.startStopwatch(remainingTime)
+      this.refs.gameInfo.refs.stopwatch.run(remainingTime)
     }
-  },
-
-  cbFreeriderButton(freerider) {
-    this.gameChannel.decide({freerider: freerider, round: this.props.game.current_round})
   }
 })
 

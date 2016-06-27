@@ -32,5 +32,5 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'createGame',
   validate,
-  initialValues: {name: Math.round(Math.random() * 1000), players_amount: 2, rounds: 3, time_to_think: 1115}
+  initialValues: {name: Math.round(Math.random() * 1000), players_amount: 2, rounds: 3, time_to_think: 15}
 })(CreateGameForm))

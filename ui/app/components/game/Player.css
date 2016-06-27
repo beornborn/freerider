@@ -6,6 +6,10 @@
   display: flex;
   height: 40px;
 
+  &.decided {
+    background-color: #64B5F6;
+    color: #fff;
+  }
   &.disconnected {
     background-color: #B71212;
     color: #fff;

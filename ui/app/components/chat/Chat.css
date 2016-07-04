@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  .messages {
+    display: block;
+    flex-grow: 1;
+    margin: 20px;
+  }
+  .form {
+    display: flex;
+    margin: 10px 10px 5px 10px;
+
+    .input {
+      margin-bottom: -7px!important;
+    }
+    .say {
+      display: flex!important;
+      box-shadow: none!important;
+      align-items: flex-end;
+      margin-left: 15px;
+    }
+  }
+}

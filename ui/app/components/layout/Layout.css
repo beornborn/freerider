@@ -1,16 +1,23 @@
 @import 'app/styles/theme';
 
-.app-bar {
-  height: 200px;
-}
+.app {
+  display: flex;
+  flex-direction: column;
 
-.content {
-  margin-top: -150px;
-  z-index: 1200;
-  position: relative;
-}
+  .app-bar {
+    height: 200px;
+  }
 
-.logoName {
-  color: $alternateTextColor;
-  text-decoration: none;
+  .content {
+    display: flex;
+    flex-direction: row;
+    z-index: 1200;
+    margin-top: -125px;
+    justify-content: center;
+  }
+
+  .logoName {
+    color: $alternateTextColor;
+    text-decoration: none;
+  }
 }

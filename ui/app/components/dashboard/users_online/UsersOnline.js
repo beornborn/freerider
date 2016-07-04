@@ -10,10 +10,10 @@ var UsersOnline = React.createClass({
     })
 
     return (
-      <div>
-        <div styleName="header">
+      <div styleName='container'>
+        <div styleName='header'>
           Players
-          <span styleName="status"> Online</span>
+          <span styleName='status'> Online</span>
         </div>
         <div>
           {users}

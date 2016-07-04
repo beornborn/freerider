@@ -1,11 +1,5 @@
 @import 'app/styles/theme';
 
-.new-game-button {
-  position: relative;
-  top: -90px;
-  right: -350px;
-}
-
 .form {
   max-width: 350px!important;
 }
@@ -13,9 +7,4 @@
 .title {
   background-color: $primary1Color;
   color: $alternateTextColor!important;
-}
-
-.button-container {
-  float: left;
-  height: 0px;
 }

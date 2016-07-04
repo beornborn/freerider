@@ -1,4 +1,5 @@
 :global {
+  body { margin: 0;font-family: Roboto, sans-serif; }
   .state-update {
     background-color: rgba(66, 177, 202, 0.51)!important;
   }

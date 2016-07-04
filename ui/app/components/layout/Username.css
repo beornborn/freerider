@@ -1,28 +1,43 @@
 @import 'app/styles/theme';
 
-.username-container {
-  color: $alternateTextColor;
-  font-size: 20px;
-  margin-right: 60px;
-  margin-top: 12px;
-  cursor: pointer!important;
+@media (min-width: 0px) and (max-width: 800px) {
+  .container {
+    .username {
+      margin-right: 20px;
+      font-size: 16px;
+      margin-top: 4px;
+    }
+  }
 }
 
-.username {
-  float: right;
-  margin-top: -2px;
-  margin-left: 4px;
-  font-size: 24px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 200px;
+@media (min-width: 801px) and (max-width: 9999px) {
+  .container {
+    .username {
+      margin-right: 60px;
+      margin-top: -2px;
+      font-size: 19px;
+    }
+  }
+}
+.container {
+  color: $alternateTextColor;
+  margin-top: 12px;
+  cursor: pointer!important;
+
+  .username {
+    float: right;
+    margin-left: 4px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 200px;
+  }
 }
 
 .form {
   max-width: 350px!important;
-}
 
-.formTitle {
-  background-color: $primary1Color;
-  color: $alternateTextColor!important;
+  .formTitle {
+    background-color: $primary1Color;
+    color: $alternateTextColor!important;
+  }
 }

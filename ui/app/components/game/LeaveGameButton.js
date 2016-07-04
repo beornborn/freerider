@@ -6,7 +6,7 @@ import CSSModules from 'react-css-modules'
 
 let LeaveGameButton = React.createClass({
   render() {
-    return <FloatingActionButton secondary={true} styleName="leave-game-button" onTouchTap={this.props.leaveGame}>
+    return <FloatingActionButton secondary={true} onTouchTap={this.props.leaveGame}>
       <LeaveGame />
     </FloatingActionButton>
   }

@@ -13,7 +13,7 @@ var Layout = React.createClass({
   render() {
     const title = <Link to="/" className={styles.logoName}>Freerider</Link>
     return (
-      <div>
+      <div styleName='app'>
         <AppBar
           styleName='app-bar'
           title={title}

@@ -4,7 +4,7 @@ import { ADD_CHANNEL_SUBSCRIPTION_WHEN_READY, REMOVE_CHANNEL_SUBSCRIPTION } from
 import { REFRESH_GAME, DECIDE, MAYBE_NEXT_ROUND } from '~/app/reducers/Game'
 
 import { browserHistory } from 'react-router'
-import Game from '~/app/components/game/Game'
+import GamePage from '~/app/components/game/GamePage'
 import * as api from '~/app/api'
 
 const mapStateToProps = (state) => {
@@ -30,4 +30,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Game)
+export default connect(mapStateToProps, mapDispatchToProps)(GamePage)

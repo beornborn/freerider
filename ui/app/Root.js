@@ -23,7 +23,7 @@ const devtools = process.env.NODE_ENV === 'production' ? undefined : <DevTools /
 
 import Layout from '~/app/containers/layout/Layout'
 import Dashboard from '~/app/containers/dashboard/Dashboard'
-import Game from '~/app/containers/game/Game'
+import GamePage from '~/app/containers/game/GamePage'
 
 render((
   <Provider store={store}>
@@ -32,7 +32,7 @@ render((
         <Router history={browserHistory}>
           <Route path="/" component={Layout}>
             <IndexRoute component={Dashboard}/>
-            <Route path="/game" component={Game} />
+            <Route path="/game" component={GamePage} />
           </Route>
         </Router>
       </MuiThemeProvider>

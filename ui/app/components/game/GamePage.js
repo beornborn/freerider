@@ -2,18 +2,43 @@ import React from 'react'
 import AnimationMixin from '~/app/mixins/AnimationMixin'
 import CableMixin from '~/app/mixins/cable/GameLogic'
 import CSSModules from 'react-css-modules'
-import styles from './Game.css'
+import styles from './GamePage.css'
 import { Card, CardTitle } from 'material-ui/Card'
 import GameInfo from '~/app/components/game/GameInfo'
 import UsersOnline from '~/app/containers/dashboard/users_online/UsersOnline'
 import Player from '~/app/components/game/Player'
 import GameActions from '~/app/components/game/GameActions'
 import LeaveGameButton from '~/app/containers/game/LeaveGameButton'
+import { Tabs, Tab } from 'material-ui'
 
-let Game = React.createClass({
+let GamePage = React.createClass({
   mixins: [AnimationMixin, CableMixin],
 
   render() {
+    return (
+      <div styleName='content'>
+        {this.content()}
+      </div>
+    )
+  },
+
+  content() {
+    if (window.innerWidth < 801) {
+      return <div styleName='mobile'>
+        <Tabs>
+          <Tab label="Game" >{this.game()}</Tab>
+          <Tab label="Chat" >{this.usersOnline()}</Tab>
+        </Tabs>
+      </div>
+    } else {
+      return <div styleName='desktop'>
+        {this.game()}
+        {this.usersOnline()}
+      </div>
+    }
+  },
+
+  game() {
     let winner_ids = this.props.winners.map(w => w.id)
     let winner_players = this.props.players.filter(p => winner_ids.includes(p.id))
 
@@ -21,26 +46,25 @@ let Game = React.createClass({
     if (this.props.game.state === 'waiting_for_round') {
       actions = <GameActions decide={this.props.decide} me={this.props.me} />
     }
-    return (
-      <div styleName="content">
-        <Card styleName="game-card">
-          <LeaveGameButton />
-          <GameInfo ref="gameInfo"
-            players={this.props.players}
-            game={this.props.game}
-            winners={winner_players}
-            stopwatch={this.props.stopwatch}
-            maybeNextRound={this.props.maybeNextRound} />
-          {actions}
-          <div>
-            {this.playersElements()}
-          </div>
-        </Card>
-        <Card styleName="users-online-card">
-          <UsersOnline />
-        </Card>
+
+    return <div styleName='card'>
+      <div styleName='button'><LeaveGameButton /></div>
+      <GameInfo ref="gameInfo"
+        players={this.props.players}
+        game={this.props.game}
+        winners={winner_players}
+        stopwatch={this.props.stopwatch}
+        maybeNextRound={this.props.maybeNextRound} />
+      {actions}
+      <div>
+        {this.playersElements()}
       </div>
-    );
+    </div>
+  },
+  usersOnline() {
+    return <div styleName='card'>
+      <UsersOnline />
+    </div>
   },
 
   playersElements() {
@@ -66,4 +90,4 @@ let Game = React.createClass({
   }
 })
 
-export default CSSModules(Game, styles)
+export default CSSModules(GamePage, styles)

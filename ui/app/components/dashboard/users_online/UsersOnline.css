@@ -1,11 +1,16 @@
 @import 'app/styles/theme';
 
-.header {
-  padding: 16px;
-  line-height: 36px;
-  font-size: 24px;
-}
+.container {
+  display: flex;
+  flex-direction: column;
 
-.status {
-  color: $accent1Color;
+  .header {
+    padding: 16px;
+    line-height: 36px;
+    font-size: 24px;
+  }
+
+  .status {
+    color: $accent1Color;
+  }
 }

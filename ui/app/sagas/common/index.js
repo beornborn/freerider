@@ -4,6 +4,7 @@ import watchAddChannelSubscription from '~/app/sagas/common/AddChannelSubscripti
 import watchCreateGame from '~/app/sagas/common/CreateGame'
 import watchEnterGame from '~/app/sagas/common/EnterGame'
 import watchLeaveGame from '~/app/sagas/common/LeaveGame'
+import watchSendMessage from '~/app/sagas/common/SendMessage'
 
 const commonSagas = [
   watchInit(),
@@ -11,7 +12,8 @@ const commonSagas = [
   watchAddChannelSubscription(),
   watchCreateGame(),
   watchEnterGame(),
-  watchLeaveGame()
+  watchLeaveGame(),
+  watchSendMessage()
 ]
 
 export default commonSagas

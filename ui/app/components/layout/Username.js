@@ -27,7 +27,7 @@ let Username = React.createClass({
     ]
 
     return (
-      <div styleName="username-container">
+      <div styleName="container">
         <CreateIcon color={Theme.commonSettings.palette.accent4Color} onTouchTap={this.handleTouchTap}/>
         <span styleName="username" onTouchTap={this.handleTouchTap}>{this.props.currentUser.name}</span>
         <Dialog

@@ -9,7 +9,8 @@ let GamesList = React.createClass({
 
   render() {
     return (
-      <div>
+      <div styleName='container'>
+        <div styleName='title'>Games</div>
         <div styleName='header'>
           <div styleName='column name'>Name</div>
           <div styleName='column players'>Players</div>

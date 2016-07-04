@@ -27,6 +27,7 @@ class Game < ApplicationRecord
   validates :name, presence: true
   has_many :players, dependent: :destroy
   has_many :users, through: :players
+  has_one :chat
 
   def ready_to_start?
     self.players.count == self.players_amount && self.reload.can_start?

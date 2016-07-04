@@ -3,6 +3,6 @@ class Chat < ApplicationRecord
   has_many :messages
 
   def self.common
-    where(game_id: nil).first
+    where(game_id: nil).first || Chat.create
   end
 end

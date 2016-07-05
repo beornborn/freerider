@@ -22,9 +22,9 @@ var Chat = React.createClass({
           <Message message={message} key={message.id}/>
         )}
       </div>
-      <form onSubmit={handleSubmit(this.props.onSubmit)}>
+      <form onSubmit={handleSubmit(this.props.onSubmit)} id='chat-field'>
         <div styleName='form'>
-          <Field name='content' component={this.textField}/>
+          <Field name='content' autoFocus={true} component={this.textField}/>
           <RaisedButton label='Say' primary={true} styleName='say' type='submit' disabled={pristine || submitting} />
         </div>
       </form>

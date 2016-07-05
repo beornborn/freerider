@@ -10,7 +10,8 @@ function cableLogic(component) {
       if (data === undefined) { return }
       switch (data.msg) {
         case 'refresh':
-          return component.props.refreshChat({messages: data.messages})
+          component.props.refreshChat({messages: data.messages})
+          return document.getElementById('chat-field').scrollIntoView()
       }
     },
 

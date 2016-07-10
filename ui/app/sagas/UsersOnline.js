@@ -12,10 +12,10 @@ export function* pollUsersOnline() {
     personalChannel = yield select(state => state.shared.cable.PersonalChannel)
   }
 
-  // while(true) {
-  //   yield call(personalChannel.pollUsersOnline.bind(personalChannel))
-  //   yield delay(15000)
-  // }
+  while(true) {
+    yield call(personalChannel.pollUsersOnline.bind(personalChannel))
+    yield delay(15000)
+  }
 }
 
 export default pollUsersOnline()

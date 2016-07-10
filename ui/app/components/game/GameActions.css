@@ -26,7 +26,6 @@
   justify-content: center;
   text-align: center;
   align-items: center;
-  flex-grow: 100;
   border-bottom: 1px dashed $primary2Color;
 
   .response { color: $primary2Color; }

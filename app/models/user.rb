@@ -6,6 +6,6 @@ class User < ApplicationRecord
   scope :online, -> { where(online: true) }
 
   def player
-    players.last
+    players.connected.last
   end
 end

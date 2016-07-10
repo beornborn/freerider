@@ -29,6 +29,8 @@ class Game < ApplicationRecord
   has_many :users, through: :players
   has_one :chat
 
+  after_create ->(game) { game.create_chat }
+
   def ready_to_start?
     self.players.count == self.players_amount && self.reload.can_start?
   end

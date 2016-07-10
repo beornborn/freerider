@@ -5,7 +5,7 @@ import CSSModules from 'react-css-modules'
 import styles from './GamePage.css'
 import { Card, CardTitle } from 'material-ui/Card'
 import GameInfo from '~/app/components/game/GameInfo'
-import UsersOnline from '~/app/containers/dashboard/users_online/UsersOnline'
+import Chat from '~/app/containers/chat/Chat'
 import Player from '~/app/components/game/Player'
 import GameActions from '~/app/components/game/GameActions'
 import LeaveGameButton from '~/app/containers/game/LeaveGameButton'
@@ -27,13 +27,13 @@ let GamePage = React.createClass({
       return <div styleName='mobile'>
         <Tabs>
           <Tab label="Game" >{this.game()}</Tab>
-          <Tab label="Chat" >{this.usersOnline()}</Tab>
+          <Tab label="Chat" >{this.chat()}</Tab>
         </Tabs>
       </div>
     } else {
       return <div styleName='desktop'>
         {this.game()}
-        {this.usersOnline()}
+        {this.chat()}
       </div>
     }
   },
@@ -61,9 +61,10 @@ let GamePage = React.createClass({
       </div>
     </div>
   },
-  usersOnline() {
+
+  chat() {
     return <div styleName='card'>
-      <UsersOnline />
+      <Chat inGame={true} />
     </div>
   },
 

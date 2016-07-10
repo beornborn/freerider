@@ -6,7 +6,6 @@ function cableLogic(component) {
     disconnected() { },
 
     received(data) {
-      console.log(data)
       if (data === undefined) { return }
       switch (data.msg) {
         case 'refresh':
@@ -17,7 +16,9 @@ function cableLogic(component) {
 
     sendMessage(message) {
       this.perform('send_message', {message})
-    }
+    },
+
+    inGame: component.props.inGame
   }
 }
 

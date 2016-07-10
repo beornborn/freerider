@@ -1,7 +1,7 @@
 class ChatManager < ApplicationManager
-  def initialize(user, game_id)
+  def initialize(user, is_game_chat)
     @current_user = user
-    @game = Game.find(game_id) if game_id
+    @game = @current_user.player.game if is_game_chat
     @chat = @game ? @game.chat : Chat.common
   end
 

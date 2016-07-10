@@ -6,7 +6,6 @@ function cableLogic(game) {
     disconnected() { },
 
     received(data) {
-      console.log(data)
       if (data === undefined) { return }
       switch (data.msg) {
         case 'new_round':

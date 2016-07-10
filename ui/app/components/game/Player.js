@@ -2,18 +2,26 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import CSSModules from 'react-css-modules'
 import styles from './Player.css'
-import RefreshIndicator from 'material-ui/RefreshIndicator'
 import AnimationMixin from '~/app/mixins/AnimationMixin'
-import classNames from 'classnames'
+import Disconnected from 'material-ui/svg-icons/action/highlight-off'
+import Winner from 'material-ui/svg-icons/social/sentiment-very-satisfied'
+import Looser from 'material-ui/svg-icons/social/sentiment-very-dissatisfied'
+import Decided from 'material-ui/svg-icons/action/done'
+import ReactTooltip from 'react-tooltip'
 
 var Player = React.createClass({
+  componentDidUpdate() {
+    ReactTooltip.rebuild()
+  },
+
   render() {
-    const { name, status, points, playerClass } = this.content()
+    const { name, status, points } = this.content()
     return (
-      <div styleName={`player ${playerClass}`}>
-        <div styleName="name">{name}</div>
-        <div styleName="status">{status}</div>
-        <div styleName="points">{points}</div>
+      <div styleName='player'>
+        <ReactTooltip place="top" effect="solid"/>
+        <div styleName='name'>{name}</div>
+        <div styleName='status'>{status}</div>
+        <div styleName='points'>{points}</div>
       </div>
     )
   },
@@ -21,17 +29,16 @@ var Player = React.createClass({
   content() {
     const player = this.props.player
     if (player === undefined) {
-      const name = <RefreshIndicator
-        status='loading'
-        style={{position: 'relative', backgroundColor: 'none', boxShadow: 0}}
-        top={0}
-        left={0}
-        size={40} />
-      return { name: name, status: 'waiting for connect', points: undefined, playerClass: '' }
+      return { name: '', status: 'waiting for connect', points: undefined }
     } else {
-      const playerClass = classNames({decided: player.decided, disconnected: !player.connected})
-      const status = player.connected ? '' : 'disconnected'
-      return { name: player.name, status, points: player.points, playerClass }
+      let status = <div>
+        {!player.connected ? <Disconnected color='red' data-tip="disconnected"/> : ''}
+        {player.winner ? <Winner color='#19B14D' data-tip="winner" /> : ''}
+        {player.winner === false ? <Looser color='red' data-tip="looser" /> : ''}
+        {player.decided ? <Decided color='#19B14D' data-tip="decided" /> : ''}
+
+      </div>
+      return { name: player.name, status, points: player.points }
     }
   }
 })

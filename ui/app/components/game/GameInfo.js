@@ -51,7 +51,11 @@ var GameInfo = React.createClass({
           return {status: 'Bus Company has bankrupted.. Everyone looses'}
         } else {
           let winners_view = this.props.winners.map(w => w.name).join(', ')
-          return {status: `Bus company survived! Winners are: ${winners_view}`}
+          let status = <div>
+            Bus company survived! Winners are:
+            <span styleName='winners'>{winners_view}</span>
+          </div>
+          return {status: status}
         }
       default:
         return {rounds: undefined, status: undefined, time: undefined}

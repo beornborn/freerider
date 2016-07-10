@@ -55,7 +55,7 @@ class GameManager < ApplicationManager
   private
 
   def all_data
-    players = @game.players
+    players = @game.players.order('id asc')
     {
       game: @game.serial_as_json,
       players: Player.serializer.new(players).as_json,

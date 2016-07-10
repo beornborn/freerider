@@ -25,6 +25,11 @@
     justify-content: center;
     text-align: center;
     align-items: center;
+
+    .winners {
+      color: $accent1Color;
+      margin-left: 5px;
+    }
   }
 
   .timer {

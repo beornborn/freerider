@@ -47,7 +47,7 @@ let CreateGameForm = React.createClass({
 
     return (
       <div>
-        <FloatingActionButton secondary={true} onTouchTap={this.props.toggleForm}>
+        <FloatingActionButton secondary={true} onClick={this.props.toggleForm}>
           <ContentAdd />
         </FloatingActionButton>
         <Dialog
